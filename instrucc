@@ -1,0 +1,21 @@
+lo unico que varia de un cromosoma, es minimo, maximo y f (x),,o f(y)
+
+paquete control (Controlconsola,Agenetico.java,Main.java
+paquete logica
+paquete individuo (Cromosoma.java (abstracta), Gen.java, Poblacion.java
+
+
+gen es un array de boolean
+cuantas más decimales tenga, mas largo será el cromosoma
+..
+
+int tamGen (double min, double max, double prec)
+{
+double unNumero=1+((max-min)/prec);
+unNumero=Math.log(unNumero)/Math.log(2);
+//redondear al alza
+}
+
+
+algoritmo genetico movido a lógica.
+
