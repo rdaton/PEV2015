@@ -1,0 +1,65 @@
+package individuo;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Poblacion {	
+	private List<Individuo> individuos;
+	int pos_mejor;
+	double sumadap;//adaptación global de la población	
+	
+	public List dameIndividuos ()
+	{
+		return individuos;
+	}
+	
+	public int size ()
+	{
+		return individuos.size();
+	}
+	
+	public Poblacion(int tam_pob, int lcrom)
+	{
+		individuos=new ArrayList();
+		Individuo unIndividuo=null;
+		for (int i=0;i<tam_pob;i++)
+		{
+			unIndividuo=new Individuo(lcrom);
+			individuos.add(unIndividuo);
+		}
+	}
+	
+	public void evaluacion()
+	{
+		sumadap=0; //suma de la adaptacion
+		Individuo puntIndividuo=null;
+		Iterator<Individuo> unIterador=individuos.iterator();
+		int i=0;
+		while (unIterador.hasNext())		
+		{
+			puntIndividuo=unIterador.next();
+			i++;
+			sumadap+=puntIndividuo.getAdaptacion();
+			if (puntIndividuo.getAdaptacion()>puntIndividuo.getAdaptacion())
+			{
+				pos_mejor=i;
+			}
+		}
+		
+		unIterador=individuos.iterator();
+		while (unIterador.hasNext())
+		{
+			puntIndividuo=unIterador.next();
+			puntIndividuo.setPuntuacion((double)puntIndividuo.getAdaptacion()/(double)sumadap);
+		}
+			
+
+	
+	}
+
+	double desplazar (double a, double max)
+	{
+		return max-a;
+	}
+}

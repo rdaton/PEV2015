@@ -1,0 +1,7 @@
+package control;
+
+public class AGenetico {
+	private individuo.Poblacion unaPoblacion;
+	
+
+}
