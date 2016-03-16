@@ -13,13 +13,19 @@ public class Gen {
 		return bit;
 	}
 	
-	public boolean muta (int g)
+	public  void muta ()
 	{
-		if (g==bit) 
-			return false;
+		if (bit==0)
+			bit=1;
+		else
+			bit=1;
 		
-		bit=g;
-		return true;
+		
+	}
+	
+	public Gen clone(){
+		Gen unGen=new Gen(bit);
+		return unGen;
 	}
 	
 }

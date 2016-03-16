@@ -1,0 +1,13 @@
+Esta librería Java permite configurar objetos cualesquiera (por ejemplo, algoritmos genéticos) de forma gráfica (genera un JPanel con un formulario), escribiendo un número mínimo de líneas de código y con un aspecto y funcionalidad profesionales.
+
+Por ejemplo, para añadir un campo "número de individuos" a un formulario, bastaría escribir 3 líneas:
+
+miFormulario.addOption(new IntegerOption<MiAlgoritmoGenetico>(
+"Poblacion", "Numero de individuos en la poblacion",
+"numIndividuos", 1, Integer.MAX_VALUE));
+
+Soporta validación de entradas, sub-formularios (por ejemplo, para configurar estrategias), y notificación de cuando el formulario pasa a ser válido (o inválido).
+
+Se adjunta un programa-demostración (en proyecto Eclipse) muy comentado para ver cómo se usa. La librería en sí está, dentro del .zip, en src/es/ucm/fdi/pe/ConfigPanel.java.
+
+

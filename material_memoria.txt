@@ -1,0 +1,5 @@
+función a minimizar en wolfram alfa 
+-abs(xsen(sqrt(abs(x)))
+
+https://www.wolframalpha.com/input/?i=extrema+calculator+-abs%28xsen%28sqrt%28abs%28x%29%29%29
+

@@ -9,6 +9,10 @@ public   class Individuo {
 	double x; //fenotipo
 	double adaptacion; //función de evaluación
 	double puntuacion; //punt. relativa: adaptación/sumadaptación
+	double punt_acu; //puntuación acumulada para sorteos
+	double x_min;
+	double x_max;
+	
 	public double getPuntuacion() {
 		return puntuacion;
 	}
@@ -25,10 +29,12 @@ public   class Individuo {
 		this.punt_acu = punt_acu;
 	}
 
-	double punt_acu; //puntuación acumulada para sorteos
 	
-	public Individuo (int lcrom)
+	
+	public Individuo (int lcrom, double x_min, double x_max)
 	{		
+		this.x_min=x_min;
+		this.x_max=x_max;
 		Gen gen;
 		genes=new ArrayList();
 		for (int i=0;i<lcrom;i++)
@@ -43,27 +49,46 @@ public   class Individuo {
 		adaptacion=calculaAdaptacion(lcrom);
 	}
 	
+	public Individuo clone()
+	{
+		Individuo unIndividuo=new Individuo (this.genes.size(),this.x_min,this.x_max);
+		for (int i=0;i<this.genes.size();i++)
+		{
+			unIndividuo.genes.set(i, this.genes.get(i).clone());
+		}
+		unIndividuo.x=this.x;
+		unIndividuo.adaptacion=this.adaptacion;
+		unIndividuo.puntuacion=this.puntuacion;
+		unIndividuo.punt_acu=this.punt_acu;
+		return unIndividuo;
+	}
+	
+	
 	public double getAdaptacion() {
 		return adaptacion;
-	}
-
-	double miFuncion (double valor)
-	{
-		double res=0;
-		res=Math.sqrt(Math.abs(valor));
-		res=valor*Math.sin(res);
-		res=(-1)*Math.abs(res);
-		return res;
-	}
-	private double calculaAdaptacion(int lcrom)
+	}	
+	
+	
+	double calculaAdaptacion(int lcrom)
 	{
 		decod(lcrom);
 		return miFuncion(x);
 	}
 	
+	//reflejada
+	double miFuncion (double valor)
+	{
+		double res=0;
+		res=Math.sqrt(Math.abs(valor));
+		res=valor*Math.sin(res);
+		res=Math.abs(res);
+		return res;
+	}
+		
 	void  decod(int lcrom)
 	{
 		x=(double)((double)bin_ent(lcrom)/(double)(Math.pow(2, lcrom)-1));
+		x*=x_min + (x_max - x_min);
 	}
 	
 	int bin_ent(int lcrom)
@@ -78,7 +103,16 @@ public   class Individuo {
 		return d;
 	}
 	
+
+	@Override
+	public String toString()
+	{
+		StringBuffer unBuffer=new StringBuffer();
 		
+		unBuffer.append(x).append(';').append(adaptacion).append(';').append(puntuacion).append(';').append(punt_acu);
+		
+		return unBuffer.toString();
+	}
 		
 	
 	
