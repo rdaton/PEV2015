@@ -12,7 +12,8 @@ public   class Individuo {
 	double punt_acu; //puntuación acumulada para sorteos
 	double x_min;
 	double x_max;
-	
+	double prec;
+	int lcrom;
 	public double getPuntuacion() {
 		return puntuacion;
 	}
@@ -31,10 +32,12 @@ public   class Individuo {
 
 	
 	
-	public Individuo (int lcrom, double x_min, double x_max)
+	public Individuo (double x_min, double x_max,double prec)
 	{		
+		this.prec=prec;
 		this.x_min=x_min;
-		this.x_max=x_max;
+		this.x_max=x_max;	
+		lcrom=logica.Calculadora.tamGen(x_min,x_max, prec);
 		Gen gen;
 		genes=new ArrayList();
 		for (int i=0;i<lcrom;i++)
@@ -46,7 +49,7 @@ public   class Individuo {
 			//fi
 			genes.add(gen);
 		}
-		adaptacion=calculaAdaptacion(lcrom);
+		adaptacion=calculaAdaptacion();
 	}
 	
 	public Individuo clone()
@@ -69,9 +72,9 @@ public   class Individuo {
 	}	
 	
 	
-	double calculaAdaptacion(int lcrom)
+	double calculaAdaptacion()
 	{
-		decod(lcrom);
+		decod();
 		return miFuncion(x);
 	}
 	
@@ -80,18 +83,20 @@ public   class Individuo {
 	{
 		double res=0;
 		res=Math.sqrt(Math.abs(valor));
-		res=valor*Math.sin(res);
+		double unSin=Math.sin(res);
+		res=valor*unSin;
 		res=Math.abs(res);
 		return res;
 	}
 		
-	void  decod(int lcrom)
+	void  decod()
 	{
-		x=(double)((double)bin_ent(lcrom)/(double)(Math.pow(2, lcrom)-1));
-		x*=x_min + (x_max - x_min);
+		x=(double)((double)bin_ent()/(double)(Math.pow(2, lcrom)-1));
+		x*=(x_max - x_min);
+		x+=x_min;
 	}
 	
-	int bin_ent(int lcrom)
+	int bin_ent()
 	{
 		int d=0;
 		int pot=1;
@@ -109,8 +114,9 @@ public   class Individuo {
 	{
 		StringBuffer unBuffer=new StringBuffer();
 		
-		unBuffer.append(x).append(';').append(adaptacion).append(';').append(puntuacion).append(';').append(punt_acu);
 		
+		decod();
+		unBuffer.append(x).append(';');
 		return unBuffer.toString();
 	}
 		

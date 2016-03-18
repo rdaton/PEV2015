@@ -2,28 +2,29 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="clone" key="selection"/>
+		<item value="Combo" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="clone"/>
-			<item value="miFuncion"/>
-			<item value="pos_mejor"/>
-			<item value="adaptac"/>
-			<item value="punt_acu"/>
-			<item value="toarray"/>
+			<item value="combo"/>
+			<item value="text"/>
 			<item value="lcrom"/>
+			<item value="individuo_mejor"/>
+			<item value="class figura"/>
+			<item value="Figura"/>
+			<item value="addoption"/>
+			<item value="miFormulario"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="297" key="DIALOG_WIDTH"/>
+		<item value="301" key="DIALOG_WIDTH"/>
 		<item value="1|Sans|12.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="386" key="DIALOG_HEIGHT"/>
-		<item value="879" key="DIALOG_X_ORIGIN"/>
-		<item value="173" key="DIALOG_Y_ORIGIN"/>
+		<item value="396" key="DIALOG_HEIGHT"/>
+		<item value="609" key="DIALOG_X_ORIGIN"/>
+		<item value="122" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

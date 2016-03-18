@@ -1,0 +1,20 @@
+package control;
+
+public class Funcion1 {
+	double prec=0;
+	int tam_pob=0;
+	int num_iter=0;
+	double pCruces=0;
+	double pMut=0;
+	double semilla=0;
+	int tCruce=0;
+	int tSeleccion=0;
+	
+	public Funcion1 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,double semilla,
+		int tCruce,int tSeleccion)
+	{
+		
+		
+	}
+
+}

@@ -1,0 +1,60 @@
+package interfaz;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+
+import control.AGenetico;
+
+/*
+ * public static void main(String [ ] args)
+	{
+		
+		interfaz.ConfigPanel unPanel=new interfaz.ConfigPanel();
+		unPanel.show();
+		int lcrom=logica.Calculadora.tamGen(-250,250, 0.1);
+		AGenetico unAlg = new AGenetico(1000,lcrom,0.6,0.05,-250,250);
+		System.out.println(unAlg.dameMejor());
+	}
+	
+	
+ */
+
+
+public class Practica1_PEV {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Practica1_PEV window = new Practica1_PEV();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Practica1_PEV() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+}

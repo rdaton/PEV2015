@@ -8,6 +8,8 @@ public class Poblacion {
 	private List<Individuo> individuos;
 	int pos_mejor;
 	double sumadap;//adaptación global de la población	
+	double prec;
+	int lcrom;
 	
 	public List dameIndividuos ()
 	{
@@ -16,6 +18,7 @@ public class Poblacion {
 	
 	public Individuo dameMejor()
 	{
+		System.out.println("mejor " + pos_mejor);
 		return individuos.get(pos_mejor);
 	}
 	public int size ()
@@ -23,13 +26,15 @@ public class Poblacion {
 		return individuos.size();
 	}
 	
-	public Poblacion(int tam_pob, int lcrom,double x_min,double x_max)
+	public Poblacion(int tam_pob,double x_min,double x_max,double prec)
 	{
 		init();
+		this.prec=prec;
+		lcrom=logica.Calculadora.tamGen(x_min,x_max, prec);
 		Individuo unIndividuo=null;
 		for (int i=0;i<tam_pob;i++)
 		{
-			unIndividuo=new Individuo(lcrom,x_min,x_max);
+			unIndividuo=new Individuo(prec,x_min,x_max);
 			individuos.add(unIndividuo);
 		}
 	}
@@ -52,7 +57,7 @@ public class Poblacion {
 			pIndividuo=unIterador.next();
 			i++;
 			sumadap+=pIndividuo.getAdaptacion();
-			if (pIndividuo.getAdaptacion()<individuos.get(pos_mejor).getAdaptacion())
+			if (pIndividuo.getAdaptacion()>individuos.get(pos_mejor).getAdaptacion())
 			{
 				pos_mejor=i;
 			}
@@ -106,7 +111,7 @@ public class Poblacion {
 			
 	}
 	
-	public void reproduccion (int lcrom, double prob_cruce,double x_min, double x_max) {
+	public void reproduccion (double prob_cruce,double x_min, double x_max) {
 		double sel_cruce[]= new double [this.size()];// seleccionados para reproducirse
 		int num_sel_cruce=0;//contador de sleccionados
 		double prob;
@@ -131,7 +136,7 @@ public class Poblacion {
 		punto_cruce = 0 + (int)(Math.random() * ((lcrom-0) + 1));
 		for (int i=0;i<num_sel_cruce;i+=2)
 		{
-			Individuo[] unReturn=cruce(individuos.get(i),individuos.get(i+1),lcrom,punto_cruce, x_min,  x_max);
+			Individuo[] unReturn=cruce(individuos.get(i),individuos.get(i+1),punto_cruce, x_min, x_max);
 			hijo1=unReturn[0];
 			hijo2=unReturn[1];
 			//los nuevos individuos sutituyen a sus progenitores
@@ -141,10 +146,10 @@ public class Poblacion {
 		
 	}
 	
-	Individuo[] cruce (Individuo padre1, Individuo padre2, int lcrom, int punto_cruce,double x_min, double x_max)
+	Individuo[] cruce (Individuo padre1, Individuo padre2, int punto_cruce,double x_min, double x_max)
 	{
-		Individuo hijo1=new Individuo(lcrom,x_min,x_max);
-		Individuo hijo2=new Individuo(lcrom,x_min,x_max);
+		Individuo hijo1=new Individuo(x_min,x_max,prec);
+		Individuo hijo2=new Individuo(x_min,x_max,prec);
 		Individuo[] unReturn={hijo1,hijo2};
 		//primera parte del intercambio: 1 a 1 y 2 a 2
 		for (int i=0;i<punto_cruce;i++)
@@ -160,12 +165,12 @@ public class Poblacion {
 			hijo2.genes.set(i, padre1.genes.get(i).clone());
 		}
 		//se evalúan
-		hijo1.adaptacion=hijo1.calculaAdaptacion(lcrom);
-		hijo2.adaptacion=hijo2.calculaAdaptacion(lcrom);		
+		hijo1.adaptacion=hijo1.calculaAdaptacion();
+		hijo2.adaptacion=hijo2.calculaAdaptacion();		
 		return unReturn;
 	}
 	
-	public void mutacion(int lcrom, double prob_mut)
+	public void mutacion(double prob_mut)
 	{
 		boolean mutado;
 		double prob;
@@ -184,7 +189,7 @@ public class Poblacion {
 				}				
 			}
 			if (mutado)
-				individuos.get(i).adaptacion=individuos.get(i).calculaAdaptacion(lcrom);				
+				individuos.get(i).adaptacion=individuos.get(i).calculaAdaptacion();				
 		}
 	}
 	
