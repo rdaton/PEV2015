@@ -54,7 +54,7 @@ public   class Individuo {
 	
 	public Individuo clone()
 	{
-		Individuo unIndividuo=new Individuo (this.genes.size(),this.x_min,this.x_max);
+		Individuo unIndividuo=new Individuo (this.x_min,this.x_max,prec);
 		for (int i=0;i<this.genes.size();i++)
 		{
 			unIndividuo.genes.set(i, this.genes.get(i).clone());

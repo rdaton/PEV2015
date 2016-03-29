@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Poblacion {	
 	private List<Individuo> individuos;
-	int pos_mejor;
+	int pos_mejor;	
 	double sumadap;//adaptación global de la población	
 	double prec;
 	int lcrom;
@@ -34,7 +34,7 @@ public class Poblacion {
 		Individuo unIndividuo=null;
 		for (int i=0;i<tam_pob;i++)
 		{
-			unIndividuo=new Individuo(prec,x_min,x_max);
+			unIndividuo=new Individuo(x_min,x_max,prec);
 			individuos.add(unIndividuo);
 		}
 	}
@@ -54,13 +54,13 @@ public class Poblacion {
 		int i=0;
 		while (unIterador.hasNext())		
 		{
-			pIndividuo=unIterador.next();
-			i++;
+			pIndividuo=unIterador.next();			
 			sumadap+=pIndividuo.getAdaptacion();
-			if (pIndividuo.getAdaptacion()>individuos.get(pos_mejor).getAdaptacion())
+			if ((i==0) || pIndividuo.getAdaptacion()>individuos.get(pos_mejor).getAdaptacion())
 			{
 				pos_mejor=i;
 			}
+			i++;
 		}
 		
 		unIterador=individuos.iterator();
@@ -84,27 +84,30 @@ public class Poblacion {
 		int j=0;
 		while (unIterador.hasNext())
 		{
-			pIndividuo=unIterador.next();
-			j++;
+			//pIndividuo=unIterador.next();
+			unIterador.next();	
 			prob=Math.random();
 			pos_super=0;
 			while((prob>individuos.get(pos_super).getPunt_acu()) && (pos_super<this.size()))
 			{
 				pos_super++;				
 			}
+			if (pos_super==this.size())
+				pos_super--;
 			sel_super[j]=pos_super;
+			j++;
 		}
 		//se genera la poblacion intermedia
 		for (int i=0;i<this.size();i++)
 		{
-			pob_aux.add(individuos.get(sel_super[i]));
+			pob_aux.add(individuos.get(sel_super[i]).clone());
 		}
-		//machaco población anterior y la rremplazo con la de supervivientes
+		//machaco población anterior y la reemplazo con la de supervivientes
 		init();
 		unIterador=pob_aux.iterator();
 		while (unIterador.hasNext())
 		{
-			individuos.add(unIterador.next());
+			individuos.add(unIterador.next().clone());
 		}
 				
 				
@@ -193,8 +196,5 @@ public class Poblacion {
 		}
 	}
 	
-	double desplazar (double a, double max)
-	{
-		return max-a;
-	}
+	
 }

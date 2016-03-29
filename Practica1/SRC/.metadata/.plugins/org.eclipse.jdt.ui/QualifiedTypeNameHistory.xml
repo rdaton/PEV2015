@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="individuo.Poblacion"/>
-<fullyQualifiedTypeName name="individuo.Individuo"/>
 <fullyQualifiedTypeName name="logica.Calculadora"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="control.Funcion1"/>
 <fullyQualifiedTypeName name="interfaz.VentanaPrincipal"/>
+<fullyQualifiedTypeName name="org.math.plot.Plot2DPanel"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="org.math.plot.plotObjects.Line"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="individuo.Individuo"/>
 </qualifiedTypeNameHistroy>
