@@ -88,8 +88,8 @@ public   class Individuo {
 		res=Math.sqrt(Math.abs(valor));
 		double unSin=Math.sin(res);
 		res=valor*unSin;
-		res=Math.abs(res);
-		return -res;
+		res=-Math.abs(res);
+		return res;
 	}
 		
 	void  decod()

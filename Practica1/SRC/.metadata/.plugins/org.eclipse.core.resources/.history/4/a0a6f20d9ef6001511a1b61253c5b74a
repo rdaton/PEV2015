@@ -17,7 +17,8 @@ public class Poblacion {
 	}
 	
 	public Individuo dameMejor()
-	{		
+	{
+		System.out.println("mejor " + pos_mejor);
 		return individuos.get(pos_mejor);
 	}
 	public int size ()
@@ -74,15 +75,27 @@ public class Poblacion {
 
 	void desplazar()
 	{
+		Individuo pIndividuo=null;
+		int pos_peor=0;
+		Iterator<Individuo> unIterador=individuos.iterator();	
+		int i=0;
+		while (unIterador.hasNext())		
+		{
+			pIndividuo=unIterador.next();			
+			if ((i==0) || pIndividuo.getAdaptacion()<individuos.get(pos_peor).getAdaptacion())
+			{
+				pos_peor=i;
+			}		
+			i++;
+		}
 		
-		//margen para evitar sumadaptacion = 0 si converte la población
-		double maximo=individuos.get(pos_mejor).getAdaptacion()*1.05;		  
-		Iterator<Individuo>unIterador=individuos.iterator();
-		Individuo pIndividuo=null;	
+		double minimo=Math.abs(individuos.get(pos_peor).getAdaptacion());
+		
+		unIterador=individuos.iterator();
 		while (unIterador.hasNext())		
 		{
 			pIndividuo=unIterador.next();
-			pIndividuo.setAdaptacion(maximo-pIndividuo.getAdaptacion());		
+			pIndividuo.setAdaptacion(pIndividuo.getAdaptacion()+minimo);
 		}
 		
 		
@@ -103,10 +116,9 @@ public class Poblacion {
 			unIterador.next();	
 			prob=Math.random();
 			pos_super=0;
-			while((pos_super<this.size()) && (prob>individuos.get(pos_super).getPunt_acu())  )
+			while((prob>individuos.get(pos_super).getPunt_acu()) && (pos_super<this.size()))
 			{
-				pos_super++;	
-				if (pos_super==this.size()) break;
+				pos_super++;				
 			}
 			if (pos_super==this.size())
 				pos_super--;

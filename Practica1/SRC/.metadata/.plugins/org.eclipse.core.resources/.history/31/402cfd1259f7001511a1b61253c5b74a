@@ -17,7 +17,8 @@ public class Poblacion {
 	}
 	
 	public Individuo dameMejor()
-	{		
+	{
+		System.out.println("mejor " + pos_mejor);
 		return individuos.get(pos_mejor);
 	}
 	public int size ()
@@ -61,7 +62,7 @@ public class Poblacion {
 			}
 			i++;
 		}
-		desplazar();
+		//desplazar();
 		unIterador=individuos.iterator();
 		while (unIterador.hasNext())
 		{
@@ -74,9 +75,7 @@ public class Poblacion {
 
 	void desplazar()
 	{
-		
-		//margen para evitar sumadaptacion = 0 si converte la población
-		double maximo=individuos.get(pos_mejor).getAdaptacion()*1.05;		  
+		double maximo=individuos.get(pos_mejor).getAdaptacion();		  
 		Iterator<Individuo>unIterador=individuos.iterator();
 		Individuo pIndividuo=null;	
 		while (unIterador.hasNext())		

@@ -3,3 +3,7 @@ función a minimizar en wolfram alfa
 
 https://www.wolframalpha.com/input/?i=extrema+calculator+-abs%28xsen%28sqrt%28abs%28x%29%29%29
 
+http://fooplot.com/#W3sidHlwZSI6MCwiZXEiOiItYWJzKHgqc2luKHNxcnQoYWJzKHgpKSkpIiwiY29sb3IiOiIjMDAwMDAwIn0seyJ0eXBlIjoxMDAwLCJ3aW5kb3ciOlsiLTI1MCIsIjI1MCIsIi00IiwiNCJdfV0-
+
+-abs(x*sin(sqrt(abs(x))))
+

@@ -89,7 +89,7 @@ public   class Individuo {
 		double unSin=Math.sin(res);
 		res=valor*unSin;
 		res=Math.abs(res);
-		return -res;
+		return (-1)*res;
 	}
 		
 	void  decod()

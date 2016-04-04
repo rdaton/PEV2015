@@ -17,7 +17,8 @@ public class Poblacion {
 	}
 	
 	public Individuo dameMejor()
-	{		
+	{
+		System.out.println("mejor " + pos_mejor);
 		return individuos.get(pos_mejor);
 	}
 	public int size ()

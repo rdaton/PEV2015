@@ -211,6 +211,7 @@ public class VentanaPrincipal {
 		 {
 			 x[i]=i;
 		 }
+		 
 		 double[] y = new double[resultados.get(0).size()];
 		 for (int i=0;i<resultados.get(0).size();i++)
 		 {
