@@ -28,6 +28,7 @@ public class VentanaPrincipal {
 	private JFrame frame;
 	private JTextField textIteraciones;
 	private JTextField textPrecision;
+	private JTextField textSemilla;
 	private JTextField textPoblacion;
 	private JTextField textPcruces;
 	private JTextField textpMutacion;
@@ -97,8 +98,12 @@ public class VentanaPrincipal {
 		lblNewLabel_3.setBounds(12, 152, 88, 15);
 		panel.add(lblNewLabel_3);
 
+		JLabel lblNewLabel_4 = new JLabel("Semilla");
+		lblNewLabel_4.setBounds(12, 187, 70, 15);
+		panel.add(lblNewLabel_4);
+
 		JLabel lblSemilla = new JLabel("Selección");
-		lblSemilla.setBounds(12, 210, 70, 15);
+		lblSemilla.setBounds(12, 243, 70, 15);
 		panel.add(lblSemilla);
 
 		comboFuncion = new JComboBox();
@@ -120,6 +125,12 @@ public class VentanaPrincipal {
 		textPrecision.setBounds(100, 37, 70, 20);
 		panel.add(textPrecision);
 
+		textSemilla = new JTextField();
+		textSemilla.setText("0");
+		textSemilla.setColumns(10);
+		textSemilla.setBounds(102, 179, 70, 20);
+		panel.add(textSemilla);
+
 		textPoblacion = new JTextField();
 		textPoblacion.setText("100");
 		textPoblacion.setColumns(10);
@@ -133,7 +144,7 @@ public class VentanaPrincipal {
 		panel.add(textPcruces);
 
 		JLabel lblNewLabel_5 = new JLabel("Cruce");
-		lblNewLabel_5.setBounds(12, 183, 70, 15);
+		lblNewLabel_5.setBounds(12, 214, 70, 15);
 		panel.add(lblNewLabel_5);
 
 		textpMutacion = new JTextField();
@@ -145,17 +156,17 @@ public class VentanaPrincipal {
 		comboCruce = new JComboBox();
 		comboCruce.setModel(new DefaultComboBoxModel(
 				new String[] { "Monopunto" }));
-		comboCruce.setBounds(96, 178, 107, 20);
+		comboCruce.setBounds(96, 211, 107, 20);
 		panel.add(comboCruce);
 
 		comboSeleccion = new JComboBox();
 		comboSeleccion.setModel(new DefaultComboBoxModel(
 				new String[] { "Ruleta" }));
-		comboSeleccion.setBounds(100, 207, 88, 20);
+		comboSeleccion.setBounds(100, 240, 88, 20);
 		panel.add(comboSeleccion);
 
 		checkElitismo = new JCheckBox("Elitismo");
-		checkElitismo.setBounds(41, 234, 129, 23);
+		checkElitismo.setBounds(41, 267, 129, 23);
 		panel.add(checkElitismo);
 
 		JButton btnNewButton = new JButton("Ejecutar");
@@ -175,7 +186,7 @@ public class VentanaPrincipal {
 		int num_iter=Integer.valueOf(this.textIteraciones.getText());
 		double pCruces=Double.valueOf(this.textPcruces.getText());
 		double pMut=Double.valueOf(this.textpMutacion.getText());
-		//double semilla=Double.valueOf(this.textSemilla.getText());
+		double semilla=Double.valueOf(this.textSemilla.getText());
 		int tCruce= Integer.valueOf(this.comboCruce.getSelectedIndex());
 		int tSeleccion=Integer.valueOf(this.comboSeleccion.getSelectedIndex());
 		
@@ -184,7 +195,7 @@ public class VentanaPrincipal {
 		switch (selec)
 		{
 		case 0:
-			Funcion1 unaFuncion1=new Funcion1(prec,tam_pob,num_iter,pCruces,pMut,
+			Funcion1 unaFuncion1=new Funcion1(prec,tam_pob,num_iter,pCruces,pMut,semilla,
 					tCruce,tSeleccion);
 			resultados=unaFuncion1.dameResultados();
 			break;		

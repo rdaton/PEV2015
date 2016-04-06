@@ -491,6 +491,7 @@ curses.has_key|/usr/lib/python2.7/curses/has_key.py
 curses.panel|/usr/lib/python2.7/curses/panel.py
 curses.textpad|/usr/lib/python2.7/curses/textpad.py
 curses.wrapper|/usr/lib/python2.7/curses/wrapper.py
+cv|/usr/lib/python2.7/dist-packages/cv.py
 datetime
 dbhash|/usr/lib/python2.7/dbhash.py
 dbus.__init__|/usr/lib/python2.7/dist-packages/dbus/__init__.py

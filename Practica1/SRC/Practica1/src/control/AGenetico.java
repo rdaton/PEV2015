@@ -14,6 +14,8 @@ public class AGenetico {
 	double prob_cruce; //probabilidad de cruce
 	double prob_mut; //probabilidad de mutación
 	int num_max_gen; //numero de generaciones
+	int tCruce; //tipo cruce 
+	int tSeleccion; //tipo selección
 	List <individuo.Individuo> individuos_mejores;
 	public AGenetico (int tam_pob, double prec,double prob_cruce, double prob_mut,double x_min,double x_max, int num_max_gen)
 	{		

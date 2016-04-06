@@ -3,7 +3,6 @@ package individuo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 public class Poblacion {	
 	private List<Individuo> individuos;
@@ -89,71 +88,7 @@ public class Poblacion {
 		
 		
 	}
-	
-	
-	private void seleccionEstadistico() {
-		/*int[] sel_super = new int[this.size()]; //seleccionados para sobrevivir
-		double a = new Random().nextDouble() * (((double) 1) / this.size());
-		int pos_super;
-		double prob;
-
-
-		System.out.println("");
-		System.out.println("-- Estadistico --");
-		System.out.println("a: "+a);
-		
-		for(int i=1;i<=this.size();i++) {
-			prob = (a + i -1)/this.size();
-			//System.out.println("Prob "+i+": "+prob);
-			pos_super = 0;
-			while ( (pos_super < this.size()) && (prob > (prob>individuos.get(pos_super).getPunt_acu())  ) {
-				pos_super++;
-			}
-			sel_super[i-1] = pos_super;
-			//System.out.println("sel_super["+(i-1)+"]: "+sel_super[i-1]);
-		}*/
-		
-		int[] sel_super= new int[this.size()]; //seleccionados para sobrevivir
-		double a = new Random().nextDouble() * (((double) 1) / this.size());
-		double prob; //probabilidad de seleccion
-		int pos_super; //posicion del superviviente
-		List<Individuo> pob_aux=new ArrayList(); //poblacion auxiliar
-		Individuo pIndividuo=null;
-		Iterator<Individuo> unIterador=individuos.iterator();
-		int j=0;
-		while (unIterador.hasNext())
-		{
-			//pIndividuo=unIterador.next();
-			unIterador.next();	
-			prob=(a + j -1)/this.size();
-			pos_super=0;
-			while((pos_super<this.size()) && (prob>individuos.get(pos_super).getPunt_acu())  )
-			{
-				pos_super++;	
-				if (pos_super==this.size()) break;
-			}
-			if (pos_super==this.size())
-				pos_super--;
-			sel_super[j]=pos_super;
-			j++;
-		}
-		//se genera la poblacion intermedia
-		for (int i=0;i<this.size();i++)
-		{
-			pob_aux.add(individuos.get(sel_super[i]).clone());
-		}
-		//machaco población anterior y la reemplazo con la de supervivientes
-		init();
-		unIterador=pob_aux.iterator();
-		while (unIterador.hasNext())
-		{
-			individuos.add(unIterador.next().clone());
-		}
-				
-	}
-	
-	
-	public void seleccionRuleta()
+	public void seleccion()
 	{
 		int[] sel_super= new int[this.size()]; //seleccionados para sobrevivir
 		double prob; //probabilidad de seleccion
@@ -276,7 +211,6 @@ public class Poblacion {
 				individuos.get(i).adaptacion=individuos.get(i).calculaAdaptacion();				
 		}
 	}
-	
 	
 	
 }

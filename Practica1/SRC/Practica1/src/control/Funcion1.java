@@ -18,7 +18,7 @@ public class Funcion1 {
 	AGenetico unAlgoritmo;
 	final int x_min=-250;
 	final int x_max=250;
-	public Funcion1 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,double semilla,
+	public Funcion1 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
 		int tCruce,int tSeleccion)
 	{
 		 this.prec=prec;
@@ -26,7 +26,7 @@ public class Funcion1 {
 		 this.num_iter=num_iter;
 		 this.pCruces=pCruces;
 		 this.pMut=pMut;
-		 this.semilla=semilla;
+		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
 		 unAlgoritmo=new AGenetico(tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter);
