@@ -149,8 +149,7 @@ public class VentanaPrincipal {
 		panel.add(comboCruce);
 
 		comboSeleccion = new JComboBox();
-		comboSeleccion.setModel(new DefaultComboBoxModel(
-				new String[] { "Ruleta" }));
+		comboSeleccion.setModel(new DefaultComboBoxModel(new String[] {"Ruleta", "Estadistico", "Torneo"}));
 		comboSeleccion.setBounds(100, 207, 88, 20);
 		panel.add(comboSeleccion);
 

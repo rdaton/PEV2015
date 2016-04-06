@@ -16,10 +16,10 @@ public class AGenetico {
 	int num_max_gen; //numero de generaciones
 	int tCruce; //tipo cruce 
 	int tSeleccion; //tipo selección
-	List <individuo.Individuo> individuos_mejores;
-	public AGenetico (int tam_pob, double prec,double prob_cruce, double prob_mut,double x_min,double x_max, int num_max_gen)
+	List <individuo.Individuo> mejores_cada_generacion;
+	public AGenetico (int tam_pob, double prec,double prob_cruce, double prob_mut,double x_min,double x_max, int num_max_gen,boolean elitismo,boolean minimizar, int tSeleccion, int tCruce)
 	{		
-		individuos_mejores=new ArrayList();
+		mejores_cada_generacion=new ArrayList();
 		this.num_max_gen=num_max_gen;
 		this.prec=prec;
 		this.x_min=x_min;
@@ -31,18 +31,52 @@ public class AGenetico {
 		//bucle de evolución
 		for (int i=0;i<num_max_gen;i++)
 		{
-			pob.seleccion();
-			pob.reproduccion(prob_cruce,x_min,x_max);
+			if(elitismo)
+				this.extraerElite();
+			
+			switch (tSeleccion)
+			{
+			case 0:
+				pob.seleccionRuleta();			
+				break;
+			case 1:
+				pob.seleccionEstadistico();
+				break;
+			case 2:
+				pob.seleccionTorneo();		
+			
+			default:
+			{
+				pob.seleccionRuleta();
+			}			
+			}
+			
+			pob.reproduccion(prob_cruce,x_min,x_max,tCruce);
 			pob.mutacion(prob_mut);
-			pob.evaluacion();		
-			individuos_mejores.add(pob.dameMejor().clone());
+			
+			if (elitismo)
+				this.insertarElite();
+			pob.evaluacion();
+			
+			if (minimizar)
+				
+			mejores_cada_generacion.add(pob.dameMejor().clone());
 		}
 		
 	}
 	
+	void extraerElite()
+	{
+		
+	}
+	
+	void insertarElite()
+	{
+		
+	}
 
 	public List<individuo.Individuo> dameMejor()
 	{
-		return individuos_mejores;
+		return mejores_cada_generacion;
 	}
 }
