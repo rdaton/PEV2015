@@ -219,6 +219,8 @@ public class VentanaPrincipal {
 			 y3[i]=(Double) resultados.get(2).get(i);
 		 }
 		 
+		 //limpio resultados para siguiente invocación
+		 resultados=null;
 		 
 		    // create your PlotPanel (you can use it as a JPanel)
 		    Plot2DPanel plot = new Plot2DPanel();

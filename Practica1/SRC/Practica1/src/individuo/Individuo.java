@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public   class Individuo {
-	List <Gen> genes; //genotipos
-	double x; //fenotipo
+public  abstract class Individuo {
+	List <Gen> genes; //genotipos	
 	double adaptacion_bruta; //función de evaluación
 	double adaptacion; //adaptación ajustada
 	double puntuacion; //punt. relativa: adaptación/sumadaptación
@@ -19,6 +18,7 @@ public   class Individuo {
 		return puntuacion;
 	}
 
+	
 	public void setPuntuacion(double puntuacion) {
 		this.puntuacion = puntuacion;
 	}
@@ -42,34 +42,11 @@ public   class Individuo {
 		this.x_min=x_min;
 		this.x_max=x_max;	
 		lcrom=logica.Calculadora.tamGen(x_min,x_max, prec);
-		Gen gen;
-		genes=new ArrayList();
-		for (int i=0;i<lcrom;i++)
-		{
-			if (Math.random()<0.5)
-				gen=new Gen(0);
-			else
-				gen=new Gen(1);;
-			//fi
-			genes.add(gen);
-		}
-		adaptacion_bruta=calculaadaptacion_bruta();
+		
+		
 	}
 	
-	public Individuo clone()
-	{
-		Individuo unIndividuo=new Individuo (this.x_min,this.x_max,prec);
-		for (int i=0;i<this.genes.size();i++)
-		{
-			unIndividuo.genes.set(i, this.genes.get(i).clone());
-		}
-		unIndividuo.x=this.x;
-		unIndividuo.adaptacion_bruta=this.adaptacion_bruta;
-		unIndividuo.adaptacion=this.adaptacion;
-		unIndividuo.puntuacion=this.puntuacion;
-		unIndividuo.punt_acu=this.punt_acu;
-		return unIndividuo;
-	}
+	abstract public Individuo clone();
 	
 	
 	public double getadaptacion_bruta() {
@@ -81,29 +58,12 @@ public   class Individuo {
 	}	
 	
 	
-	double calculaadaptacion_bruta()
-	{
-		decod();
-		return miFuncion(x);
-	}
+	abstract double calculaadaptacion_bruta();
 	
-	//reflejada
-	double miFuncion (double valor)
-	{
-		double res=0;
-		res=Math.sqrt(Math.abs(valor));
-		double unSin=Math.sin(res);
-		res=valor*unSin;
-		res=Math.abs(res);
-		return -res;
-	}
+	
+	abstract double miFuncion (double valor);
 		
-	void  decod()
-	{
-		x=(double)((double)bin_ent()/(double)(Math.pow(2, lcrom)-1));
-		x*=(x_max - x_min);
-		x+=x_min;
-	}
+	abstract void  decod();
 	
 	int bin_ent()
 	{
@@ -119,17 +79,8 @@ public   class Individuo {
 	
 
 	@Override
-	public String toString()
-	{
-		StringBuffer unBuffer=new StringBuffer();
-		
-		
-		decod();
-		unBuffer.append(x).append(',');
-		unBuffer.append(this.adaptacion_bruta).append(',');
-		return unBuffer.toString();
-	}
-		
+	abstract public String toString();
+	
 	
 	
 	

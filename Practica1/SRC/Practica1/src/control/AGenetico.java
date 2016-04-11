@@ -73,6 +73,6 @@ public class AGenetico {
 	
 	public List<individuo.Individuo> damePeor()
 	{
-		return mejores_cada_generacion;
+		return peores_cada_generacion;
 	}
 }

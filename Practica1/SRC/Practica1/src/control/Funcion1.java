@@ -36,35 +36,39 @@ public class Funcion1 {
 	{
 		Iterator<individuo.Individuo> unIterador=null;
 		List<List<Object>> resultados=new ArrayList();;
-		List<individuo.Individuo> resultadosMejores= unAlgoritmo.dameMejor();
+		List<individuo.Individuo> resultadosPeores= unAlgoritmo.damePeor();
 		resultados.add (new ArrayList()); //menor absoluto
 		resultados.add(new ArrayList()); //menor de generación
 		resultados.add (new ArrayList()); //media de generación
 		individuo.Individuo pIndividuo=null;
 		
-		unIterador=resultadosMejores.iterator();
-		double max_adapt=0;
+		unIterador=resultadosPeores.iterator();
+		double min_adapt=0;
 		
 		int vueltas=0;
 		double pDouble=0;
+		double x=0;
 		while (unIterador.hasNext())
 		{
 			vueltas++;			
 			pIndividuo=unIterador.next();
-			pDouble=pIndividuo.getadaptacion();
-			
+			pDouble=pIndividuo.getadaptacion_bruta();
+			x=pIndividuo.getX();
 			if (vueltas==1)
 			{
-			max_adapt=pDouble;					
+			min_adapt=pDouble;					
 			}
 			else
-				if (pDouble>max_adapt)
-					max_adapt=pIndividuo.getadaptacion_bruta();
+				if (pDouble<min_adapt)
+					min_adapt=pDouble;
 			
-			resultados.get(0).add(max_adapt);
+			resultados.get(0).add(min_adapt);
 			resultados.get(1).add(new Double(pDouble));
 			resultados.get(2).add(dameMedia(resultados.get(1)));
-						
+			
+			System.out.print("x: " +String.format( "%.2f",  x));
+			System.out.print(" ; y: "+ String.format( "%.2f", pDouble));
+			System.out.println(" ; peor "+String.format( "%.2f", min_adapt));			
 		}
 		
 		
