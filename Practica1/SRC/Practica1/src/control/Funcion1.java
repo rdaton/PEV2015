@@ -19,7 +19,7 @@ public class Funcion1 {
 	final int x_min=-250;
 	final int x_max=250;
 	public Funcion1 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
-		int tCruce,int tSeleccion)
+		int tCruce,int tSeleccion,boolean elitismo)
 	{
 		 this.prec=prec;
 		 this.tam_pob=tam_pob;
@@ -29,13 +29,7 @@ public class Funcion1 {
 		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
-		 unAlgoritmo=new AGenetico(tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter);
-		 
-		 List<individuo.Individuo> resultados= unAlgoritmo.dameMejor();
-		 
-		 individuo.Individuo mejorIndividuo = resultados.get(resultados.size()-1);
-		 System.out.println(mejorIndividuo);		 
-		
+		 unAlgoritmo=new AGenetico(tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
 	}
 	
 	public List<List<Object>> dameResultados()
@@ -43,8 +37,8 @@ public class Funcion1 {
 		Iterator<individuo.Individuo> unIterador=null;
 		List<List<Object>> resultados=new ArrayList();;
 		List<individuo.Individuo> resultadosMejores= unAlgoritmo.dameMejor();
-		resultados.add (new ArrayList()); //mejor absoluto
-		resultados.add(new ArrayList()); //mejor de generación
+		resultados.add (new ArrayList()); //menor absoluto
+		resultados.add(new ArrayList()); //menor de generación
 		resultados.add (new ArrayList()); //media de generación
 		individuo.Individuo pIndividuo=null;
 		
@@ -56,10 +50,8 @@ public class Funcion1 {
 		while (unIterador.hasNext())
 		{
 			vueltas++;			
-						
-			
 			pIndividuo=unIterador.next();
-			pDouble=pIndividuo.getAdaptacion();
+			pDouble=pIndividuo.getadaptacion();
 			
 			if (vueltas==1)
 			{
@@ -67,7 +59,7 @@ public class Funcion1 {
 			}
 			else
 				if (pDouble>max_adapt)
-					max_adapt=pDouble;
+					max_adapt=pIndividuo.getadaptacion_bruta();
 			
 			resultados.get(0).add(max_adapt);
 			resultados.get(1).add(new Double(pDouble));

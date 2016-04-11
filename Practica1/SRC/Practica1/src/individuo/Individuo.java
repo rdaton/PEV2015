@@ -7,7 +7,8 @@ import java.util.Random;
 public   class Individuo {
 	List <Gen> genes; //genotipos
 	double x; //fenotipo
-	double adaptacion; //función de evaluación
+	double adaptacion_bruta; //función de evaluación
+	double adaptacion; //adaptación ajustada
 	double puntuacion; //punt. relativa: adaptación/sumadaptación
 	double punt_acu; //puntuación acumulada para sorteos
 	double x_min;
@@ -30,7 +31,7 @@ public   class Individuo {
 		this.punt_acu = punt_acu;
 	}
 
-	public void setAdaptacion (double adapt)
+	public void setadaptacion (double adapt)
 	{
 		this.adaptacion=adapt;
 	}
@@ -52,7 +53,7 @@ public   class Individuo {
 			//fi
 			genes.add(gen);
 		}
-		adaptacion=calculaAdaptacion();
+		adaptacion_bruta=calculaadaptacion_bruta();
 	}
 	
 	public Individuo clone()
@@ -63,6 +64,7 @@ public   class Individuo {
 			unIndividuo.genes.set(i, this.genes.get(i).clone());
 		}
 		unIndividuo.x=this.x;
+		unIndividuo.adaptacion_bruta=this.adaptacion_bruta;
 		unIndividuo.adaptacion=this.adaptacion;
 		unIndividuo.puntuacion=this.puntuacion;
 		unIndividuo.punt_acu=this.punt_acu;
@@ -70,12 +72,16 @@ public   class Individuo {
 	}
 	
 	
-	public double getAdaptacion() {
+	public double getadaptacion_bruta() {
+		return adaptacion_bruta;
+	}	
+	
+	public double getadaptacion() {
 		return adaptacion;
 	}	
 	
 	
-	double calculaAdaptacion()
+	double calculaadaptacion_bruta()
 	{
 		decod();
 		return miFuncion(x);
@@ -119,7 +125,8 @@ public   class Individuo {
 		
 		
 		decod();
-		unBuffer.append(x).append(';');
+		unBuffer.append(x).append(',');
+		unBuffer.append(this.adaptacion_bruta).append(',');
 		return unBuffer.toString();
 	}
 		

@@ -177,14 +177,15 @@ public class VentanaPrincipal {
 		//double semilla=Double.valueOf(this.textSemilla.getText());
 		int tCruce= Integer.valueOf(this.comboCruce.getSelectedIndex());
 		int tSeleccion=Integer.valueOf(this.comboSeleccion.getSelectedIndex());
-		
+		boolean elitismo=this.checkElitismo.isSelected();		
 		List<List<Object>> resultados=null;
+			
 		//calcular resultados
 		switch (selec)
 		{
 		case 0:
 			Funcion1 unaFuncion1=new Funcion1(prec,tam_pob,num_iter,pCruces,pMut,
-					tCruce,tSeleccion);
+					tCruce,tSeleccion,elitismo);
 			resultados=unaFuncion1.dameResultados();
 			break;		
 		}
