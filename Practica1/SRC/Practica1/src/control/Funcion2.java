@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Funcion1 {
+public class Funcion2 {
 	double prec=0;
 	int tam_pob=0;
 	int num_iter=0;
@@ -16,9 +16,9 @@ public class Funcion1 {
 	int tCruce=0;
 	int tSeleccion=0;
 	AGenetico unAlgoritmo;
-	final int x_min=-250;
-	final int x_max=250;
-	public Funcion1 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
+	final int x_min=-6;
+	final int x_max=6;
+	public Funcion2 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
 		int tCruce,int tSeleccion,boolean elitismo)
 	{
 		 this.prec=prec;
@@ -29,7 +29,7 @@ public class Funcion1 {
 		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
-		 unAlgoritmo=new AGenetico<individuo.Individuo_basico>(tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
+		 unAlgoritmo=new AGenetico<individuo.Individuo_f2>(tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
 	}
 	
 	public List<List<Object>> dameResultados()

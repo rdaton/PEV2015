@@ -14,6 +14,7 @@ public  abstract class Individuo {
 	double x_max;
 	double prec;
 	int lcrom;
+	Object x; //fenotipo
 	public double getPuntuacion() {
 		return puntuacion;
 	}
@@ -35,6 +36,10 @@ public  abstract class Individuo {
 	{
 		this.adaptacion=adapt;
 	}
+	public Object getX()
+	{
+		return  x;
+	}
 	
 	public Individuo (double x_min, double x_max,double prec)
 	{		
@@ -42,11 +47,28 @@ public  abstract class Individuo {
 		this.x_min=x_min;
 		this.x_max=x_max;	
 		lcrom=logica.Calculadora.tamGen(x_min,x_max, prec);
+		genes=new ArrayList();
 		
 		
 	}
 	
-	abstract public Individuo clone();
+	public Individuo clone()
+	{
+		//única parte que varía
+		Individuo unIndividuo=clone_aux(x_min,x_max, prec);
+		//fin de parte que varía
+		
+		for (int i=0;i<this.genes.size();i++)
+		{
+			unIndividuo.genes.set(i, this.genes.get(i).clone());
+		}
+		unIndividuo.x=this.x;
+		unIndividuo.adaptacion_bruta=this.adaptacion_bruta;
+		unIndividuo.adaptacion=this.adaptacion;
+		unIndividuo.puntuacion=this.puntuacion;
+		unIndividuo.punt_acu=this.punt_acu;
+		return unIndividuo;
+	}
 	
 	
 	public double getadaptacion_bruta() {
@@ -57,27 +79,21 @@ public  abstract class Individuo {
 		return adaptacion;
 	}	
 	
+	abstract int[] bin_ent();	
 	
-	abstract double calculaadaptacion_bruta();
-	
-	
-	abstract double miFuncion (double valor);
-		
-	abstract void  decod();
-	
-	int bin_ent()
+	double calculaadaptacion_bruta()
 	{
-		int d=0;
-		int pot=1;
-		for (int i=0;i<lcrom;i++)
-		{
-			d+=pot*genes.get(lcrom-i-1).toInt();
-			pot=pot*2;
-		}
-		return d;
+		decod();
+		return miFuncion(x);
 	}
 	
-
+	
+	abstract double miFuncion (Object valor);
+		
+	abstract void  decod();	
+	
+	public abstract Individuo clone_aux(double x_min,double x_max, double prec);
+	
 	@Override
 	abstract public String toString();
 	

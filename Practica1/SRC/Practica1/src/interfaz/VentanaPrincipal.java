@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import org.math.plot.Plot2DPanel;
 import org.math.plot.plotObjects.Line;
 
-import control.Funcion1;
+import control.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -115,7 +115,7 @@ public class VentanaPrincipal {
 		textIteraciones.setColumns(10);
 
 		textPrecision = new JTextField();
-		textPrecision.setText("0.1");
+		textPrecision.setText("0.01");
 		textPrecision.setColumns(10);
 		textPrecision.setBounds(100, 37, 70, 20);
 		panel.add(textPrecision);
@@ -184,11 +184,12 @@ public class VentanaPrincipal {
 		switch (selec)
 		{
 		case 0:
+		{
 			Funcion1 unaFuncion1=new Funcion1(prec,tam_pob,num_iter,pCruces,pMut,
 					tCruce,tSeleccion,elitismo);
 			resultados=unaFuncion1.dameResultados();
-			break;		
-		}
+					
+		
 		 
 		if (resultados==null)
 				return;
@@ -226,11 +227,16 @@ public class VentanaPrincipal {
 		    Plot2DPanel plot = new Plot2DPanel();
 	//	    plot.setFixedBounds(0,1,100);
 		   
+		    plot.setAxisLabels("Generación", "Adaptación");
+		    plot.addLegend("SOUTH");
+		    
+            
+		    
 		    // add a line plot to the PlotPanel
-
-		    plot.addScatterPlot("Mejor Absoluto", x, y);
-		    plot.addScatterPlot("Mejor de Generación", x, y2);
-		    plot.addScatterPlot("Mejor Media de Generación", x, y3);
+		    
+		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -241,7 +247,80 @@ public class VentanaPrincipal {
 		    frame.setSize(600, 600);
 		    frame.setContentPane(plot);
 		    frame.setVisible(true);
+		}
+		    break;
 		    
+		    
+		case 1:
+		{
+		Funcion2 unaFuncion2=new Funcion2(prec,tam_pob,num_iter,pCruces,pMut,
+				tCruce,tSeleccion,elitismo);
+		resultados=unaFuncion2.dameResultados();
+					
+		
+		 
+		if (resultados==null)
+				return;
+			
+		//pintar gráfica.
+	
+		 double[] x = new double [resultados.get(0).size()];
+		 for (int i=0;i<resultados.get(0).size();i++)
+		 {
+			 x[i]=i;
+		 }
+		 
+		 double[] y = new double[resultados.get(0).size()];
+		 for (int i=0;i<resultados.get(0).size();i++)
+		 {
+			 y[i]=(Double) resultados.get(0).get(i);
+		 }
+		 
+		 double[] y2 = new double[resultados.get(1).size()];
+		 for (int i=0;i<resultados.get(1).size();i++)
+		 {
+			 y2[i]=(Double) resultados.get(1).get(i);
+		 }
+		 
+		 double[] y3 = new double[resultados.get(2).size()];
+		 for (int i=0;i<resultados.get(2).size();i++)
+		 {
+			 y3[i]=(Double) resultados.get(2).get(i);
+		 }
+		 
+		 //limpio resultados para siguiente invocación
+		 resultados=null;
+		 
+		    // create your PlotPanel (you can use it as a JPanel)
+		    Plot2DPanel plot = new Plot2DPanel();
+	//	    plot.setFixedBounds(0,1,100);
+		   
+		    plot.setAxisLabels("Generación", "Adaptación");
+		    plot.addLegend("SOUTH");
+		    
+            
+		    
+		    // add a line plot to the PlotPanel
+		    
+		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    
+		    
+		    
+		    
+
+		    // put the PlotPanel in a JFrame, as a JPanel
+		    JFrame frame = new JFrame("Función 1");
+		    frame.setSize(600, 600);
+		    frame.setContentPane(plot);
+		    frame.setVisible(true);
+		}
+		    break;
+		}
+		    
+		    
+		
 		    
 	}
 	

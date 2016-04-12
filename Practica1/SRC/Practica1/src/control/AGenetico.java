@@ -3,7 +3,7 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AGenetico {
+public class AGenetico <T extends individuo.Individuo> {
 	double x_min;
 	double x_max;
 	individuo.Poblacion pob; //población
@@ -28,7 +28,7 @@ public class AGenetico {
 		this.x_max=x_max;
 		this.prob_cruce=prob_cruce;
 		this.prob_mut=prob_mut;
-		individuo.Poblacion pob=new individuo.Poblacion(tam_pob,x_min,x_max,prec,elitismo);	
+		individuo.Poblacion pob=new individuo.Poblacion<T>(tam_pob,x_min,x_max,prec,elitismo);	
 		//bucle de evolución
 		
 		//prerparo la población para el bucle

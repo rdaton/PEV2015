@@ -1,8 +1,25 @@
 package individuo;
 
-public interface  Gen 
+public abstract  class Gen 
 {
-public int toInt();
-public  void muta ();
-public Gen clone();	
+	Object[] bits;
+	abstract public  void muta ();
+	abstract Gen clone_aux();
+	
+	
+	public Object[] toInt()
+	{
+		return bits;
+	}
+	
+	public Gen clone()
+	{
+		Gen unGen=clone_aux();
+		for (int i=0;i<bits.length;i++)
+		{
+			unGen.bits[i]=bits[i];
+		}
+		return unGen;
+	}
+	
 }

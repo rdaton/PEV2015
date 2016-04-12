@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class Poblacion {	
+public class Poblacion<T extends Individuo> {	
 	private List<Individuo> individuos;
 	int pos_mejor;
 	int pos_peor;
@@ -42,10 +42,10 @@ public class Poblacion {
 		init();
 		this.prec=prec;
 		lcrom=logica.Calculadora.tamGen(x_min,x_max, prec);
-		Individuo unIndividuo=null;
+		Individuo unIndividuo=new Individuo_basico(x_min,x_max,prec);
 		for (int i=0;i<tam_pob;i++)
 		{
-			unIndividuo=new Individuo(x_min,x_max,prec);
+			unIndividuo=((T)unIndividuo).clone_aux(x_min,x_max,prec);
 			individuos.add(unIndividuo);
 		}			
 		torneo=3;
@@ -302,8 +302,10 @@ public class Poblacion {
 	
 	Individuo[] cruce (Individuo padre1, Individuo padre2, int[] punto_cruce,double x_min, double x_max)
 	{
-		Individuo hijo1=new Individuo(x_min,x_max,prec);
-		Individuo hijo2=new Individuo(x_min,x_max,prec);
+		Individuo hijo1=new Individuo_basico(x_min,x_max,prec);
+		hijo1=((T)hijo1).clone_aux(x_min,x_max,prec);
+		Individuo hijo2=new Individuo_basico(x_min,x_max,prec);
+		hijo1=((T)hijo2).clone_aux(x_min,x_max,prec);
 		Individuo[] unReturn={hijo1,hijo2};
 		//primera parte del intercambio: 1 a 1 y 2 a 2
 		for (int i=0;i<punto_cruce[0];i++)

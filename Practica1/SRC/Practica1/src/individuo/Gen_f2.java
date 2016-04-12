@@ -1,20 +1,22 @@
 package individuo;
 
-public class Gen_f1 extends Gen {
+public class Gen_f2 extends Gen {
 
-	public Gen_f1()
+	public Gen_f2()
 	{			
 	};
-	public Gen_f1(int g)
+	
+	public Gen_f2(int g, int h)
 	{
-		bits=new Integer[1];
+		bits=new Integer[2];
 		bits[0]=new Integer(g);
+		bits[1]=new Integer(h);
 	}
 	
 	Gen clone_aux()
 	{
 		Gen unGen=new Gen_f1();
-		unGen.bits=new Integer[1];
+		unGen.bits=new Integer[2];
 		return unGen;		
 	}
 	
