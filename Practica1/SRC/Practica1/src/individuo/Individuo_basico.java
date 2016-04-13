@@ -24,9 +24,9 @@ public  class Individuo_basico extends Individuo{
 	
 	
 	
-	public Individuo clone_aux(double x_min,double x_max, double prec)
+	public Individuo clone_aux(Object x_min,Object x_max, double prec)
 	{
-		Individuo unIndividuo=new Individuo_basico (this.x_min,this.x_max,prec);
+		Individuo unIndividuo=new Individuo_basico ((Double)x_min,(Double)x_max,prec);
 		return unIndividuo;
 	}
 	
@@ -47,8 +47,8 @@ public  class Individuo_basico extends Individuo{
 	{//mucho casting ....
 		Double x=(Double) this.x;
 		x=(double)((double)bin_ent()[0]/(double)(Math.pow(2, lcrom)-1));
-		x*=(x_max - x_min);
-		x+=x_min;
+		x*=((Double)x_max - (Double) x_min);
+		x+=(Double)x_min;
 		this.x=x;
 	}
 	
@@ -66,8 +66,11 @@ public  class Individuo_basico extends Individuo{
 		return nums;
 	}
 	
+	int tamGen(Object x_min, Object x_max, double prec)
+	{
+	return logica.Calculadora.tamGen((Double)x_min,(Double)x_max, prec);
+	};
 	
-
 	@Override
 	public String toString()
 	{

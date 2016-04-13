@@ -10,8 +10,8 @@ public  abstract class Individuo {
 	double adaptacion; //adaptación ajustada
 	double puntuacion; //punt. relativa: adaptación/sumadaptación
 	double punt_acu; //puntuación acumulada para sorteos
-	double x_min;
-	double x_max;
+	Object x_min;
+	Object x_max;
 	double prec;
 	int lcrom;
 	Object x; //fenotipo
@@ -41,16 +41,17 @@ public  abstract class Individuo {
 		return  x;
 	}
 	
-	public Individuo (double x_min, double x_max,double prec)
+	public Individuo (Object x_min, Object x_max,double prec)
 	{		
 		this.prec=prec;
 		this.x_min=x_min;
 		this.x_max=x_max;	
-		lcrom=logica.Calculadora.tamGen(x_min,x_max, prec);
+		lcrom=tamGen(x_min,x_max, prec);
 		genes=new ArrayList();
 		
 		
 	}
+	abstract int tamGen(Object x_min, Object x_max, double prec);
 	
 	public Individuo clone()
 	{
@@ -92,7 +93,7 @@ public  abstract class Individuo {
 		
 	abstract void  decod();	
 	
-	public abstract Individuo clone_aux(double x_min,double x_max, double prec);
+	public abstract Individuo clone_aux(Object x_min,Object x_max, double prec);
 	
 	@Override
 	abstract public String toString();

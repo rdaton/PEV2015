@@ -24,9 +24,9 @@ public  class Individuo_f2 extends Individuo{
 	
 	
 	
-	public Individuo clone_aux(double x_min,double x_max, double prec)
+	public Individuo clone_aux(Object x_min,Object x_max, double prec)
 	{
-		Individuo unIndividuo=new Individuo_f2 (this.x_min,this.x_max,prec);
+		Individuo unIndividuo=new Individuo_f2 ((Double)x_min,(Double)x_max,prec);
 		return unIndividuo;
 	}
 	
@@ -44,13 +44,26 @@ public  class Individuo_f2 extends Individuo{
 	}
 		
 	void  decod()
-	{//mucho casting ....
-		Double x=(Double) this.x;
-		//x=(double)((double)bin_ent()/(double)(Math.pow(2, lcrom)-1));
-		x*=(x_max - x_min);
-		x+=x_min;
+	{//mucho casting y variables sin tipo
+		
+		Double[] xy=(Double[])this.x;
+		
+		Double x=((Double[]) this.x)[0];
+		
+		
+		
+		x=(double)((double)bin_ent()[0]/(double)(Math.pow(2, lcrom)-1));
+		x*=((Double[])x_max[1] - (Double[]) x_min[1]);
+		x+=(Double)x_min;
 		this.x=x;
+		
+		
 	}
+	
+	int tamGen(Object x_min, Object x_max, double prec)
+	{
+	return logica.Calculadora.tamGen((Double)x_min,(Double)x_max, prec);
+	};
 	
 	int[] bin_ent()
 	{
@@ -59,7 +72,7 @@ public  class Individuo_f2 extends Individuo{
 		int pot=1;
 		for (int i=0;i<lcrom;i++)
 		{
-			nums[0]+=pot*genes.get(lcrom-i-1).toInt()[0];
+			nums[0]+=pot*((Integer)genes.get(lcrom-i-1).toInt()[0]);
 			pot=pot*2;
 		}		
 		return nums;
