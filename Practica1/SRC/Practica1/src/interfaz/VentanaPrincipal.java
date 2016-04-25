@@ -169,7 +169,7 @@ public class VentanaPrincipal {
 
 	void invocarFuncion() {
 		int selec=Integer.valueOf(this.comboFuncion.getSelectedIndex());
-		double prec=Double.valueOf(this.textPcruces.getText());
+		double prec=Double.valueOf(this.textPrecision.getText());
 		int tam_pob=Integer.valueOf(this.textPoblacion.getText());
 		int num_iter=Integer.valueOf(this.textIteraciones.getText());
 		double pCruces=Double.valueOf(this.textPcruces.getText());

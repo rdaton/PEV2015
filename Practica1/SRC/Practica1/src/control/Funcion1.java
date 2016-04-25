@@ -16,8 +16,8 @@ public class Funcion1 {
 	int tCruce=0;
 	int tSeleccion=0;
 	AGenetico unAlgoritmo;
-	final int x_min=-250;
-	final int x_max=250;
+	final Double[] x_min={Double.valueOf(-250)};
+	final Double[] x_max={Double.valueOf(250)};
 	public Funcion1 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
 		int tCruce,int tSeleccion,boolean elitismo)
 	{
@@ -29,7 +29,7 @@ public class Funcion1 {
 		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
-		 unAlgoritmo=new AGenetico<individuo.Individuo_basico>(tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
+		 unAlgoritmo=new AGenetico(0,new individuo.Individuo_basico(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
 	}
 	
 	public List<List<Object>> dameResultados()

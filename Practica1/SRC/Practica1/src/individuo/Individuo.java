@@ -1,5 +1,6 @@
 package individuo;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,12 +14,14 @@ public  abstract class Individuo {
 	Object x_min;
 	Object x_max;
 	double prec;
-	int lcrom;
+	Integer lcrom;
 	Object x; //fenotipo
+	
+	public Individuo(){};
+	
 	public double getPuntuacion() {
 		return puntuacion;
-	}
-
+	}	
 	
 	public void setPuntuacion(double puntuacion) {
 		this.puntuacion = puntuacion;
@@ -51,8 +54,30 @@ public  abstract class Individuo {
 		
 		
 	}
-	abstract int tamGen(Object x_min, Object x_max, double prec);
 	
+	public Individuo newInstance(Object x_min, Object x_max,double prec) {
+        try {
+        	Constructor unConstructor=this.getClass().getDeclaredConstructors()[1];
+        	return (Individuo) unConstructor.newInstance(x_min,x_max,prec);
+        	}
+        	catch (Exception e)
+        	{
+        		e.printStackTrace();
+        	}
+        	finally{        	
+        	}
+        return null;
+        	
+        
+    }
+	
+   
+	abstract Integer tamGen(Object x_min, Object x_max, double prec);
+	
+	public Integer damelCrom()
+	{
+		return lcrom;
+	}
 	public Individuo clone()
 	{
 		//única parte que varía
@@ -61,9 +86,9 @@ public  abstract class Individuo {
 		
 		for (int i=0;i<this.genes.size();i++)
 		{
-			unIndividuo.genes.set(i, this.genes.get(i).clone());
+			unIndividuo.genes.add(this.genes.get(i).clone());
 		}
-		unIndividuo.x=this.x;
+		unIndividuo.decod();
 		unIndividuo.adaptacion_bruta=this.adaptacion_bruta;
 		unIndividuo.adaptacion=this.adaptacion;
 		unIndividuo.puntuacion=this.puntuacion;
@@ -84,7 +109,6 @@ public  abstract class Individuo {
 	
 	double calculaadaptacion_bruta()
 	{
-		decod();
 		return miFuncion(x);
 	}
 	

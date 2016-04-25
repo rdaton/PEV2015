@@ -16,8 +16,8 @@ public class Funcion2 {
 	int tCruce=0;
 	int tSeleccion=0;
 	AGenetico unAlgoritmo;
-	final int x_min=-6;
-	final int x_max=6;
+	final Double[] x_min={Double.valueOf(-6),Double.valueOf(-6)};
+	final Double[] x_max={Double.valueOf(6),Double.valueOf(6)};
 	public Funcion2 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
 		int tCruce,int tSeleccion,boolean elitismo)
 	{
@@ -29,46 +29,49 @@ public class Funcion2 {
 		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
-		 unAlgoritmo=new AGenetico<individuo.Individuo_f2>(tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
+		 unAlgoritmo=new AGenetico(1,new individuo.Individuo_f2(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
 	}
 	
 	public List<List<Object>> dameResultados()
 	{
 		Iterator<individuo.Individuo> unIterador=null;
 		List<List<Object>> resultados=new ArrayList();;
-		List<individuo.Individuo> resultadosPeores= unAlgoritmo.damePeor();
-		resultados.add (new ArrayList()); //menor absoluto
-		resultados.add(new ArrayList()); //menor de generación
+		List<individuo.Individuo> resultadosMejores= unAlgoritmo.dameMejor();
+		resultados.add (new ArrayList()); //mejor absoluto
+		resultados.add(new ArrayList()); //mejor de generación
 		resultados.add (new ArrayList()); //media de generación
 		individuo.Individuo pIndividuo=null;
 		
-		unIterador=resultadosPeores.iterator();
-		double min_adapt=0;
+		unIterador=resultadosMejores.iterator();
+		double max_adapt=0;
 		
 		int vueltas=0;
 		double pDouble=0;
-		double x=0;
+		Double x;
+		Double y;
 		while (unIterador.hasNext())
 		{
 			vueltas++;			
 			pIndividuo=unIterador.next();
 			pDouble=pIndividuo.getadaptacion_bruta();
-			x=(Double)pIndividuo.getX();
+			x=((Double[])pIndividuo.getX())[0];
+			y=((Double[])pIndividuo.getX())[1];
 			if (vueltas==1)
 			{
-			min_adapt=pDouble;					
+			max_adapt=pDouble;					
 			}
 			else
-				if (pDouble<min_adapt)
-					min_adapt=pDouble;
+				if (pDouble>max_adapt)
+					max_adapt=pDouble;
 			
-			resultados.get(0).add(min_adapt);
+			resultados.get(0).add(max_adapt);
 			resultados.get(1).add(new Double(pDouble));
 			resultados.get(2).add(dameMedia(resultados.get(1)));
 			
 			System.out.print("x: " +String.format( "%.2f",  x));
-			System.out.print(" ; y: "+ String.format( "%.2f", pDouble));
-			System.out.println(" ; peor "+String.format( "%.2f", min_adapt));			
+			System.out.print(" ; y: "+ String.format( "%.2f", y));
+			System.out.print(" ; z: "+ String.format( "%.2f", pDouble));
+			System.out.println(" ; mejor "+String.format( "%.2f", max_adapt));			
 		}
 		
 		

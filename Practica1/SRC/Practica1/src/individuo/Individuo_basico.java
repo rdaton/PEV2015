@@ -8,9 +8,11 @@ public  class Individuo_basico extends Individuo{
 	
 	
 	
-	
+public Individuo_basico() {
+		
+	}
 
-	public Individuo_basico (double x_min, double x_max,double prec)
+	public Individuo_basico (Object x_min, Object x_max,double prec)
 	{		
 		super(x_min,x_max,prec);
 		Gen gen;		
@@ -19,14 +21,21 @@ public  class Individuo_basico extends Individuo{
 			gen=new Gen_f1((Math.random()<0.5) ? 0 : 1);			
 			genes.add(gen);
 		}
+		decod();
 		adaptacion_bruta=calculaadaptacion_bruta();
 	}
 	
 	
+
+	public Individuo_basico newInstance(Object x_min, Object x_max,double prec) {
+		Individuo_basico unIndividuo=new Individuo_basico(x_min,x_max,prec);
+		return unIndividuo;
+		
+    }
 	
 	public Individuo clone_aux(Object x_min,Object x_max, double prec)
 	{
-		Individuo unIndividuo=new Individuo_basico ((Double)x_min,(Double)x_max,prec);
+		Individuo unIndividuo=new Individuo_basico (x_min,x_max,prec);
 		return unIndividuo;
 	}
 	
@@ -47,8 +56,8 @@ public  class Individuo_basico extends Individuo{
 	{//mucho casting ....
 		Double x=(Double) this.x;
 		x=(double)((double)bin_ent()[0]/(double)(Math.pow(2, lcrom)-1));
-		x*=((Double)x_max - (Double) x_min);
-		x+=(Double)x_min;
+		x*=((Double[]) x_max)[0] - ((Double[]) x_min)[0];
+		x+= ((Double[]) x_min)[0];
 		this.x=x;
 	}
 	
@@ -60,15 +69,16 @@ public  class Individuo_basico extends Individuo{
 		int pot=1;
 		for (int i=0;i<lcrom;i++)
 		{
-			nums[0]+=pot*((Integer)genes.get(lcrom-i-1).toInt()[0]);
+			nums[0]+=pot*((Integer)genes.get(lcrom-i-1).toInt());
 			pot=pot*2;
 		}		
 		return nums;
 	}
 	
-	int tamGen(Object x_min, Object x_max, double prec)
+	Integer tamGen(Object x_min, Object x_max, double prec)
 	{
-	return logica.Calculadora.tamGen((Double)x_min,(Double)x_max, prec);
+		Integer unTamanyo=logica.Calculadora.tamGen(((Double[])x_min)[0],((Double[])x_max)[0], prec);
+		return unTamanyo;
 	};
 	
 	@Override

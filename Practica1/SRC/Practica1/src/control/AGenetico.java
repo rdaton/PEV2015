@@ -3,9 +3,9 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AGenetico <T extends individuo.Individuo> {
-	double x_min;
-	double x_max;
+public class AGenetico  {
+	Object x_min;
+	Object x_max;
 	individuo.Poblacion pob; //población
 	int tam_pob; //tamaño población
 	double prec;
@@ -18,7 +18,12 @@ public class AGenetico <T extends individuo.Individuo> {
 	int tSeleccion; //tipo selección
 	List <individuo.Individuo> mejores_cada_generacion;
 	List <individuo.Individuo> peores_cada_generacion;
-	public AGenetico (int tam_pob, double prec,double prob_cruce, double prob_mut,double x_min,double x_max, int num_max_gen,boolean elitismo, int tSeleccion, int tCruce)
+	/*
+	 * tipoAlgoritmo:
+	 * 0: Minimización
+	 * 1: Maximización
+	 */
+	public AGenetico (int tipoAlgoritmo, individuo.Individuo prototipo, int tam_pob, double prec,double prob_cruce, double prob_mut,Object x_min,Object x_max, int num_max_gen,boolean elitismo, int tSeleccion, int tCruce)
 	{		
 		mejores_cada_generacion=new ArrayList();
 		peores_cada_generacion=new ArrayList();
@@ -28,7 +33,7 @@ public class AGenetico <T extends individuo.Individuo> {
 		this.x_max=x_max;
 		this.prob_cruce=prob_cruce;
 		this.prob_mut=prob_mut;
-		individuo.Poblacion pob=new individuo.Poblacion<T>(tam_pob,x_min,x_max,prec,elitismo);	
+		individuo.Poblacion pob=new individuo.Poblacion(tipoAlgoritmo,prototipo,tam_pob,x_min,x_max,prec,elitismo);	
 		//bucle de evolución
 		
 		//prerparo la población para el bucle

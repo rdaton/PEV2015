@@ -5,18 +5,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class Poblacion<T extends Individuo> {	
+public class Poblacion{	
 	private List<Individuo> individuos;
 	int pos_mejor;
 	int pos_peor;
 	double sumadap;//adaptación global de la población	
 	double prec;
-	int lcrom;
 	int torneo;
 	int tam_elite;
 	boolean[] elite;
 	int[] sel_elite;
 	boolean elitismo;
+	Individuo prototipo;
+	int tipoAlgoritmo; //0: minimización, 1: maximización
 	public List dameIndividuos ()
 	{
 		return individuos;
@@ -37,15 +38,17 @@ public class Poblacion<T extends Individuo> {
 		return individuos.size();
 	}
 	
-	public Poblacion(int tam_pob,double x_min,double x_max,double prec,boolean elitismo)
+	public Poblacion(int tipoAlgoritmo,Individuo prototipo, int tam_pob,Object x_min,Object x_max,double prec,boolean elitismo)
 	{
-		init();
-		this.prec=prec;
-		lcrom=logica.Calculadora.tamGen(x_min,x_max, prec);
-		Individuo unIndividuo=new Individuo_basico(x_min,x_max,prec);
+		this.tipoAlgoritmo=tipoAlgoritmo;
+		init();		
+		this.prec=prec;		
+		Double xmin=((Double[]) x_min)[0];
+		Double xmax=((Double[]) x_max)[0];		
+		Individuo unIndividuo=null;	
 		for (int i=0;i<tam_pob;i++)
 		{
-			unIndividuo=((T)unIndividuo).clone_aux(x_min,x_max,prec);
+			unIndividuo=prototipo.newInstance(x_min, x_max, prec);			
 			individuos.add(unIndividuo);
 		}			
 		torneo=3;
@@ -64,6 +67,18 @@ public class Poblacion<T extends Individuo> {
 		pos_mejor=0;
 		pos_peor=0;
 		sumadap=0;
+	}
+	boolean esMejor(Double a, Double b)
+	{
+		switch (this.tipoAlgoritmo)
+		{
+		case 0:
+			return a < b;		
+		case 1:
+			return a > b;			
+		default:
+			return a < b;		
+		}
 	}
 	
 	public void evaluacion()
@@ -254,11 +269,11 @@ public class Poblacion<T extends Individuo> {
 			
 	}
 	
-	public void reproduccion (double prob_cruce,double x_min, double x_max, int tCruce) {
+	public void reproduccion (double prob_cruce,Object x_min, Object x_max, int tCruce) {
+		int lcrom=individuos.get(0).damelCrom();
 		double sel_cruce[]= new double [this.size()];// seleccionados para reproducirse
 		int num_sel_cruce=0;//contador de seleccionados
-		double prob;
-		int puntos_cruce[]= new int[4];
+		double prob;		
 		Individuo hijo1, hijo2;
 		//se eligen los individuos a cruzar
 		for (int i=0;i<this.size();i++)
@@ -276,76 +291,79 @@ public class Poblacion<T extends Individuo> {
 		if ((num_sel_cruce % 2)==1)
 			num_sel_cruce--;
 		//se cruzan los individuos elegidos en un punto al azar
-		puntos_cruce[0] = 0 + (int)(Math.random() * ((lcrom-0) + 1));
+		int punto_cruce= 0 + (int)(Math.random() * ((lcrom-0) + 1));
 		Individuo[] unReturn= new Individuo[2];
 		for (int i=0;i<num_sel_cruce;i+=2)
 		{
 			switch (tCruce)
 			{
 			case 0:
-				unReturn=cruce(individuos.get(i),individuos.get(i+1),puntos_cruce, x_min, x_max);
+				unReturn=cruce(individuos.get(i),individuos.get(i+1),punto_cruce, x_min, x_max);
 				break;
 			case 1:
-				unReturn=cruce(individuos.get(i),individuos.get(i+1),puntos_cruce, x_min, x_max);
+				unReturn=cruce(individuos.get(i),individuos.get(i+1),punto_cruce, x_min, x_max);
 			}
 			hijo1=unReturn[0];
 			hijo2=unReturn[1];
 			//los nuevos individuos sutituyen a sus progenitores,respetando la elite
-			if (hijo1.getadaptacion()>individuos.get(i).getadaptacion() && !this.elite[i])
+			if (esMejor(hijo1.getadaptacion_bruta(),individuos.get(i).getadaptacion_bruta()) && !this.elite[i])
 				individuos.set(i,hijo1);
 			
-			if (hijo1.getadaptacion()>individuos.get(i+1).getadaptacion() && !this.elite[i+1])
+			if (esMejor(hijo2.getadaptacion_bruta(),individuos.get(i+1).getadaptacion_bruta()) && !this.elite[i+1])
 				individuos.set(i+1,hijo2);
 		}
 		
 	}
 	
-	Individuo[] cruce (Individuo padre1, Individuo padre2, int[] punto_cruce,double x_min, double x_max)
+	Individuo[] cruce (Individuo padre1, Individuo padre2, int punto_cruce,Object x_min, Object x_max)
 	{
-		Individuo hijo1=new Individuo_basico(x_min,x_max,prec);
-		hijo1=((T)hijo1).clone_aux(x_min,x_max,prec);
-		Individuo hijo2=new Individuo_basico(x_min,x_max,prec);
-		hijo1=((T)hijo2).clone_aux(x_min,x_max,prec);
+		Integer lcrom=padre1.damelCrom();
+		Individuo hijo1=padre1.newInstance(x_min, x_max, prec);		
+		Individuo hijo2=padre2.newInstance(x_min, x_max, prec);		
 		Individuo[] unReturn={hijo1,hijo2};
 		//primera parte del intercambio: 1 a 1 y 2 a 2
-		for (int i=0;i<punto_cruce[0];i++)
+		for (int i=0;i<punto_cruce;i++)
 		{
 			hijo1.genes.set(i, padre1.genes.get(i));
 			hijo2.genes.set(i, padre2.genes.get(i));
 		}
 		
 		//segunda parte: 1 a 2 y 2 a 1
-		for (int i=punto_cruce[0];i<lcrom;i++)
+		for (int i=punto_cruce;i<lcrom;i++)
 		{
 			hijo1.genes.set(i, padre2.genes.get(i).clone());
 			hijo2.genes.set(i, padre1.genes.get(i).clone());
 		}
 		//se evalúan
-		hijo1.adaptacion_bruta=hijo1.calculaadaptacion_bruta();
-		hijo2.adaptacion_bruta=hijo2.calculaadaptacion_bruta();		
+		//hijo1.calculaadaptacion_bruta();
+		//hijo2.calculaadaptacion_bruta();		
 		return unReturn;
 	}
 	
 	public void mutacion(double prob_mut)
 	{
+		Integer lcrom=individuos.get(0).damelCrom();
 		boolean mutado;
 		double prob;
 		for (int i=0;i<this.size();i++)
 		{
-			mutado=false;
-			for (int j=0;j<lcrom;j++)
-			{
-				//se genera un numero aleatorio en [0 1)
-				prob=Math.random();
-				//se mutan aquellos genes con prob < que prob_mut
-				if (prob<prob_mut)
+			
+				mutado=false;
+				for (int j=0;j<lcrom;j++)
 				{
-					individuos.get(i).genes.get(j).muta();
-					mutado=true;
-				}				
-			}
-			if (mutado)
-				individuos.get(i).adaptacion_bruta=individuos.get(i).calculaadaptacion_bruta();				
+					//se genera un numero aleatorio en [0 1)
+					prob=Math.random();
+					//se mutan aquellos genes con prob < que prob_mut
+					if (prob<prob_mut)
+					{
+						Integer debugGen=(Integer)individuos.get(i).genes.get(j).bit;
+						individuos.get(i).genes.get(j).muta();
+						mutado=true;
+					}				
+				}
+				if (mutado)
+					individuos.get(i).adaptacion_bruta=individuos.get(i).calculaadaptacion_bruta();
+			
 		}
 	}
 	
@@ -365,7 +383,7 @@ public class Poblacion<T extends Individuo> {
 		for (int i=tam_elite;i<this.size();i++)
 		{
 			int j=0;
-			while (j<tam_elite && individuos.get(sel_elite[j]).getadaptacion()>individuos.get(i).getadaptacion())
+			while (j<tam_elite && esMejor(individuos.get(sel_elite[j]).getadaptacion_bruta(),individuos.get(i).getadaptacion_bruta()))
 			{
 				j++;
 			}
@@ -404,7 +422,7 @@ public class Poblacion<T extends Individuo> {
 		            flag= false;    //set flag to false awaiting a possible swap
 		            for( j=0;  j < tam_elite -1;  j++ )
 		            {
-		                   if ( individuos.get( sel_elite[ j ]) .getadaptacion() < individuos.get( sel_elite[ j+1 ]) .getadaptacion()  )   // change to > for ascending sort
+		                   if ( esMejor (individuos.get( sel_elite[ j ]).getadaptacion_bruta(), individuos.get( sel_elite[ j+1 ]).getadaptacion_bruta() ))  
 		                   {
 		                           temp = sel_elite[ j ];                //swap elements
 		                           sel_elite[ j ] = sel_elite[ j+1 ];
