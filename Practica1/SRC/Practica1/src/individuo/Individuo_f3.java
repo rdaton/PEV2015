@@ -62,7 +62,7 @@ public Individuo_f3() {
 		x*=(((Double[])x_max)[0] - ((Double[]) x_min)[0]);
 		x+=((Double[]) x_min)[0];
 		
-		Double y=(double)(unBinEnt[0]/(double)(Math.pow(2, long_y)-1));
+		Double y=(double)(unBinEnt[1]/(double)(Math.pow(2, long_y)-1));
 		y*=(((Double[])x_max)[1] - ((Double[]) x_min)[1]);
 		y+=((Double[]) x_min)[1];
 		
@@ -99,6 +99,7 @@ public Individuo_f3() {
 		for (int i=long_x;i<long_x+long_y;i++)
 		{
 			nums[1]+=pot*((Integer)genes.get(lcrom-i-1).toInt());
+			pot=pot*2;
 		}
 		return nums;
 	}

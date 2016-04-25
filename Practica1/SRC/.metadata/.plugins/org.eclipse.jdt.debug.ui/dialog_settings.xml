@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="conditionHistory">
-		<item value="2" key="conditionHistoryEntryCount"/>
-		<item value="debugGen==null" key="conditionHistoryEntry_0"/>
-		<item value="bit==null" key="conditionHistoryEntry_1"/>
+		<item value="3" key="conditionHistoryEntryCount"/>
+		<item value="(x&lt;-3) || (x&gt;12.1) || (y&lt;4.1) || (y&gt;5.8)" key="conditionHistoryEntry_0"/>
+		<item value="debugGen==null" key="conditionHistoryEntry_1"/>
+		<item value="bit==null" key="conditionHistoryEntry_2"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.debug.ui.ExpressionInformationControlCreator$ExpressionInformationControl">
 		<item value="500" key="SashWeightTree"/>

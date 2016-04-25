@@ -25,7 +25,7 @@ public class Gen_f1 extends Gen {
 		if ((Integer)bit==0)
 			bit=1;
 		else
-			bit=1;				
+			bit=0;				
 	}
 	
 	
