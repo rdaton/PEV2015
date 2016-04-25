@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public  class Individuo_f2 extends Individuo{
+public  class Individuo_f3 extends Individuo{
 	
 
 int long_x;
 int long_y;
 	
-public Individuo_f2() {
+public Individuo_f3() {
 		
 	}
 	
 
-	public Individuo_f2 (Double[] x_min, Double[] x_max,double prec)
+	public Individuo_f3 (Double[] x_min, Double[] x_max,double prec)
 	{		
 		super(x_min,x_max,prec);
 		Gen gen;
@@ -34,7 +34,7 @@ public Individuo_f2() {
 	
 	public Individuo clone_aux(Object x_min,Object x_max, double prec)
 	{
-		Individuo unIndividuo=new Individuo_f2 ((Double[])x_min,(Double[])x_max,prec);
+		Individuo unIndividuo=new Individuo_f3 ((Double[])x_min,(Double[])x_max,prec);
 		return unIndividuo;
 	}
 	
@@ -46,14 +46,10 @@ public Individuo_f2() {
 		Double y =((Double[]) un_valor)[1];
 		double res=0;
 		
-		res=x+Math.pow(y, 2)-7;
-		res=-Math.pow(res, 2);
-		
-		res+=-Math.pow(Math.pow(x, 2)+y	-11, 2);
-		
-		res+=2186;
-		
-		res/=2186;
+		res=20*Math.PI*y;
+		res=y*Math.sin(res);
+		res+=21.5;
+		res+=x*Math.sin(4*Math.PI*x);		
 		return res;
 	}
 		
