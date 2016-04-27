@@ -32,7 +32,6 @@ public class VentanaPrincipal {
 	private JTextField textPcruces;
 	private JTextField textpMutacion;
 	private JComboBox comboFuncion;
-	private JComboBox comboCruce;
 	private JComboBox comboSeleccion;
 	private JCheckBox checkElitismo;
 
@@ -64,12 +63,12 @@ public class VentanaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 413, 391);
+		frame.setBounds(100, 100, 413, 323);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(22, 12, 233, 311);
+		panel.setBounds(22, 12, 233, 241);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -98,13 +97,13 @@ public class VentanaPrincipal {
 		panel.add(lblNewLabel_3);
 
 		JLabel lblSemilla = new JLabel("Selección");
-		lblSemilla.setBounds(12, 210, 70, 15);
+		lblSemilla.setBounds(12, 179, 70, 15);
 		panel.add(lblSemilla);
 
 		comboFuncion = new JComboBox();
 		comboFuncion.setModel(new DefaultComboBoxModel(new String[] {
 				"Función 1", "Función 2", "Función 3", "Función 4",
-				"Función 5", "Función 6" }));
+				"Función 5"}));
 		comboFuncion.setBounds(82, 7, 107, 20);
 		panel.add(comboFuncion);
 
@@ -132,29 +131,19 @@ public class VentanaPrincipal {
 		textPcruces.setBounds(100, 118, 70, 20);
 		panel.add(textPcruces);
 
-		JLabel lblNewLabel_5 = new JLabel("Cruce");
-		lblNewLabel_5.setBounds(12, 183, 70, 15);
-		panel.add(lblNewLabel_5);
-
 		textpMutacion = new JTextField();
 		textpMutacion.setText("0.06");
 		textpMutacion.setColumns(10);
 		textpMutacion.setBounds(102, 150, 70, 20);
 		panel.add(textpMutacion);
 
-		comboCruce = new JComboBox();
-		comboCruce.setModel(new DefaultComboBoxModel(
-				new String[] { "Monopunto" }));
-		comboCruce.setBounds(96, 178, 107, 20);
-		panel.add(comboCruce);
-
 		comboSeleccion = new JComboBox();
 		comboSeleccion.setModel(new DefaultComboBoxModel(new String[] {"Ruleta", "Estadistico", "Torneo"}));
-		comboSeleccion.setBounds(100, 207, 88, 20);
+		comboSeleccion.setBounds(101, 176, 88, 20);
 		panel.add(comboSeleccion);
 
 		checkElitismo = new JCheckBox("Elitismo");
-		checkElitismo.setBounds(41, 234, 129, 23);
+		checkElitismo.setBounds(22, 202, 129, 23);
 		panel.add(checkElitismo);
 
 		JButton btnNewButton = new JButton("Ejecutar");
@@ -175,7 +164,7 @@ public class VentanaPrincipal {
 		double pCruces=Double.valueOf(this.textPcruces.getText());
 		double pMut=Double.valueOf(this.textpMutacion.getText());
 		//double semilla=Double.valueOf(this.textSemilla.getText());
-		int tCruce= Integer.valueOf(this.comboCruce.getSelectedIndex());
+		int tCruce= 0;
 		int tSeleccion=Integer.valueOf(this.comboSeleccion.getSelectedIndex());
 		boolean elitismo=this.checkElitismo.isSelected();		
 		List<List<Object>> resultados=null;
@@ -311,7 +300,7 @@ public class VentanaPrincipal {
 		    
 
 		    // put the PlotPanel in a JFrame, as a JPanel
-		    JFrame frame = new JFrame("Función 1");
+		    JFrame frame = new JFrame("Función 2");
 		    frame.setSize(600, 600);
 		    frame.setContentPane(plot);
 		    frame.setVisible(true);
@@ -377,12 +366,145 @@ public class VentanaPrincipal {
 		    
 
 		    // put the PlotPanel in a JFrame, as a JPanel
-		    JFrame frame = new JFrame("Función 1");
+		    JFrame frame = new JFrame("Función 3");
 		    frame.setSize(600, 600);
 		    frame.setContentPane(plot);
 		    frame.setVisible(true);
 		}
 		    break;
+		case 3:
+		{
+		Funcion4 unaFuncion3=new Funcion4(prec,tam_pob,num_iter,pCruces,pMut,
+				tCruce,tSeleccion,elitismo);
+		resultados=unaFuncion3.dameResultados();
+					
+		
+		 
+		if (resultados==null)
+				return;
+			
+		//pintar gráfica.
+	
+		 double[] x = new double [resultados.get(0).size()];
+		 for (int i=0;i<resultados.get(0).size();i++)
+		 {
+			 x[i]=i;
+		 }
+		 
+		 double[] y = new double[resultados.get(0).size()];
+		 for (int i=0;i<resultados.get(0).size();i++)
+		 {
+			 y[i]=(Double) resultados.get(0).get(i);
+		 }
+		 
+		 double[] y2 = new double[resultados.get(1).size()];
+		 for (int i=0;i<resultados.get(1).size();i++)
+		 {
+			 y2[i]=(Double) resultados.get(1).get(i);
+		 }
+		 
+		 double[] y3 = new double[resultados.get(2).size()];
+		 for (int i=0;i<resultados.get(2).size();i++)
+		 {
+			 y3[i]=(Double) resultados.get(2).get(i);
+		 }
+		 
+		 //limpio resultados para siguiente invocación
+		 resultados=null;
+		 
+		    // create your PlotPanel (you can use it as a JPanel)
+		    Plot2DPanel plot = new Plot2DPanel();
+	//	    plot.setFixedBounds(0,1,100);
+		   
+		    plot.setAxisLabels("Generación", "Adaptación");
+		    plot.addLegend("SOUTH");
+		    
+            
+		    
+		    // add a line plot to the PlotPanel
+		    
+		    plot.addScatterPlot("Peor Absoluto",Color.BLUE, x, y);		   
+		    plot.addScatterPlot("Peor de Generación",Color.RED, x, y2);
+		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    
+		    
+		    
+		    
+
+		    // put the PlotPanel in a JFrame, as a JPanel
+		    JFrame frame = new JFrame("Función 4");
+		    frame.setSize(600, 600);
+		    frame.setContentPane(plot);
+		    frame.setVisible(true);
+		}
+		    break;
+		case 4:
+		{
+		Funcion5 unaFuncion5=new Funcion5(prec,tam_pob,num_iter,pCruces,pMut,
+				tCruce,tSeleccion,elitismo);
+		resultados=unaFuncion5.dameResultados();
+					
+		
+		 
+		if (resultados==null)
+				return;
+			
+		//pintar gráfica.
+	
+		 double[] x = new double [resultados.get(0).size()];
+		 for (int i=0;i<resultados.get(0).size();i++)
+		 {
+			 x[i]=i;
+		 }
+		 
+		 double[] y = new double[resultados.get(0).size()];
+		 for (int i=0;i<resultados.get(0).size();i++)
+		 {
+			 y[i]=(Double) resultados.get(0).get(i);
+		 }
+		 
+		 double[] y2 = new double[resultados.get(1).size()];
+		 for (int i=0;i<resultados.get(1).size();i++)
+		 {
+			 y2[i]=(Double) resultados.get(1).get(i);
+		 }
+		 
+		 double[] y3 = new double[resultados.get(2).size()];
+		 for (int i=0;i<resultados.get(2).size();i++)
+		 {
+			 y3[i]=(Double) resultados.get(2).get(i);
+		 }
+		 
+		 //limpio resultados para siguiente invocación
+		 resultados=null;
+		 
+		    // create your PlotPanel (you can use it as a JPanel)
+		    Plot2DPanel plot = new Plot2DPanel();
+	//	    plot.setFixedBounds(0,1,100);
+		   
+		    plot.setAxisLabels("Generación", "Adaptación");
+		    plot.addLegend("SOUTH");
+		    
+            
+		    
+		    // add a line plot to the PlotPanel
+		    
+		    plot.addScatterPlot("Peor Absoluto",Color.BLUE, x, y);		   
+		    plot.addScatterPlot("Peor de Generación",Color.RED, x, y2);
+		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    
+		    
+		    
+		    
+
+		    // put the PlotPanel in a JFrame, as a JPanel
+		    JFrame frame = new JFrame("Función 4");
+		    frame.setSize(600, 600);
+		    frame.setContentPane(plot);
+		    frame.setVisible(true);
+		}
+		    break;
+		    
 		}
 		    
 		    

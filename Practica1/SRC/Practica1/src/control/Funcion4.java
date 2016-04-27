@@ -29,7 +29,7 @@ public class Funcion4 {
 		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
-		 unAlgoritmo=new AGenetico(0,new individuo.Individuo_basico(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
+		 unAlgoritmo=new AGenetico(0,new individuo.Individuo_f4(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
 	}
 	
 	public List<List<Object>> dameResultados()
@@ -47,13 +47,13 @@ public class Funcion4 {
 		
 		int vueltas=0;
 		double pDouble=0;
-		double x=0;
+		Double[] x;
 		while (unIterador.hasNext())
 		{
 			vueltas++;			
 			pIndividuo=unIterador.next();
 			pDouble=pIndividuo.getadaptacion_bruta();
-			x=(Double)pIndividuo.getX();
+			x=(Double[])pIndividuo.getX();
 			if (vueltas==1)
 			{
 			min_adapt=pDouble;					
@@ -66,7 +66,10 @@ public class Funcion4 {
 			resultados.get(1).add(new Double(pDouble));
 			resultados.get(2).add(dameMedia(resultados.get(1)));
 			
-			System.out.print("x: " +String.format( "%.2f",  x));
+			for (int i=0;i<x.length;i++)
+			{
+				System.out.print(String.format( "%.2f",  x[i])+';');
+			}
 			System.out.print(" ; y: "+ String.format( "%.2f", pDouble));
 			System.out.println(" ; peor "+String.format( "%.2f", min_adapt));			
 		}

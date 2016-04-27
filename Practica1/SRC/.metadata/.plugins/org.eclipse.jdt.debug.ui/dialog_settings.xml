@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="conditionHistory">
-		<item value="3" key="conditionHistoryEntryCount"/>
-		<item value="(x&lt;-3) || (x&gt;12.1) || (y&lt;4.1) || (y&gt;5.8)" key="conditionHistoryEntry_0"/>
-		<item value="debugGen==null" key="conditionHistoryEntry_1"/>
-		<item value="bit==null" key="conditionHistoryEntry_2"/>
+		<item value="6" key="conditionHistoryEntryCount"/>
+		<item value="res&lt;-0.6" key="conditionHistoryEntry_0"/>
+		<item value="res&lt;0.6" key="conditionHistoryEntry_1"/>
+		<item value="debugGen==null" key="conditionHistoryEntry_4"/>
+		<item value="bit==null" key="conditionHistoryEntry_5"/>
+		<item value="x[i]&gt;3.1" key="conditionHistoryEntry_2"/>
+		<item value="(x&lt;-3) || (x&gt;12.1) || (y&lt;4.1) || (y&gt;5.8)" key="conditionHistoryEntry_3"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.debug.ui.ExpressionInformationControlCreator$ExpressionInformationControl">
 		<item value="500" key="SashWeightTree"/>
 		<item value="500" key="SashWeightDetails"/>
-		<item value="576" key="WIDTH"/>
-		<item value="148" key="HEIGHT"/>
+		<item value="564" key="WIDTH"/>
+		<item value="136" key="HEIGHT"/>
 	</section>
 </section>
