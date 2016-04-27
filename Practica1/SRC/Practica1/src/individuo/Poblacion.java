@@ -346,11 +346,10 @@ public class Poblacion{
 		boolean mutado;
 		double prob;
 		for (int i=0;i<this.size();i++)
-		{
-			
+		{			
 				mutado=false;
-				for (int j=0;j<lcrom;j++)
-				{
+				for (int j=0;j<lcrom && !this.elite[i];j++)
+				{					
 					//se genera un numero aleatorio en [0 1)
 					prob=Math.random();
 					//se mutan aquellos genes con prob < que prob_mut

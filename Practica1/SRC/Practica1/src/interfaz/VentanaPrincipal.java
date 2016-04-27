@@ -223,9 +223,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -291,9 +291,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -357,9 +357,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -423,9 +423,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Peor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Peor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Peor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Peor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -489,9 +489,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Peor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Peor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Peor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Peor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
