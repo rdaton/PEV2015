@@ -18,7 +18,7 @@ public class Funcion3 {
 	AGenetico unAlgoritmo;
 	final Double[] x_min={Double.valueOf(-3),Double.valueOf(4.1)};
 	final Double[] x_max={Double.valueOf(12.1),Double.valueOf(5.8)};
-	public Funcion3 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
+	public Funcion3 (int argf1,int argf2,double prec,int tam_pob, int num_iter,double pCruces,double pMut,
 		int tCruce,int tSeleccion,boolean elitismo)
 	{
 		 this.prec=prec;
@@ -29,7 +29,7 @@ public class Funcion3 {
 		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
-		 unAlgoritmo=new AGenetico(1,new individuo.Individuo_f3(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
+		 unAlgoritmo=new AGenetico(argf1,argf2,1,new individuo.Individuo_f3(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
 	}
 	
 	public List<List<Object>> dameResultados()
@@ -66,7 +66,7 @@ public class Funcion3 {
 			
 			resultados.get(0).add(max_adapt);
 			resultados.get(1).add(new Double(pDouble));
-			resultados.get(2).add(dameMedia(resultados.get(1)));
+			resultados.get(2).add(unAlgoritmo.dameMedias().get(vueltas-1));
 			
 			System.out.print("x: " +String.format( "%.2f",  x));
 			System.out.print(" ; y: "+ String.format( "%.2f", y));
@@ -78,19 +78,6 @@ public class Funcion3 {
 		return resultados;
 	}
 	
-	double dameMedia(List<Object> unaLista)
-	{
-		double unaMedia=0;
-		double total=0;
-		Iterator<Object>  unIterador=unaLista.iterator();		
-		
-		while (unIterador.hasNext())
-		{			
-			total+=(Double)unIterador.next();
-		}		
-		unaMedia=(double)total/(double) unaLista.size();
-		
-		return unaMedia;
-	}
+	
 
 }

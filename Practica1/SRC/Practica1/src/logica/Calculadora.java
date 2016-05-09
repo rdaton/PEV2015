@@ -1,5 +1,8 @@
 package logica;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class Calculadora {
 	
 	public static int tamGen (double min, double max, double prec)
@@ -10,4 +13,5 @@ public class Calculadora {
 	}
 
 
+	
 }

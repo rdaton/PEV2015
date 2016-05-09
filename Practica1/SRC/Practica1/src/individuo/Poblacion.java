@@ -12,6 +12,7 @@ public class Poblacion{
 	double sumadap;//adaptación global de la población	
 	double prec;
 	int torneo;
+	int argf2;
 	int tam_elite;
 	boolean[] elite;
 	int[] sel_elite;
@@ -38,8 +39,12 @@ public class Poblacion{
 		return individuos.size();
 	}
 	
-	public Poblacion(int tipoAlgoritmo,Individuo prototipo, int tam_pob,Object x_min,Object x_max,double prec,boolean elitismo)
+	
+	
+	public Poblacion(int argf1,int argf2,int tipoAlgoritmo,Individuo prototipo, int tam_pob,Object x_min,Object x_max,double prec,boolean elitismo)
 	{
+		this.argf2=argf2;
+		torneo=argf1;
 		this.tipoAlgoritmo=tipoAlgoritmo;
 		init();		
 		this.prec=prec;		
@@ -51,7 +56,7 @@ public class Poblacion{
 			unIndividuo=prototipo.newInstance(x_min, x_max, prec);			
 			individuos.add(unIndividuo);
 		}			
-		torneo=3;
+		
 		this.elitismo=elitismo;
 		tam_elite=this.size()*2/100;
 		elite=new boolean[this.size()];
@@ -346,11 +351,11 @@ public class Poblacion{
 		boolean mutado;
 		double prob;
 		for (int i=0;i<this.size();i++)
-		{
+		{			
 			
 				mutado=false;
-				for (int j=0;j<lcrom;j++)
-				{
+				for (int j=0;j<lcrom && !this.elite[i];j++)
+				{					
 					//se genera un numero aleatorio en [0 1)
 					prob=Math.random();
 					//se mutan aquellos genes con prob < que prob_mut
@@ -430,7 +435,41 @@ public class Poblacion{
 		                           flag = true;              //shows a swap occurred 
 		                  }
 		            }
-		      } 
+		      }
+		     Individuo temp2;
+		     flag=true;
+		     while ( flag )
+		     {
+		            flag= false;    //set flag to false awaiting a possible swap
+		            for( j=0;  j < this.size()-1;  j++ )
+		            {
+		                   if ( esMejor (individuos.get(  j ).getadaptacion_bruta(), individuos.get(  j+1 ).getadaptacion_bruta() ))  
+		                   {
+		                           temp2=individuos.get(j);                //swap elements
+		                           individuos.set(j, individuos.get(j+1));
+		                           individuos.set(j+1,temp2);
+		                           flag = true;              //shows a swap occurred 
+		                  }
+		            }
+		      }
 	}
+	
+	public  double dameMediaAdaptacion()
+	{
+		double unaMedia=0;
+		double total=0;
+		Iterator<Individuo>  unIterador=individuos.iterator();		
+		
+		while (unIterador.hasNext())
+		{			
+			
+			total+=(Double)unIterador.next().getadaptacion_bruta();
+		}		
+		unaMedia=(double)total/(double) this.size();
+		
+		return unaMedia;
+	}
+	
+	
 	
 }

@@ -8,7 +8,7 @@ import java.util.Random;
 public  class Individuo_f4 extends Individuo{
 
 //parametro n
-static final int N=5;
+	int N;
 //longitud de cada elemento del vector
 int long_elem;	
 	
@@ -18,7 +18,9 @@ public Individuo_f4() {
 
 	public Individuo_f4 (Object x_min, Object x_max,double prec)
 	{			
-		super(x_min,x_max,prec);		
+		
+		super(x_min,x_max,prec);
+		N=((Double[]) x_min)[1].intValue();
 		x=new Double[N];
 		Gen gen;		
 		for (int i=0;i<lcrom;i++)
@@ -119,6 +121,7 @@ public Individuo_f4() {
 	
 	Integer tamGen(Object x_min, Object x_max, double prec)
 	{
+		N =((Double[]) x_min)[1].intValue();
 		Integer unTamanyo=logica.Calculadora.tamGen(((Double[])x_min)[0],((Double[])x_max)[0], prec);
 		long_elem=unTamanyo;
 		return unTamanyo*N;

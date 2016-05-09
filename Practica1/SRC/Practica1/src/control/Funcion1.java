@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import logica.Calculadora;
+
 public class Funcion1 {
 	double prec=0;
 	int tam_pob=0;
@@ -18,7 +20,7 @@ public class Funcion1 {
 	AGenetico unAlgoritmo;
 	final Double[] x_min={Double.valueOf(-250)};
 	final Double[] x_max={Double.valueOf(250)};
-	public Funcion1 (double prec,int tam_pob, int num_iter,double pCruces,double pMut,
+	public Funcion1 (int argf1,int argf2,double prec,int tam_pob, int num_iter,double pCruces,double pMut,
 		int tCruce,int tSeleccion,boolean elitismo)
 	{
 		 this.prec=prec;
@@ -29,7 +31,7 @@ public class Funcion1 {
 		 //this.semilla=semilla;
 		 this.tCruce=tCruce;
 		 this.tSeleccion=tSeleccion;
-		 unAlgoritmo=new AGenetico(0,new individuo.Individuo_basico(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
+		 unAlgoritmo=new AGenetico(argf1,argf2,0,new individuo.Individuo_basico(),tam_pob,prec,pCruces,pMut,x_min,x_max,num_iter,elitismo,tSeleccion,tCruce);
 	}
 	
 	public List<List<Object>> dameResultados()
@@ -64,7 +66,7 @@ public class Funcion1 {
 			
 			resultados.get(0).add(min_adapt);
 			resultados.get(1).add(new Double(pDouble));
-			resultados.get(2).add(dameMedia(resultados.get(1)));
+			resultados.get(2).add(unAlgoritmo.dameMedias().get(vueltas-1));
 			
 			System.out.print("x: " +String.format( "%.2f",  x));
 			System.out.print(" ; y: "+ String.format( "%.2f", pDouble));
@@ -75,19 +77,6 @@ public class Funcion1 {
 		return resultados;
 	}
 	
-	double dameMedia(List<Object> unaLista)
-	{
-		double unaMedia=0;
-		double total=0;
-		Iterator<Object>  unIterador=unaLista.iterator();		
-		
-		while (unIterador.hasNext())
-		{			
-			total+=(Double)unIterador.next();
-		}		
-		unaMedia=(double)total/(double) unaLista.size();
-		
-		return unaMedia;
-	}
+	
 
 }

@@ -34,6 +34,8 @@ public class VentanaPrincipal {
 	private JComboBox comboFuncion;
 	private JComboBox comboSeleccion;
 	private JCheckBox checkElitismo;
+	private JTextField textArgF;
+	public JTextField textArgF2;
 
 	/**
 	 * Launch the application.
@@ -68,7 +70,7 @@ public class VentanaPrincipal {
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(22, 12, 233, 241);
+		panel.setBounds(22, 12, 233, 287);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -77,27 +79,27 @@ public class VentanaPrincipal {
 		panel.add(lblNewLabel);
 
 		JLabel lblCromosomas = new JLabel("Precisión");
-		lblCromosomas.setBounds(12, 39, 70, 15);
+		lblCromosomas.setBounds(12, 101, 70, 15);
 		panel.add(lblCromosomas);
 
 		JLabel lblPob = new JLabel("Población");
-		lblPob.setBounds(12, 66, 70, 15);
+		lblPob.setBounds(12, 128, 70, 15);
 		panel.add(lblPob);
 
 		JLabel lblNewLabel_1 = new JLabel("Iteraciones");
-		lblNewLabel_1.setBounds(12, 93, 88, 15);
+		lblNewLabel_1.setBounds(12, 155, 88, 15);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("% Cruces");
-		lblNewLabel_2.setBounds(12, 120, 70, 15);
+		lblNewLabel_2.setBounds(12, 182, 70, 15);
 		panel.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("% Mutación");
-		lblNewLabel_3.setBounds(12, 152, 88, 15);
+		lblNewLabel_3.setBounds(12, 214, 88, 15);
 		panel.add(lblNewLabel_3);
 
 		JLabel lblSemilla = new JLabel("Selección");
-		lblSemilla.setBounds(12, 179, 70, 15);
+		lblSemilla.setBounds(12, 241, 70, 15);
 		panel.add(lblSemilla);
 
 		comboFuncion = new JComboBox();
@@ -109,42 +111,62 @@ public class VentanaPrincipal {
 
 		textIteraciones = new JTextField();
 		textIteraciones.setText("100");
-		textIteraciones.setBounds(102, 91, 70, 20);
+		textIteraciones.setBounds(102, 153, 70, 20);
 		panel.add(textIteraciones);
 		textIteraciones.setColumns(10);
 
 		textPrecision = new JTextField();
 		textPrecision.setText("0.01");
 		textPrecision.setColumns(10);
-		textPrecision.setBounds(100, 37, 70, 20);
+		textPrecision.setBounds(100, 99, 70, 20);
 		panel.add(textPrecision);
 
 		textPoblacion = new JTextField();
 		textPoblacion.setText("100");
 		textPoblacion.setColumns(10);
-		textPoblacion.setBounds(102, 66, 70, 20);
+		textPoblacion.setBounds(102, 128, 70, 20);
 		panel.add(textPoblacion);
 
 		textPcruces = new JTextField();
 		textPcruces.setText("0.6");
 		textPcruces.setColumns(10);
-		textPcruces.setBounds(100, 118, 70, 20);
+		textPcruces.setBounds(100, 180, 70, 20);
 		panel.add(textPcruces);
 
 		textpMutacion = new JTextField();
 		textpMutacion.setText("0.06");
 		textpMutacion.setColumns(10);
-		textpMutacion.setBounds(102, 150, 70, 20);
+		textpMutacion.setBounds(102, 212, 70, 20);
 		panel.add(textpMutacion);
 
 		comboSeleccion = new JComboBox();
 		comboSeleccion.setModel(new DefaultComboBoxModel(new String[] {"Ruleta", "Estadistico", "Torneo"}));
-		comboSeleccion.setBounds(101, 176, 88, 20);
+		comboSeleccion.setBounds(101, 238, 88, 20);
 		panel.add(comboSeleccion);
 
 		checkElitismo = new JCheckBox("Elitismo");
-		checkElitismo.setBounds(22, 202, 129, 23);
+		checkElitismo.setBounds(22, 264, 129, 23);
 		panel.add(checkElitismo);
+		
+		textArgF = new JTextField();
+		textArgF.setText("3");
+		textArgF.setBounds(102, 68, 70, 19);
+		panel.add(textArgF);
+		textArgF.setColumns(10);
+		
+		JLabel lblArg = new JLabel("nTorneo");
+		lblArg.setBounds(12, 74, 70, 15);
+		panel.add(lblArg);
+		
+		JLabel lblArg_1 = new JLabel("Arg #");
+		lblArg_1.setBounds(12, 47, 70, 15);
+		panel.add(lblArg_1);
+		
+		textArgF2 = new JTextField();
+		textArgF2.setText("4");
+		textArgF2.setBounds(102, 39, 70, 17);
+		panel.add(textArgF2);
+		textArgF2.setColumns(10);
 
 		JButton btnNewButton = new JButton("Ejecutar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -158,6 +180,8 @@ public class VentanaPrincipal {
 
 	void invocarFuncion() {
 		int selec=Integer.valueOf(this.comboFuncion.getSelectedIndex());
+		int argf1=Integer.valueOf(this.textArgF.getText());
+		int argf2=Integer.valueOf(this.textArgF2.getText());
 		double prec=Double.valueOf(this.textPrecision.getText());
 		int tam_pob=Integer.valueOf(this.textPoblacion.getText());
 		int num_iter=Integer.valueOf(this.textIteraciones.getText());
@@ -174,7 +198,7 @@ public class VentanaPrincipal {
 		{
 		case 0:
 		{
-			Funcion1 unaFuncion1=new Funcion1(prec,tam_pob,num_iter,pCruces,pMut,
+			Funcion1 unaFuncion1=new Funcion1(argf1,argf2,prec,tam_pob,num_iter,pCruces,pMut,
 					tCruce,tSeleccion,elitismo);
 			resultados=unaFuncion1.dameResultados();
 					
@@ -223,9 +247,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -242,7 +266,7 @@ public class VentanaPrincipal {
 		    
 		case 1:
 		{
-		Funcion2 unaFuncion2=new Funcion2(prec,tam_pob,num_iter,pCruces,pMut,
+		Funcion2 unaFuncion2=new Funcion2(argf1,argf2,prec,tam_pob,num_iter,pCruces,pMut,
 				tCruce,tSeleccion,elitismo);
 		resultados=unaFuncion2.dameResultados();
 					
@@ -291,9 +315,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -308,7 +332,7 @@ public class VentanaPrincipal {
 		    break;
 		case 2:
 		{
-		Funcion3 unaFuncion3=new Funcion3(prec,tam_pob,num_iter,pCruces,pMut,
+		Funcion3 unaFuncion3=new Funcion3(argf1,argf2,prec,tam_pob,num_iter,pCruces,pMut,
 				tCruce,tSeleccion,elitismo);
 		resultados=unaFuncion3.dameResultados();
 					
@@ -357,9 +381,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Mejor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Mejor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Mejor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Mejor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -374,7 +398,7 @@ public class VentanaPrincipal {
 		    break;
 		case 3:
 		{
-		Funcion4 unaFuncion3=new Funcion4(prec,tam_pob,num_iter,pCruces,pMut,
+		Funcion4 unaFuncion3=new Funcion4(argf1,argf2,prec,tam_pob,num_iter,pCruces,pMut,
 				tCruce,tSeleccion,elitismo);
 		resultados=unaFuncion3.dameResultados();
 					
@@ -423,9 +447,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Peor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Peor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Peor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Peor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -440,7 +464,7 @@ public class VentanaPrincipal {
 		    break;
 		case 4:
 		{
-		Funcion5 unaFuncion5=new Funcion5(prec,tam_pob,num_iter,pCruces,pMut,
+		Funcion5 unaFuncion5=new Funcion5(argf1,argf2,prec,tam_pob,num_iter,pCruces,pMut,
 				tCruce,tSeleccion,elitismo);
 		resultados=unaFuncion5.dameResultados();
 					
@@ -489,9 +513,9 @@ public class VentanaPrincipal {
 		    
 		    // add a line plot to the PlotPanel
 		    
-		    plot.addScatterPlot("Peor Absoluto",Color.BLUE, x, y);		   
-		    plot.addScatterPlot("Peor de Generación",Color.RED, x, y2);
-		    plot.addScatterPlot("Media de Generación",Color.GREEN, x, y3);
+		    plot.addLinePlot("Peor Absoluto",Color.BLUE, x, y);		   
+		    plot.addLinePlot("Peor de Generación",Color.RED, x, y2);
+		    plot.addLinePlot("Media de Generación",Color.GREEN, x, y3);
 		    
 		    
 		    
@@ -511,7 +535,4 @@ public class VentanaPrincipal {
 		
 		    
 	}
-	
-	
-
 }

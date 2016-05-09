@@ -16,24 +16,29 @@ public class AGenetico  {
 	int num_max_gen; //numero de generaciones
 	int tCruce; //tipo cruce 
 	int tSeleccion; //tipo selección
+	
+	//métricas
 	List <individuo.Individuo> mejores_cada_generacion;
 	List <individuo.Individuo> peores_cada_generacion;
+	List <Double> medias_generaciones;
+	
 	/*
 	 * tipoAlgoritmo:
 	 * 0: Minimización
 	 * 1: Maximización
 	 */
-	public AGenetico (int tipoAlgoritmo, individuo.Individuo prototipo, int tam_pob, double prec,double prob_cruce, double prob_mut,Object x_min,Object x_max, int num_max_gen,boolean elitismo, int tSeleccion, int tCruce)
+	public AGenetico (int argf1,int argf2,int tipoAlgoritmo, individuo.Individuo prototipo, int tam_pob, double prec,double prob_cruce, double prob_mut,Object x_min,Object x_max, int num_max_gen,boolean elitismo, int tSeleccion, int tCruce)
 	{		
 		mejores_cada_generacion=new ArrayList();
 		peores_cada_generacion=new ArrayList();
+		medias_generaciones=new ArrayList();
 		this.num_max_gen=num_max_gen;
 		this.prec=prec;
 		this.x_min=x_min;
 		this.x_max=x_max;
 		this.prob_cruce=prob_cruce;
 		this.prob_mut=prob_mut;
-		individuo.Poblacion pob=new individuo.Poblacion(tipoAlgoritmo,prototipo,tam_pob,x_min,x_max,prec,elitismo);	
+		pob=new individuo.Poblacion(argf1,argf2,tipoAlgoritmo,prototipo,tam_pob,x_min,x_max,prec,elitismo);	
 		//bucle de evolución
 		
 		//prerparo la población para el bucle
@@ -67,6 +72,7 @@ public class AGenetico  {
 			pob.desplazar();		
 			mejores_cada_generacion.add(pob.dameMejor().clone());
 			peores_cada_generacion.add(pob.damePeor().clone());
+			medias_generaciones.add(pob.dameMediaAdaptacion());
 		}
 		
 	}
@@ -79,5 +85,10 @@ public class AGenetico  {
 	public List<individuo.Individuo> damePeor()
 	{
 		return peores_cada_generacion;
+	}
+	
+	public List<Double> dameMedias()
+	{
+		return medias_generaciones;
 	}
 }
