@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+<<<<<<< HEAD
+		<item value="tamGen" key="selection"/>
+=======
+		<item value="" key="selection"/>
+>>>>>>> 40a7b08f8e694958438df62b8ed2628df74131d4
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+<<<<<<< HEAD
+			<item value="tamgen"/>
+			<item value="x_min"/>
+			<item value="window"/>
+			<item value="argf2"/>
+			<item value="main"/>
+			<item value="torne"/>
+			<item value="argf"/>
+			<item value="text"/>
+=======
+			<item value="print"/>
+			<item value="println"/>
+			<item value="system"/>
+			<item value="pos_peor"/>
+			<item value="funci"/>
+			<item value="mi_fun"/>
+			<item value="miFuncion"/>
+			<item value="Individuo_"/>
+>>>>>>> 40a7b08f8e694958438df62b8ed2628df74131d4
+		</list>
+		<list key="replacehistory">
+			<item value="Individuo_f1"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+<<<<<<< HEAD
+		<item value="297" key="DIALOG_WIDTH"/>
+		<item value="1|Sans|12.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="384" key="DIALOG_HEIGHT"/>
+		<item value="587" key="DIALOG_X_ORIGIN"/>
+		<item value="334" key="DIALOG_Y_ORIGIN"/>
+=======
+		<item value="291" key="DIALOG_WIDTH"/>
+		<item value="1|Cantarell|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="484" key="DIALOG_HEIGHT"/>
+		<item value="602" key="DIALOG_X_ORIGIN"/>
+		<item value="63" key="DIALOG_Y_ORIGIN"/>
+>>>>>>> 40a7b08f8e694958438df62b8ed2628df74131d4
+	</section>
+</section>
