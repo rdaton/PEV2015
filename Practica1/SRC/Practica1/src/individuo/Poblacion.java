@@ -352,10 +352,6 @@ public class Poblacion{
 		double prob;
 		for (int i=0;i<this.size();i++)
 		{			
-<<<<<<< HEAD
-			
-=======
->>>>>>> 40a7b08f8e694958438df62b8ed2628df74131d4
 				mutado=false;
 				for (int j=0;j<lcrom && !this.elite[i];j++)
 				{					
