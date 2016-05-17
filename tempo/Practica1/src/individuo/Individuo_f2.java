@@ -79,13 +79,15 @@ public  class Individuo_f2 extends Individuo {
 		nums[1] = 0;
 
 		int pot = 1;
-		for(int i=0;i<long_x;i++) {
+		//for(int i=0;i<long_x;i++) {
+		for(int i=long_x-1;i>=0;i--) {
 			nums[0]+= pot*((Integer)genes.get(lcrom-i-1).toInt());
 			pot = pot*2;
 		}
 
 		pot = 1;
-		for(int i=long_x;i<long_x+long_y;i++) {
+		//for(int i=long_x;i<long_x+long_y;i++) {
+		for(int i=long_x+long_y-1;i>=long_x;i--) {
 			nums[1]+= pot*((Integer)genes.get(lcrom-i-1).toInt());
 			pot = pot*2;
 		}

@@ -59,3 +59,15 @@ java.lang.NullPointerException
 
 !ENTRY org.eclipse.ui 2 2 2016-05-17 11:07:19.442
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-05-17 16:04:51.147 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_72-internal
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86 -data /home/barfelix/PEV2015/tempo
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-05-17 16:04:52.391
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 2 2 2016-05-17 18:48:49.166
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)

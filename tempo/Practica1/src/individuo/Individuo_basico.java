@@ -49,14 +49,14 @@ public  class Individuo_basico extends Individuo{
 		x*= ((Double[]) x_max)[0] - ((Double[]) x_min)[0];
 		x+= ((Double[]) x_min)[0];
 		this.x=x;
-		System.out.println(x);
+	//	System.out.println(x);
 	}
 
 	int[] bin_ent() {
 		int[] nums = new int[1];
 		nums[0] = 0;
 		int pot = 1;
-		for (int i=0;i<lcrom;i++) {
+		for (int i=0;i<lcrom;i++) {		
 			nums[0] += pot*((Integer)genes.get(lcrom-i-1).toInt());
 			pot = pot*2;
 		}

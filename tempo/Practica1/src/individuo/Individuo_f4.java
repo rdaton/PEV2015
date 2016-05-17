@@ -14,7 +14,7 @@ public  class Individuo_f4 extends Individuo{
 	public Individuo_f4(Object x_min, Object x_max, double prec) {
 		super(x_min, x_max, prec);
 		N=((Double[]) x_min)[1].intValue();
-		System.out.println("N"+N);
+	//	System.out.println("N"+N);
 		x = new Double[N];
 		Gen gen;
 
@@ -45,7 +45,7 @@ public  class Individuo_f4 extends Individuo{
 
 	public double miFuncion(Object un_valor) {
 		double res = 0;
-		for(int i=0;i<N;i++) {
+		for(int i=1;i<=N;i++) {
 			res+= func_aux(i);
 		}
 		return -res;
@@ -68,7 +68,7 @@ public  class Individuo_f4 extends Individuo{
 		for(int i=0;i<N;i++) {
 			nums[i] = 0;
 			int pot = 1;
-			for(int s=i*N;s<(i*N)+long_elem;s++) {
+			for(int s=(i*long_elem);s<((i+1)*long_elem);s++) {
 				int indice = lcrom - s - 1;
 				nums[i]+= pot * ((Integer)genes.get(indice).toInt());
 				pot = pot*2;
@@ -104,17 +104,17 @@ public  class Individuo_f4 extends Individuo{
 		Double[] x = (Double[])this.x;
 		double res = 0;
 
-		res = (i+1) * Math.pow(x[i],2);
+		res = (i+1) * Math.pow(x[i-1],2);
 		res/= Math.PI;
-		res = coseno_grado(res,20);
-		res*= Math.sin(x[i]);
+		res = seno_grado(res,20);
+		res*= Math.sin(x[i-1]);
 		return res;
 	}
 
-	private double coseno_grado(Double x, int g) {
+	private double seno_grado(Double x, int g) {
 		double res = 1;
 		for(int i=0;i<g;i++) {
-			res*= Math.cos(x);
+			res*= Math.sin(x);
 		}
 		return res;
 	}

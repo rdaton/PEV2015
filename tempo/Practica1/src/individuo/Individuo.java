@@ -59,7 +59,7 @@ public  abstract class Individuo {
 		Individuo unIndividuo = clone_aux(x_min,x_max, prec);
 		//FIN DE PARTE QUE VARIA
 
-		for (int i=0;i<this.genes.size();i++) {
+		for (int i=0;i<this.lcrom;i++) {
 			unIndividuo.genes.add(this.genes.get(i).clone());
 		}
 

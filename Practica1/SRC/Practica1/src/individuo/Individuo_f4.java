@@ -52,7 +52,7 @@ public Individuo_f4() {
 	{
 		Double[] valor=((Double[]) un_valor);
 		double res=0;
-		for (int i=0;i<N;i++)
+		for (int i=1;i<=N;i++)
 		{
 			res+=func_aux(i);
 		}		
@@ -64,10 +64,10 @@ public Individuo_f4() {
 		Double[] x= (Double[])this.x;
 		double res=0;
 		
-		res=(i+2)*Math.pow(x[i],20);
+		res=(i+2)*Math.pow(x[i-1],2);
 		res/=Math.PI;
-		res=coseno_grado(res,2);
-		res*=Math.sin(x[i]);
+		res=coseno_grado(res,20);
+		res*=Math.sin(x[i-1]);
 		return res;
 	}
 	

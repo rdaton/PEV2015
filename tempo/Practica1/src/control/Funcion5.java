@@ -52,12 +52,12 @@ public class Funcion5 {
 		double min_adapt = 0;
 		int vueltas = 0;
 		double pDouble = 0;
-
+		Double[] x;
 		while(unIterador.hasNext()) {
 			vueltas++;
 			pIndividuo = unIterador.next();
 			pDouble = pIndividuo.getadaptacion_bruta();
-
+			x=(Double[])pIndividuo.getX();
 			if(vueltas==1) {
 				min_adapt = pDouble;
 			} else if(pDouble<min_adapt) {
@@ -67,6 +67,12 @@ public class Funcion5 {
 			resultados.get(0).add(min_adapt);
 			resultados.get(1).add(new Double(pDouble));
 			resultados.get(2).add(unAlgoritmo.dameMedias().get(vueltas-1));
+		/*	
+			System.out.print("x: " +String.format( "%.2f",  x[0]));
+			System.out.print("y: " +String.format( "%.2f",  x[1]));
+			System.out.print(" ; f(x,y): "+ String.format( "%.6f", pDouble));
+			System.out.println(" ; peor "+String.format( "%.2f", min_adapt));			
+		*/
 		}
 
 		return resultados;

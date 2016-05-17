@@ -5,9 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Funcion1 {
-
-	int argf1=4;
-	int argf2=3;
+	
 	private double prec = 0;
 	private int tam_pob = 0;
 	private int num_iter = 0;
@@ -69,10 +67,10 @@ public class Funcion1 {
 			resultados.get(0).add(min_adapt);
 			resultados.get(1).add(new Double(pDouble));
 			resultados.get(2).add(unAlgoritmo.dameMedias().get(vueltas-1));
-			
+			/*
 			System.out.print("x: " +String.format( "%.2f",  x));
 			System.out.print(" ; y: "+ String.format( "%.2f", pDouble));
-			System.out.println(" ; peor "+String.format( "%.2f", min_adapt));			
+			System.out.println(" ; peor "+String.format( "%.2f", min_adapt));*/			
 		}
 
 		return resultados;

@@ -69,7 +69,8 @@ public  class Individuo_f5 extends Individuo{
 		for (int i=0;i<N;i++) {
 			nums[i] = 0;
 			int pot = 1;
-			for (int s=i*N;s<(i*N)+long_elem;s++) {
+			for (int s=(i*long_elem);s<((i+1)*long_elem);s++) {
+				//int indice = s;
 				int indice = lcrom - s - 1;
 				nums[i]+= pot * ((Integer)genes.get(indice).toInt());
 				pot = pot * 2;
