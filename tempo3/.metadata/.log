@@ -1,0 +1,61 @@
+!SESSION 2016-05-26 18:25:50.753 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86 -data /home/barfelix/PEV2015/tempo3
+
+!ENTRY org.eclipse.debug.core 4 2 2016-05-26 18:26:23.807
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-05-26 18:26:23.810
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-05-26 18:26:23.966
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-05-26 18:26:23.968
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.ui 2 2 2016-05-26 19:15:43.493
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
