@@ -34,8 +34,9 @@ public class Gen_f1 extends Gen {
 	}
 	
 	public boolean equals (Gen g2)
-	{		
-		return (((Integer)this.bit).intValue()==((Integer)g2.bit).intValue());
+	{
+		Gen_f1 g3=(Gen_f1)g2;
+		return ((int)this.bit==(int)g2.bit);
 		
 	}
 

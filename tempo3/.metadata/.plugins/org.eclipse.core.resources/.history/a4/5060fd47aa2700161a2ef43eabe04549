@@ -8,10 +8,5 @@ public class Calculadora {
 //		return (int) Math.ceil(unNumero);
 		return ((Double) max).intValue() - ((Double) min).intValue();
 	}
-	
-	public static int dameRandom(int a, int b)
-	{
-		return a + (int)(Math.random() * ((b - a) + 1));
-	}
 
 }

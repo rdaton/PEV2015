@@ -32,11 +32,5 @@ public class Gen_f1 extends Gen {
 		Gen_f1 unGen = new Gen_f1((Integer)bit);
 		return unGen;
 	}
-	
-	public boolean equals (Gen g2)
-	{		
-		return (((Integer)this.bit).intValue()==((Integer)g2.bit).intValue());
-		
-	}
 
 }

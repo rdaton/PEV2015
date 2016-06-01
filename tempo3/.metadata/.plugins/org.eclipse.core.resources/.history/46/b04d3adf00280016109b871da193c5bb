@@ -471,18 +471,6 @@ public class Poblacion {
 				hijo2.genes.set(i, padre1.genes.get(i).clone());
 		};
 		
-		for (int i=pCorte2;i<lcrom;i++)
-		{
-			if (!contiene(padre1.genes,hijo1.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo1.genes.set(i, padre1.genes.get(i).clone());
-			else
-				hijo1.genes.set(i, padre2.genes.get(i).clone());
-			
-			if (!contiene(padre2.genes,hijo2.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo2.genes.set(i, padre2.genes.get(i).clone());
-			else
-				hijo2.genes.set(i, padre1.genes.get(i).clone());
-		}
 		
 		
 		Individuo[] unReturn = {hijo1,hijo2};
@@ -581,8 +569,6 @@ public class Poblacion {
 	}
 
 	private void mutacionIntercambio(int i) {
-		Individuo unIndividuo= individuos.get(i);
-		
 
 	}
 

@@ -418,71 +418,16 @@ public class Poblacion {
 		return unReturn;
 	}
 
-	boolean contiene(List<Gen> unCromosoma, Gen unGen, int a, int b )
-	{
-		boolean ret=false;
-		int i=a;
-		
-		while(!ret && i<=b)
-		{
-			ret=unCromosoma.get(i).equals(unGen);
-			i++;
-		}
-				
-		return ret;
-	}
-	
 	private Individuo[] cruceOx (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
 		Integer lcrom = padre1.damelCrom();
-		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
-		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);		
 		//Elegir aleatoriamente dos puntos de corte.
 		//pCorte1<pCorte2
-		int pCorte1 = Calculadora.dameRandom(0, lcrom-2);
-		int pCorte2 = Calculadora.dameRandom(pCorte1+2, lcrom-1);		
+		int pCorte1 = Calculadora.dameRandom(0, lcrom-1);
+		int pCorte2 = Calculadora.dameRandom(pCorte1+1, lcrom);		
 		//Copiar los valores de las subcadenas comprendidas entre
 		//dichos puntos en los hijos que se generan.
-		for (int i=pCorte1+1;i<=pCorte2-1;i++)
-		{
-			hijo1.genes.set(i, padre2.genes.get(i));
-			hijo2.genes.set(i, padre1.genes.get(i));
-		}
-		/*
-		 * Para los valores que faltan en los hijos se copian los
-		valores de los padres comenzando a partir de la zona
-		copiada y respetando el orden:
-		 */
-		/*
-		 * Si un valor no está en la subcadena intercambiada, se
-		copia igual.
-		 Si está en la subcadena intercambiada, entonces se
-		pasa al siguiente posible.
-		*/
-		for (int i=0;i<=pCorte1;i++)
-		{
-			if (!contiene(padre1.genes,hijo1.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo1.genes.set(i, padre1.genes.get(i).clone());
-			else
-				hijo1.genes.set(i, padre2.genes.get(i).clone());
-			
-			if (!contiene(padre2.genes,hijo2.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo2.genes.set(i, padre2.genes.get(i).clone());
-			else
-				hijo2.genes.set(i, padre1.genes.get(i).clone());
-		};
-		
-		for (int i=pCorte2;i<lcrom;i++)
-		{
-			if (!contiene(padre1.genes,hijo1.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo1.genes.set(i, padre1.genes.get(i).clone());
-			else
-				hijo1.genes.set(i, padre2.genes.get(i).clone());
-			
-			if (!contiene(padre2.genes,hijo2.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo2.genes.set(i, padre2.genes.get(i).clone());
-			else
-				hijo2.genes.set(i, padre1.genes.get(i).clone());
-		}
+		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
+		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);
 		
 		
 		Individuo[] unReturn = {hijo1,hijo2};
@@ -581,8 +526,6 @@ public class Poblacion {
 	}
 
 	private void mutacionIntercambio(int i) {
-		Individuo unIndividuo= individuos.get(i);
-		
 
 	}
 
