@@ -13,8 +13,8 @@ public class Funcion1 {
 	private double pMut = 0;
 	private int tCruce = 0;
 	private int tSeleccion = 0;
-	private final Double[] x_min = {Double.valueOf(-250)};
-	private final Double[] x_max = {Double.valueOf(250)};
+	private final Integer x_min = 0;
+	private final Integer x_max = 10;
 	private AGenetico unAlgoritmo;
 
 	//==========================================
@@ -52,12 +52,12 @@ public class Funcion1 {
 		double min_adapt = 0;
 		int vueltas = 0;
 		double pDouble = 0;
-		double x;
+		Integer[] x;
 		while(unIterador.hasNext()) {
 			vueltas++;
 			pIndividuo = unIterador.next();
 			pDouble = pIndividuo.getadaptacion_bruta();
-			x=(Double)pIndividuo.getX();
+			x=(Integer[])pIndividuo.getX();
 			if(vueltas == 1) {
 				min_adapt = pDouble;
 			} else if(pDouble < min_adapt) {

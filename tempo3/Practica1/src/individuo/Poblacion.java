@@ -261,24 +261,31 @@ public class Poblacion {
 		int punto_cruce = 0 + (int)(Math.random() * ((lcrom-0) + 1));
 		Individuo[] unReturn = new Individuo[2];
 		for(int i=0;i<num_sel_cruce;i+=2) {
-			switch (tCruce) {
+			switch (tCruce) {				
 				case 0:
-					unReturn = cruce(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					unReturn = crucePmx(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
 					break;
 				case 1:
-					unReturn = crucePmx(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
-				case 2:
 					unReturn = cruceOx(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					break;
+				case 2:
+					unReturn = cruceOxPosPrior(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					break;
 				case 3:
-					unReturn = cruceVariantesOx(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					unReturn = cruceOxOrdPrior(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					break;
 				case 4:
 					unReturn = cruceCiclos(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					break;
 				case 5:
 					unReturn = cruceRecombinacionRutas(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					break;
 				case 6:
 					unReturn = cruceOrdinal(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					break;
 				case 7:
 					unReturn = crucePropio(individuos.get(i), individuos.get(i+1), punto_cruce, x_min, x_max);
+					break;
 			}
 			hijo1 = unReturn[0];
 			hijo2 = unReturn[1];
@@ -388,27 +395,7 @@ public class Poblacion {
 		}
 	}
 
-	private Individuo[] cruce (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
-		Integer lcrom = padre1.damelCrom();
-		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
-		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);
-		Individuo[] unReturn = {hijo1,hijo2};
-
-		//PRIMERA PARTE DEL INTERCAMBIO: 1 A 1 Y 2 A 2
-		for (int i=0;i<punto_cruce;i++) {
-			hijo1.genes.set(i, padre1.genes.get(i));
-			hijo2.genes.set(i, padre2.genes.get(i));
-		}
-
-		//SEGUNDA PARTE: 1 A 2 Y 2 A 1
-		for (int i=punto_cruce;i<lcrom;i++) {
-			hijo1.genes.set(i, padre2.genes.get(i).clone());
-			hijo2.genes.set(i, padre1.genes.get(i).clone());
-		}
-
-		return unReturn;
-	}
-
+	
 	private Individuo[] crucePmx (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
@@ -418,12 +405,12 @@ public class Poblacion {
 		return unReturn;
 	}
 
-	boolean contiene(List<Gen> unCromosoma, Gen unGen, int a, int b )
+	static boolean contiene(List<Gen> unCromosoma, Gen unGen, int a, int b , int lcrom)
 	{
 		boolean ret=false;
 		int i=a;
 		
-		while(!ret && i<=b)
+		while((!ret) && i<=b && i<lcrom )
 		{
 			ret=unCromosoma.get(i).equals(unGen);
 			i++;
@@ -444,9 +431,10 @@ public class Poblacion {
 		//dichos puntos en los hijos que se generan.
 		for (int i=pCorte1+1;i<=pCorte2-1;i++)
 		{
-			hijo1.genes.set(i, padre2.genes.get(i));
-			hijo2.genes.set(i, padre1.genes.get(i));
+			hijo1.genes.set(i, padre2.genes.get(i).clone());			
+			hijo2.genes.set(i, padre1.genes.get(i).clone());			
 		}
+		
 		/*
 		 * Para los valores que faltan en los hijos se copian los
 		valores de los padres comenzando a partir de la zona
@@ -458,44 +446,86 @@ public class Poblacion {
 		 Si está en la subcadena intercambiada, entonces se
 		pasa al siguiente posible.
 		*/
-		for (int i=0;i<=pCorte1;i++)
-		{
-			if (!contiene(padre1.genes,hijo1.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo1.genes.set(i, padre1.genes.get(i).clone());
-			else
-				hijo1.genes.set(i, padre2.genes.get(i).clone());
-			
-			if (!contiene(padre2.genes,hijo2.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo2.genes.set(i, padre2.genes.get(i).clone());
-			else
-				hijo2.genes.set(i, padre1.genes.get(i).clone());
-		};
+		int rellenados=0;
+		int maxRellenar=lcrom-pCorte2-pCorte1+1;
 		
-		for (int i=pCorte2;i<lcrom;i++)
+		while (rellenados<maxRellenar)
 		{
-			if (!contiene(padre1.genes,hijo1.genes.get(i),pCorte1+1,pCorte2-1))
+		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		{
+			if (!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
 				hijo1.genes.set(i, padre1.genes.get(i).clone());
-			else
-				hijo1.genes.set(i, padre2.genes.get(i).clone());
+				rellenados++;
+			}
+		}	
 			
-			if (!contiene(padre2.genes,hijo2.genes.get(i),pCorte1+1,pCorte2-1))
-				hijo2.genes.set(i, padre2.genes.get(i).clone());
-			else
-				hijo2.genes.set(i, padre1.genes.get(i).clone());
+		for (int i=0;i<=pCorte2&&rellenados<maxRellenar;i++)
+		{
+			if(!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
+				hijo1.genes.set(i, padre1.genes.get(i).clone());
+				rellenados++;
+			}
+			
+		}
 		}
 		
-		
+		while (rellenados<maxRellenar)
+		{
+		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		{
+			if (!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
+				hijo2.genes.set(i, padre2.genes.get(i).clone());
+				rellenados++;
+			}
+		}	
+			
+		for (int i=0;i<=pCorte2&&rellenados<maxRellenar;i++)
+		{
+			if(!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
+				hijo1.genes.set(i, padre2.genes.get(i).clone());
+				rellenados++;
+			}
+			
+		}
+		}
+				
+		hijo1.decod();
+		hijo2.decod();
 		Individuo[] unReturn = {hijo1,hijo2};
 
 		return unReturn;
 	}
 
-	private Individuo[] cruceVariantesOx (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
+	private Individuo[] cruceOxPosPrior (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
 		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);
 		Individuo[] unReturn = {hijo1,hijo2};
 		
+		return unReturn;
+	}
+	
+	private Individuo[] cruceOxOrdPrior (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
+		
+		/*
+		 * Los individuos no intercambian ciudades, sino el orden
+		relativo existente entre ellas.
+		 */
+		Integer lcrom = padre1.damelCrom();
+		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
+		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);
+		
+		
+		
+		
+		
+		
+		
+		Individuo[] unReturn = {hijo1,hijo2};		
 		return unReturn;
 	}
 
@@ -580,10 +610,23 @@ public class Poblacion {
 
 	}
 
+	void swapGen(List<Gen> listaGenes ,int a, int b)
+	{
+	Gen g3= listaGenes.get(a);
+	listaGenes.set(a, listaGenes.get(b));
+	listaGenes.set(b,g3);
+	}
+	
 	private void mutacionIntercambio(int i) {
-		Individuo unIndividuo= individuos.get(i);
+		int lcrom=individuos.get(i).lcrom;
 		
-
+		int a= Calculadora.dameRandom(0, lcrom-1);
+		int b= Calculadora.dameRandom(0, lcrom-1);
+		
+		while (a!=b)
+			b= Calculadora.dameRandom(0, lcrom-1);
+		
+		swapGen(individuos.get(i).genes,a,b);
 	}
 
 	private void mutacionInversion(int i) {

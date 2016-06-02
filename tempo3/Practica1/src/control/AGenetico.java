@@ -92,8 +92,10 @@ public class AGenetico {
 					this.pob.seleccionRuleta();
 			}
 
-			this.pob.reproduccion(prob_cruce, x_min, x_max, tCruce);
-			this.pob.mutacion(prob_mut, ((Double[]) argf2)[1].intValue());
+			//this.pob.reproduccion(prob_cruce, x_min, x_max, tCruce);
+			this.pob.reproduccion(prob_cruce, x_min, x_max, 1);
+			//this.pob.mutacion(prob_mut, ((Double[]) argf2)[1].intValue());
+			this.pob.mutacion(prob_mut, 2);
 			this.pob.evaluacion();
 			this.pob.desplazar();
 

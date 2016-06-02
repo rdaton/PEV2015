@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import logica.Calculadora;
+
 public  class Individuo_basico extends Individuo{
 
 	final static int [][] matrizDistancias = {
@@ -46,9 +48,15 @@ public  class Individuo_basico extends Individuo{
 
 	public Individuo_basico(Object x_min, Object x_max, double prec) {
 		super(x_min, x_max, prec);
-		Gen gen;
+		Gen gen=null;
 		for(int i=0;i<lcrom;i++) {
-			gen = new Gen_f1( (Integer)x_min + (int)(Math.random() * (((Integer)x_max - (Integer)x_min) + 1)) );
+			boolean cont=true;
+			while(cont)
+			{
+			gen = new Gen_f1(Calculadora.dameRandom((Integer)x_min, (Integer) x_max));
+			cont=Poblacion.contiene(genes, gen, 0, lcrom,genes.size());
+			};
+			
 			genes.add(gen);
 		}
 		decod();
@@ -83,13 +91,12 @@ public  class Individuo_basico extends Individuo{
 		for (int i=0;i<lcrom;i++)
 		{
 			otroCromosoma[i]=unaLista.get(otroCrom[i]);
-			unaLista.remove(otroCrom[i]); //¡Comprobar!
+			unaLista.remove(otroCrom[i]); //ï¿½Comprobar!
 		}
 
 		return otroCromosoma;
 	}
 	double miFuncion(Object un_valor) {
-		double res = 0;
 		Integer[] otroCrom= (Integer[] )this.x;
 		//aqui ya tenemos cromosoma simple
 
@@ -113,7 +120,7 @@ public  class Individuo_basico extends Individuo{
 
 
 
-		return res;
+		return acumulador;
 	}
 
 	void decod()
@@ -123,6 +130,11 @@ public  class Individuo_basico extends Individuo{
 		{
 			listaCiudades.add(i);
 		}
+		Integer[] arrayInt=new Integer[lcrom];
+		for (int i=0;i<lcrom;i++)
+			arrayInt[i]=(Integer) genes.get(i).clone().bit;		
+		
+		this.x=arrayInt;
 
 	}
 
@@ -138,7 +150,7 @@ public  class Individuo_basico extends Individuo{
 //	}
 
 	public Integer tamGen(Object x_min, Object x_max, double prec) {
-		Integer unTamanyo = logica.Calculadora.tamGen(((Double[])x_min)[0], ((Double[])x_max)[0], prec);
+		Integer unTamanyo = logica.Calculadora.tamGen((Integer)x_min, (Integer)x_max, prec);
 		return unTamanyo;
 	};
 
