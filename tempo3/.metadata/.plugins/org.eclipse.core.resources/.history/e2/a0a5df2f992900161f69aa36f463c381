@@ -16,7 +16,7 @@ public class Gen_f1 extends Gen {
 	
 	public Gen_f1 newInstance()
 	{
-		Gen_f1 unGen = new Gen_f1();
+		Gen unGen = new Gen_f1();
 		return unGen;
 	}
 	// =========================

@@ -6,19 +6,12 @@ public class Gen_f1 extends Gen {
 	//============= CONSTRUCTORA ===============
 	//==========================================
 
-	public Gen_f1() { 
-		bit = new Integer(-1);
-	};
+	public Gen_f1() { };
 
 	public Gen_f1(Integer g) {
 		bit = new Integer(g);
 	}
-	
-	public Gen_f1 newInstance()
-	{
-		Gen_f1 unGen = new Gen_f1();
-		return unGen;
-	}
+
 	// =========================
 	// == METODOS PUBLICOS
 	// =========================

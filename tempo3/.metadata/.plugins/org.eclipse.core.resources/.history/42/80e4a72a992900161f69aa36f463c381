@@ -14,9 +14,9 @@ public class Gen_f1 extends Gen {
 		bit = new Integer(g);
 	}
 	
-	public Gen_f1 newInstance()
+	public Gen newInstance()
 	{
-		Gen_f1 unGen = new Gen_f1();
+		Gen unGen = new Gen_f1();
 		return unGen;
 	}
 	// =========================

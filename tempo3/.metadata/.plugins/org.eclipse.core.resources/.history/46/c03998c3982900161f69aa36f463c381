@@ -475,7 +475,7 @@ public class Poblacion {
 		//relleno hijo1 con elementos de padre2
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
-			if (!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
+			if (!contiene(hijo1.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo1.genes.set(i, padre2.genes.get(i).clone());
 				rellenados++;
@@ -484,7 +484,7 @@ public class Poblacion {
 			
 		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
 		{
-			if(!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
+			if(!contiene(hijo1.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo1.genes.set(i, padre2.genes.get(i).clone());
 				rellenados++;
@@ -518,7 +518,7 @@ public class Poblacion {
 		//relleno hijo2 con elementos de padre1
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
-			if (!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
+			if (!contiene(hijo2.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo2.genes.set(i, padre1.genes.get(i).clone());
 				rellenados++;
@@ -527,7 +527,7 @@ public class Poblacion {
 			
 		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
 		{
-			if(!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
+			if(!contiene(hijo2.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo1.genes.set(i, padre1.genes.get(i).clone());
 				rellenados++;

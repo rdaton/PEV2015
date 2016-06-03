@@ -422,16 +422,14 @@ public class Poblacion {
 	private Individuo[] cruceOx (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
-		hijo1.borraGenes(); //genes a -1
 		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);		
-		hijo2.borraGenes(); //genes a -1
 		//Elegir aleatoriamente dos puntos de corte.
 		//pCorte1<pCorte2
 		int pCorte1 = Calculadora.dameRandom(0, lcrom-2);
 		int pCorte2 = Calculadora.dameRandom(pCorte1+2, lcrom-1);		
 		//Copiar los valores de las subcadenas comprendidas entre
 		//dichos puntos en los hijos que se generan.
-		for (int i=pCorte1+1;i<pCorte2;i++)
+		for (int i=pCorte1+1;i<=pCorte2-1;i++)
 		{
 			hijo1.genes.set(i, padre2.genes.get(i).clone());			
 			hijo2.genes.set(i, padre1.genes.get(i).clone());			
@@ -449,11 +447,10 @@ public class Poblacion {
 		pasa al siguiente posible.
 		*/
 		int rellenados=0;
-		//¿cuántos vacíos tengo?
 		int maxRellenar=lcrom-(pCorte2-pCorte1)+1;
 		
-		//relleno hijo1 con elementos de padre1
-		//desde 2º punto de corte
+		while (rellenados<maxRellenar)
+		{
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
 			if (!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
@@ -462,8 +459,8 @@ public class Poblacion {
 				rellenados++;
 			}
 		}	
-		//desde primer punto de crte	
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+			
+		for (int i=0;i<=pCorte2&&rellenados<maxRellenar;i++)
 		{
 			if(!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
@@ -472,19 +469,19 @@ public class Poblacion {
 			}
 			
 		}
-		//relleno hijo1 con elementos de padre2
+		
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
-			if (!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
+			if (!contiene(hijo1.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo1.genes.set(i, padre2.genes.get(i).clone());
 				rellenados++;
 			}
 		}	
 			
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		for (int i=0;i<=pCorte2&&rellenados<maxRellenar;i++)
 		{
-			if(!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
+			if(!contiene(hijo1.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo1.genes.set(i, padre2.genes.get(i).clone());
 				rellenados++;
@@ -492,10 +489,10 @@ public class Poblacion {
 			
 		}
 		
+		}
 		
-		rellenados=0;
-		
-		//relleno hijo2 con elementos de padre2
+		while (rellenados<maxRellenar)
+		{
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
 			if (!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
@@ -505,7 +502,7 @@ public class Poblacion {
 			}
 		}	
 			
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		for (int i=0;i<=pCorte2&&rellenados<maxRellenar;i++)
 		{
 			if(!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
@@ -515,19 +512,18 @@ public class Poblacion {
 			
 		}
 		
-		//relleno hijo2 con elementos de padre1
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
-			if (!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
+			if (!contiene(hijo2.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo2.genes.set(i, padre1.genes.get(i).clone());
 				rellenados++;
 			}
 		}	
 			
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		for (int i=0;i<=pCorte2&&rellenados<maxRellenar;i++)
 		{
-			if(!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
+			if(!contiene(hijo2.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo1.genes.set(i, padre1.genes.get(i).clone());
 				rellenados++;
@@ -535,17 +531,12 @@ public class Poblacion {
 			
 		}
 		
-		
-		padre1.decod();
-		padre2.decod();
-		System.out.println (pCorte1+ "   "+ pCorte2);
+		}
 				
 		hijo1.decod();
 		hijo2.decod();
-		
 		Individuo[] unReturn = {hijo1,hijo2};
-		
-		
+
 		return unReturn;
 	}
 

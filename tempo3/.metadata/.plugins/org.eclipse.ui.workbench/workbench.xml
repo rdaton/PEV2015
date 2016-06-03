@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="17" version="2.0">
+<workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
 <window height="738" width="1024" x="0" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -14,7 +14,7 @@
 <coolItem id="com.python.pydev.navigate.actionSet" itemType="typeToolBarContribution" x="46" y="36"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="162" y="36"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="94" y="36"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="214" y="36"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="130" y="36"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -28,7 +28,7 @@
 <coolItem id="UserSeparator" itemType="typeSeparator"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="238" y="36"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1464877774187" focus="true" label="Workspace - Debug">
+<page aggregateWorkingSetId="Aggregate for window 1464877774187" focus="true" label="Workspace - Resource">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -36,17 +36,32 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Poblacion.java" partName="Poblacion.java" path="/home/barfelix/PEV2015/tempo3/Practica1/src/individuo/Poblacion.java" title="Poblacion.java" tooltip="Practica1/src/individuo/Poblacion.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Poblacion.java" partName="Poblacion.java" path="/home/barfelix/PEV2015/tempo3/Practica1/src/individuo/Poblacion.java" title="Poblacion.java" tooltip="Practica1/src/individuo/Poblacion.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Poblacion.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="11691" selectionTopPixel="6227"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="14489" selectionTopPixel="7721"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Individuo_basico.java" partName="Individuo_basico.java" path="/home/barfelix/PEV2015/tempo3/Practica1/src/individuo/Individuo_basico.java" title="Individuo_basico.java" tooltip="Practica1/src/individuo/Individuo_basico.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Individuo_basico.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2824" selectionTopPixel="840"/>
+<editorState selectionHorizontalPixel="0" selectionLength="8" selectionOffset="2989" selectionTopPixel="810"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Individuo.java" partName="Individuo.java" path="/home/barfelix/PEV2015/tempo3/Practica1/src/individuo/Individuo.java" title="Individuo.java" tooltip="Practica1/src/individuo/Individuo.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Individuo.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="8" selectionOffset="1131" selectionTopPixel="390"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gen_f1.java" partName="Gen_f1.java" path="/home/barfelix/PEV2015/tempo3/Practica1/src/individuo/Gen_f1.java" title="Gen_f1.java" tooltip="Practica1/src/individuo/Gen_f1.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Gen_f1.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="341" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gen.java" partName="Gen.java" path="/home/barfelix/PEV2015/tempo3/Practica1/src/individuo/Gen.java" title="Gen.java" tooltip="Practica1/src/individuo/Gen.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Gen.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="277" selectionOffset="342" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -81,7 +96,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.debug.ui.DebugPerspective">
+<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.ui.resourcePerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -111,18 +126,14 @@
 <perspective_action id="org.eclipse.team.cvs.ui.cvsPerspective"/>
 <perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
 <perspective_action id="org.eclipse.wst.xml.ui.perspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.RunToLine"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
-<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars>
 <fastViewBar fastViewLocation="16384" id="bottomLeft" orientation="512" selectedTabId="org.eclipse.ui.views.ContentOutline" style="0">
 <fastViews>
 <view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
-</fastViews>
-</fastViewBar>
-<fastViewBar fastViewLocation="1024" id="bottomRight" orientation="256" selectedTabId="org.eclipse.ui.views.TaskList" style="0">
-<fastViews>
-<view id="org.eclipse.ui.views.TaskList" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
 <fastViewBar fastViewLocation="16384" id="topLeft" orientation="512" selectedTabId="org.eclipse.ui.navigator.ProjectExplorer" style="0">
@@ -151,10 +162,18 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.25940594" ratioLeft="262" ratioRight="748" relationship="2" relative="topLeft"/>
 <info folder="true" part="bottomRight" ratio="0.6589786" ratioLeft="400" ratioRight="207" relationship="4" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
 <page content="org.eclipse.team.ui.GenericHistoryView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@31cf5c" ratio="0.5" ratioLeft="485" ratioRight="485" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 <info folder="true" part="bottomLeft" ratio="0.49917626" ratioLeft="303" ratioRight="304" relationship="4" relative="topLeft">
@@ -201,9 +220,9 @@
 <perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
 <perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
 <perspective_action id="org.eclipse.wst.xml.ui.perspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.RunToLine"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
-<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.debug.ui.VariableView"/>
@@ -211,7 +230,7 @@
 <fastViewBars>
 <fastViewBar fastViewLocation="1024" id="org.eclipse.debug.internal.ui.ConsoleFolderView" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
 <fastViews>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.3"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.29847908"/>
 <view id="org.eclipse.ui.views.TaskList" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
@@ -237,7 +256,7 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74916387" ratioLeft="448" ratioRight="150" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
@@ -266,7 +285,7 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="108" ratioRight="324" relationship="4" relative="org.eclipse.ui.internal.ViewStack@a6f51b"/>
+<info part="org.eclipse.ui.editorss" ratio="0.10093897" ratioLeft="43" ratioRight="383" relationship="4" relative="org.eclipse.ui.internal.ViewStack@a6f51b"/>
 <info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="485" ratioRight="485" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
@@ -282,115 +301,160 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Poblacion.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Gen_f1.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Individuo_basico.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Individuo.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Gen.java"/>
 </editors>
 <item historyLabel="Poblacion.java" index="0">
+<position info="not_deleted" x="12777" y="0"/>
+</item>
+<item historyLabel="Poblacion.java" index="0">
+<position info="not_deleted" x="12830" y="0"/>
+</item>
+<item historyLabel="Poblacion.java" index="0">
+<position info="not_deleted" x="12633" y="0"/>
+</item>
+<item historyLabel="Poblacion.java" index="0">
+<position info="not_deleted" x="13007" y="9"/>
+</item>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="240" y="0"/>
+</item>
+<item historyLabel="Individuo_basico.java" index="2">
+<position info="not_deleted" x="2989" y="8"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="1080" y="382"/>
+</item>
+<item historyLabel="Gen.java" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="7508" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="219" y="0"/>
+</item>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="240" y="0"/>
+</item>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="238" y="0"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="1080" y="382"/>
 </item>
 <item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11373" y="7"/>
+<position info="not_deleted" x="13007" y="9"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3119" y="0"/>
+</item>
+<item historyLabel="Individuo_basico.java" index="2">
+<position info="not_deleted" x="2989" y="8"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3119" y="0"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3032" y="0"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3116" y="0"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3116" y="0"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3110" y="0"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3095" y="0"/>
+</item>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="3112" y="0"/>
 </item>
 <item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12840" y="0"/>
+<position info="not_deleted" x="14489" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12923" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="516" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="238" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="516" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12918" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="238" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="13374" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="57" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="924" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="238" y="0"/>
 </item>
-<item historyLabel="Individuo_basico.java" index="1">
-<position info="not_deleted" x="2824" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="57" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="13441" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="238" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12005" y="5"/>
+<item historyLabel="Individuo_basico.java" index="2">
+<position info="not_deleted" x="2989" y="8"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="13482" y="0"/>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="1131" y="8"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11692" y="0"/>
+<item historyLabel="Individuo_basico.java" index="2">
+<position info="not_deleted" x="2989" y="8"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11744" y="0"/>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="1131" y="8"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11913" y="0"/>
+<item historyLabel="Individuo_basico.java" index="2">
+<position info="not_deleted" x="2989" y="8"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11958" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="342" y="277"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12002" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="382" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11913" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="342" y="277"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11958" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="382" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12002" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="342" y="277"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11913" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="382" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11958" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="328" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12002" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="379" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11913" y="0"/>
+<item historyLabel="Individuo_basico.java" index="2">
+<position info="not_deleted" x="2989" y="8"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11958" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="341" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12002" y="0"/>
+<item historyLabel="Individuo.java" index="3">
+<position info="not_deleted" x="1131" y="8"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11913" y="0"/>
+<item historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="341" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11958" y="0"/>
+<item historyLabel="Gen.java" index="4">
+<position info="not_deleted" x="342" y="277"/>
 </item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12002" y="0"/>
-</item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11913" y="0"/>
-</item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11958" y="0"/>
-</item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12002" y="0"/>
-</item>
-<item historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="11913" y="0"/>
-</item>
-<item active="true" historyLabel="Poblacion.java" index="0">
-<position info="not_deleted" x="12376" y="0"/>
+<item active="true" historyLabel="Gen_f1.java" index="1">
+<position info="not_deleted" x="341" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -401,6 +465,9 @@
 <trimArea IMemento.internal.id="16384">
 <trimItem IMemento.internal.id="topLeft"/>
 <trimItem IMemento.internal.id="bottomLeft"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
 </trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
@@ -415,6 +482,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gen.java" tooltip="Practica1/src/individuo/Gen.java">
+<persistable path="/Practica1/src/individuo/Gen.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gen_f1.java" tooltip="Practica1/src/individuo/Gen_f1.java">
+<persistable path="/Practica1/src/individuo/Gen_f1.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Individuo.java" tooltip="Practica1/src/individuo/Individuo.java">
+<persistable path="/Practica1/src/individuo/Individuo.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Individuo_basico.java" tooltip="Practica1/src/individuo/Individuo_basico.java">
 <persistable path="/Practica1/src/individuo/Individuo_basico.java"/>
 </file>

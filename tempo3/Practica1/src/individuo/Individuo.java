@@ -2,6 +2,7 @@ package individuo;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public  abstract class Individuo {
@@ -124,6 +125,14 @@ public  abstract class Individuo {
 
 	public void setadaptacion (double adapt) {
 		this.adaptacion=adapt;
+	}
+	
+	void borraGenes()
+	{
+		for (int i=0;i<lcrom;i++)
+		{
+			genes.set(i,genes.get(0).newInstance());
+		}
 	}
 
 }
