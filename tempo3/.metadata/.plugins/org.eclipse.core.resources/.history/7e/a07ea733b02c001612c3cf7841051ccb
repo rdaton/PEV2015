@@ -457,7 +457,7 @@ public class Poblacion {
 		
 		//relleno hijo1 con elementos de padre1
 		//desde 2º punto de corte
-		int r=pCorte2;
+		int r=pCorte2;;
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
 			if (!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
@@ -471,7 +471,7 @@ public class Poblacion {
 			hijo1.decod();
 		}	
 		//desde primer punto de crte	
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		for (int i=0;i<=pCorte1&&rellenados<=maxRellenar;i++)
 		{
 			if(!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
@@ -485,7 +485,7 @@ public class Poblacion {
 		}
 		//relleno hijo1 con elementos de padre2
 		r=pCorte2;
-		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		for (int i=pCorte2;i<lcrom&&rellenados<=maxRellenar;i++)
 		{
 			if (!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
 			{
@@ -498,7 +498,7 @@ public class Poblacion {
 			hijo1.decod();
 		}	
 			
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		for (int i=0;i<=pCorte1&&rellenados<=maxRellenar;i++)
 		{
 			if(!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
 			{
@@ -515,7 +515,7 @@ public class Poblacion {
 		rellenados=0;
 		r=pCorte2;
 		//relleno hijo2 con elementos de padre2
-		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		for (int i=pCorte2;i<lcrom&&rellenados<=maxRellenar;i++)
 		{
 			if (!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
@@ -528,7 +528,7 @@ public class Poblacion {
 			hijo2.decod();
 		}	
 			
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		for (int i=0;i<=pCorte1&&rellenados<=maxRellenar;i++)
 		{
 			if(!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
@@ -543,7 +543,7 @@ public class Poblacion {
 		}
 		r=pCorte2;
 		//relleno hijo2 con elementos de padre1
-		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		for (int i=pCorte2;i<lcrom&&rellenados<=maxRellenar;i++)
 		{
 			if (!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
 			{
@@ -556,7 +556,7 @@ public class Poblacion {
 			hijo2.decod();
 		}	
 	
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		for (int i=0;i<=pCorte1&&rellenados<=maxRellenar;i++)
 		{
 			if(!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
 			{

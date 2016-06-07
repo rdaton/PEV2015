@@ -109,6 +109,7 @@ public  class Individuo_basico extends Individuo{
 			a=otroCrom[i];
 			b=otroCrom[i+1];
 			if((a==-1) || (b==-1))
+				break;
 			if (a<b)
 			{
 				acumulador+=matrizDistancias[b][a];
