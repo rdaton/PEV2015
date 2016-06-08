@@ -97,8 +97,7 @@ public  class Individuo_basico extends Individuo{
 		return otroCromosoma;
 	}
 	double miFuncion(Object un_valor) {
-		
-		Integer[] otroCrom= (Integer[] ) un_valor;
+		Integer[] otroCrom= (Integer[] )this.x;
 		//aqui ya tenemos cromosoma simple
 
 
@@ -109,16 +108,12 @@ public  class Individuo_basico extends Individuo{
 		{
 			a=otroCrom[i];
 			b=otroCrom[i+1];
-			if((a==-1) || (b==-1)) 
-				{
-				System.out.println("me encontrado con ciudad vacía");
-				break; //esto no debería pasar				
-				};
+			if((a==-1) || (b==-1))
 			if (a<b)
 			{
 				acumulador+=matrizDistancias[b][a];
 			}
-			else if (b<a) {
+			else {
 				acumulador+=matrizDistancias[a][b];
 			}
 
@@ -140,9 +135,10 @@ public  class Individuo_basico extends Individuo{
 		for (int i=0;i<lcrom;i++)
 		{
 			arrayInt[i]=(Integer) genes.get(i).clone().bit;	
-		//	System.out.print(arrayInt[i]+" ");
-		};		
+			System.out.print(arrayInt[i]+" ");
+		};
 		
+		System.out.println();
 		this.x=arrayInt;
 
 	}

@@ -433,7 +433,7 @@ public class Poblacion {
 		//relleno desde pCorte2
 		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
-			if (!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
+			if (!contiene(hijo.genes,padre.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo.genes.set(r, padre.genes.get(i).clone());				
 				r++;		
@@ -446,7 +446,7 @@ public class Poblacion {
 			
 		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
 		{
-			if(!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
+			if(!contiene(hijo.genes,padre.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
 			{
 				hijo.genes.set(r, padre.genes.get(i).clone());
 				r++;		
@@ -496,7 +496,7 @@ public class Poblacion {
 		int r=0; //en qué posición del hijo estoy
 		
 		//relleno hijo1 con elementos de padre1
-		int [] res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2, pCorte2, rellenados, lcrom);
+		int [] res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2, r, rellenados, lcrom);
 		//actualizo indices
 		rellenados=res[0];
 		r=res[1];
@@ -508,7 +508,7 @@ public class Poblacion {
 		r=res[1];
 		
 		//relleno hijo2 con elementos de padre2
-		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2, pCorte2, rellenados, lcrom);
+		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2, r, rellenados, lcrom);
 		//actualizo indices
 		rellenados=res[0];
 		r=res[1];

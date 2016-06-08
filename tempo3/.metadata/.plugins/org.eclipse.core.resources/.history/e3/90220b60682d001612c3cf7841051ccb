@@ -11,12 +11,6 @@ public class Calculadora {
 	
 	public static int dameRandom(int a, int b)
 	{
-		if (a>b)
-		{
-			int c=a;
-			a=b;
-			b=a;
-		}
 		int c= a + (int)(Math.random() * ((b - a) + 1));
 		return c;
 	}

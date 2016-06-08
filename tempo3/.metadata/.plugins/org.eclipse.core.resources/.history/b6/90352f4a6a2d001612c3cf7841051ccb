@@ -75,7 +75,6 @@ public  abstract class Individuo {
 	//abstract int[] bin_ent();
 
 	double calculaadaptacion_bruta() {
-		decod();
 		return miFuncion(x);
 	}
 

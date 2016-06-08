@@ -419,46 +419,9 @@ public class Poblacion {
 		return ret;
 	}
 	
-	
-	
-	
-	int[] cruceOx_aux(Individuo padre,Individuo hijo, int pCorte1, int pCorte2,int r_aux, int rellenados_aux, int lcrom)
+	void cruceOx_aux(Individuo padre1, Individuo padre2, int punto_cruce)
 	{
-	
-		//¿cuántos vacíos tengo?
-		int maxRellenar=lcrom-(pCorte2-pCorte1)+1;		
-		int rellenados=rellenados_aux;
-		int r=r_aux;
 		
-		//relleno desde pCorte2
-		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
-		{
-			if (!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
-			{
-				hijo.genes.set(r, padre.genes.get(i).clone());				
-				r++;		
-				r=r%lcrom;
-				rellenados++;
-			}		
-			hijo.decod();	//debug
-		}	
-		
-			
-		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
-		{
-			if(!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
-			{
-				hijo.genes.set(r, padre.genes.get(i).clone());
-				r++;		
-				r=r%lcrom;
-				rellenados++;
-			}
-			hijo.decod();	//debug
-			
-		}		
-		
-		int[] unReturn={rellenados,r};
-		return unReturn;
 	}
 	
 	private Individuo[] cruceOx (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
@@ -491,36 +454,134 @@ public class Poblacion {
 		copia igual.
 		 Si está en la subcadena intercambiada, entonces se
 		pasa al siguiente posible.
-		*/		
-		int rellenados=0; //cuántos he rellenado
-		int r=0; //en qué posición del hijo estoy
+		*/
+		
+		int rellenados=0;
+		//¿cuántos vacíos tengo?
+		int maxRellenar=lcrom-(pCorte2-pCorte1)+1;		
 		
 		//relleno hijo1 con elementos de padre1
-		int [] res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2, pCorte2, rellenados, lcrom);
-		//actualizo indices
-		rellenados=res[0];
-		r=res[1];
-		
-		//relleno hijo1 con elementos de padre2 
-		res=this.cruceOx_aux(padre2, hijo1, pCorte1, pCorte2, r, rellenados, lcrom);
-		//actualizo indices
-		rellenados=res[0];
-		r=res[1];
-		
-		//relleno hijo2 con elementos de padre2
-		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2, pCorte2, rellenados, lcrom);
-		//actualizo indices
-		rellenados=res[0];
-		r=res[1];
-		
-		//relleno hijo2 con elementos de padre1 
-		res=this.cruceOx_aux(padre1, hijo2, pCorte1, pCorte2, r, rellenados, lcrom);
-		//actualizo indices
-		rellenados=res[0];
-		r=res[1];
+		//desde 2º punto de corte
+		int r=pCorte2;
+		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		{
+			if (!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
+				hijo1.genes.set(r, padre1.genes.get(i).clone());				
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+			}
+			//debug
+			hijo1.decod();
+		}	
+		//desde primer punto de crte	
+		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		{
+			if(!contiene(hijo1.genes,padre1.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
+				hijo1.genes.set(r, padre1.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+			}
+			hijo1.decod();
 			
+		}
+		//relleno hijo1 con elementos de padre2
+		r=pCorte2;
+		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		{
+			if (!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
+			{
+				hijo1.genes.set(i, padre2.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;				
+				
+			}
+			hijo1.decod();
+		}	
+			
+		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		{
+			if(!contiene(hijo1.genes,padre2.genes.get(i),0,lcrom-1,lcrom))
+			{
+				hijo1.genes.set(i, padre2.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+			}
+			hijo1.decod();
+			
+		}
 		
 		
+		rellenados=0;
+		r=pCorte2;
+		//relleno hijo2 con elementos de padre2
+		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		{
+			if (!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
+				hijo2.genes.set(i, padre2.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+				rellenados++;
+			}
+			hijo2.decod();
+		}	
+			
+		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		{
+			if(!contiene(hijo2.genes,padre2.genes.get(i),pCorte1+1,pCorte2-1,lcrom))
+			{
+				hijo2.genes.set(i, padre2.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+				rellenados++;
+			}
+			hijo2.decod();
+			
+		}
+		r=pCorte2;
+		//relleno hijo2 con elementos de padre1
+		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
+		{
+			if (!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
+			{
+				hijo2.genes.set(i, padre1.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+				rellenados++;
+			}
+			hijo2.decod();
+		}	
+	
+		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		{
+			if(!contiene(hijo2.genes,padre1.genes.get(i),0,lcrom-1,lcrom))
+			{
+				hijo2.genes.set(i, padre1.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+				rellenados++;
+			}
+			hijo2.decod();
+			
+		}
+		
+		//debug
+		
+				
+		hijo1.decod();
+		hijo2.decod();
+		System.out.println(pCorte1);
+		System.out.println(pCorte2);
 		Individuo[] unReturn = {hijo1,hijo2};
 		
 		
