@@ -544,7 +544,14 @@ public class Poblacion {
 		 */
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
-		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);		
+		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);
+		
+		
+		
+		
+		
+		
+		
 		Individuo[] unReturn = {hijo1,hijo2};		
 		return unReturn;
 	}

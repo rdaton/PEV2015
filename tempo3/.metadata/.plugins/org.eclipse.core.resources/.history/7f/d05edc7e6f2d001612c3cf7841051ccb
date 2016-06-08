@@ -544,7 +544,14 @@ public class Poblacion {
 		 */
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
-		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);		
+		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);
+		
+		
+		
+		
+		
+		
+		
 		Individuo[] unReturn = {hijo1,hijo2};		
 		return unReturn;
 	}
@@ -638,7 +645,6 @@ public class Poblacion {
 	}
 	
 	private void mutacionIntercambio(int i) {
-		/*
 		int lcrom=individuos.get(i).lcrom;
 		
 		int a= Calculadora.dameRandom(0, lcrom-1);
@@ -647,7 +653,7 @@ public class Poblacion {
 		while (a!=b)
 			b= Calculadora.dameRandom(0, lcrom-1);
 		
-		swapGen(individuos.get(i).genes,a,b);*/
+		swapGen(individuos.get(i).genes,a,b);
 	}
 
 	private void mutacionInversion(int i) {
