@@ -140,9 +140,9 @@ public  class Individuo_basico extends Individuo{
 		for (int i=0;i<lcrom;i++)
 		{
 			arrayInt[i]=(Integer) genes.get(i).clone().bit;	
-		//	System.out.print(arrayInt[i]+" ");
+			System.out.print(arrayInt[i]+" ");
 		};		
-		
+		System.out.println();
 		this.x=arrayInt;
 
 	}

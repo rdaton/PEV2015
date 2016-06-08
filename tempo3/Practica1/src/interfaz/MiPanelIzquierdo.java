@@ -254,7 +254,8 @@ public class MiPanelIzquierdo extends JPanel {
 		// ELEGIR FUNCION
 		switch (selec) {
 		case 0:
-			Funcion1 unaFuncion1 = new Funcion1(argf1,argf2,prec, tam_pob, num_iter, pCruces, pMut, tCruce, tSeleccion, elitismo);
+			Double[] objetoArgf2 ={new Double(argf2),new Double(0)};
+			Funcion1 unaFuncion1 = new Funcion1(argf1,objetoArgf2,prec, tam_pob, num_iter, pCruces, pMut, tCruce, tSeleccion, elitismo);
 			elPeor = unaFuncion1.getMejorEntrePeores();
 			resultados = unaFuncion1.dameResultados();
 			break;

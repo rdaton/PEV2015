@@ -30,5 +30,7 @@ public abstract class Gen {
     	}
         return null;
     }
+	abstract public boolean estaVacio();
+	
 
 }

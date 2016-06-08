@@ -45,5 +45,10 @@ public class Gen_f1 extends Gen {
 		return (((Integer)this.bit).intValue()==((Integer)g2.bit).intValue());
 		
 	}
+	
+	public boolean estaVacio()	
+	{
+		return ((Integer)bit==-1);
+	}
 
 }

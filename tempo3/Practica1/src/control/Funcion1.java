@@ -21,7 +21,7 @@ public class Funcion1 {
 	//============= CONSTRUCTORA ===============
 	//==========================================
 
-	public Funcion1(int argf1,int argf2,double prec, int tam_pob, int num_iter, double pCruces, double pMut, int tCruce, int tSeleccion, boolean elitismo) {
+	public Funcion1(int argf1,Object argf2,double prec, int tam_pob, int num_iter, double pCruces, double pMut, int tCruce, int tSeleccion, boolean elitismo) {
 		this.prec = prec;
 		this.tam_pob = tam_pob;
 		this.num_iter = num_iter;
