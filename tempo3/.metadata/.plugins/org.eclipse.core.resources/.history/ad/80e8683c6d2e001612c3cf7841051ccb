@@ -873,39 +873,35 @@ public class Poblacion {
 		int numeroInserciones=Calculadora.dameRandom(1, lcrom-1);
 		
 		int unIndice=0;
-		int otroIndice=0;	
-		Gen unGen=null;
+		int otroIndice=0;		
+		Gen otroGen=null;
 		List<Gen> listaAuxiliar=new ArrayList();
 		for (int i=0;i<numeroInserciones;i++)
 		{
 			unIndice=Calculadora.dameRandom(0,lcrom-1);
-			otroIndice=lcrom-1;Calculadora.dameRandom(unIndice+1,lcrom-1);			
+			otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);			
+						
+			otroGen=unIndividuo.genes.get(otroIndice).clone();
 			
-			//guardo copia de elemento que voy a machacar
-			unGen=unIndividuo.genes.get(otroIndice);
-			//encadeno dos listas			
-			for (int k=0;k<=unIndice;k++)
+			
+			for (int k=0;k<unIndice;k++)
 			{
-				if (k!=unIndice)
-					listaAuxiliar.add(unIndividuo.genes.get(k));
-				else
-					listaAuxiliar.add(unIndividuo.genes.get(otroIndice));	
+				if (k!=otroIndice)
+				listaAuxiliar.add(unIndividuo.genes.get(k).clone());
 			}
-							
-		    for (int k=unIndice;k<lcrom;k++)
+				listaAuxiliar.add(otroGen);
+				
+		    for (int k=unIndice+1;k<lcrom;k++)
 		    {
 		    	if (k!=otroIndice)
-		    		listaAuxiliar.add(unIndividuo.genes.get(k));
-		    	
+		    	listaAuxiliar.add(unIndividuo.genes.get(k).clone());
 		    }
 		
-		    
-		    //copio la lista encadenada en individuo
 		    for (int k=0;k<lcrom;k++)
 		    {
 		    	unIndividuo.genes.set(k, listaAuxiliar.get(k));
+		    	unIndividuo.decod();
 		    }
-		    unIndividuo.decod();
 		}
 
 	}
@@ -930,26 +926,8 @@ public class Poblacion {
 		swapGen(individuos.get(i).genes,a,b);
 	}
 
-	private void mutacionInversion(int ind) {
+	private void mutacionInversion(int i) {
 
-		Individuo unIndividuo=individuos.get(ind);
-		int lcrom=unIndividuo.lcrom;
-		
-		
-		int unIndice=0;
-		int otroIndice=0;	
-		unIndice=Calculadora.dameRandom(0,lcrom-1);
-		otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);		
-		boolean esPar=((otroIndice-unIndice+1) %2 ==0);
-		int dist=((otroIndice-unIndice+1)/2);
-		if (!esPar) dist++;
-					
-		for (int i=0;i<dist;i++)
-		{
-			this.swapGen(unIndividuo.genes, unIndice+i, otroIndice-i);
-			
-		}		
-		unIndividuo.decod();
 	}
 
 	private void mutacionHeuristica(int i) {

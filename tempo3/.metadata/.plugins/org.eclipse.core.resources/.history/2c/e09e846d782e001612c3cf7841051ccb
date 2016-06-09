@@ -939,12 +939,12 @@ public class Poblacion {
 		int unIndice=0;
 		int otroIndice=0;	
 		unIndice=Calculadora.dameRandom(0,lcrom-1);
-		otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);		
+		otroIndice=lcrom-1;Calculadora.dameRandom(unIndice+1,lcrom-1);
+		int medio=0;
 		boolean esPar=((otroIndice-unIndice+1) %2 ==0);
-		int dist=((otroIndice-unIndice+1)/2);
-		if (!esPar) dist++;
+		medio=unIndice+((otroIndice-unIndice+1)/2);
 					
-		for (int i=0;i<dist;i++)
+		for (int i=unIndice;i<medio;i++)
 		{
 			this.swapGen(unIndividuo.genes, unIndice+i, otroIndice-i);
 			

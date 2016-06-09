@@ -879,7 +879,7 @@ public class Poblacion {
 		for (int i=0;i<numeroInserciones;i++)
 		{
 			unIndice=Calculadora.dameRandom(0,lcrom-1);
-			otroIndice=lcrom-1;Calculadora.dameRandom(unIndice+1,lcrom-1);			
+			otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);			
 			
 			//guardo copia de elemento que voy a machacar
 			unGen=unIndividuo.genes.get(otroIndice);
@@ -896,7 +896,8 @@ public class Poblacion {
 		    {
 		    	if (k!=otroIndice)
 		    		listaAuxiliar.add(unIndividuo.genes.get(k));
-		    	
+		    	else
+		    		listaAuxiliar.add(unGen);
 		    }
 		
 		    
@@ -930,26 +931,8 @@ public class Poblacion {
 		swapGen(individuos.get(i).genes,a,b);
 	}
 
-	private void mutacionInversion(int ind) {
+	private void mutacionInversion(int i) {
 
-		Individuo unIndividuo=individuos.get(ind);
-		int lcrom=unIndividuo.lcrom;
-		
-		
-		int unIndice=0;
-		int otroIndice=0;	
-		unIndice=Calculadora.dameRandom(0,lcrom-1);
-		otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);		
-		boolean esPar=((otroIndice-unIndice+1) %2 ==0);
-		int dist=((otroIndice-unIndice+1)/2);
-		if (!esPar) dist++;
-					
-		for (int i=0;i<dist;i++)
-		{
-			this.swapGen(unIndividuo.genes, unIndice+i, otroIndice-i);
-			
-		}		
-		unIndividuo.decod();
 	}
 
 	private void mutacionHeuristica(int i) {
