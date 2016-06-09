@@ -733,18 +733,17 @@ public class Poblacion {
 		return a;
 		
 	}
-	//¿Es este cromosoma viable?
+	
 	boolean esBloqueo(Integer[]ListaPos, int[][] unaMatriz)
 	{
 		return false;
 	}
-	
 	//profundiza demasiado, hace falta abstraer
 	//¡GRAN CHAPUZA!
 	void construirRecomb(Individuo hijo,Gen unGen,int[][] unaMatriz,int lcrom)
 	{
 		Integer[] listaPos=new Integer[lcrom];
-		for (int i=1;i<listaPos.length;i++)
+		for (int i=0;i<listaPos.length;i++)
 		{
 			listaPos[i]=-1;
 		}
@@ -752,7 +751,6 @@ public class Poblacion {
 		
 		//empiezo con primera ciudad del padre (unGen)
 		listaPos[0]=(Integer)unGen.clone().bit;
-		hijo.genes.set(0,unGen.clone());
 		
 		
 		boolean bloqueo=true;
@@ -760,7 +758,7 @@ public class Poblacion {
 		{
 		for (int i=1;i<lcrom;i++)
 			{
-			listaPos[i]=dameMenosConectada(i-1,unaMatriz,listaPos,lcrom);		
+			listaPos[i]=dameMenosConectada(i,unaMatriz,listaPos,lcrom);		
 			}
 		bloqueo=esBloqueo(listaPos, unaMatriz);
 		}

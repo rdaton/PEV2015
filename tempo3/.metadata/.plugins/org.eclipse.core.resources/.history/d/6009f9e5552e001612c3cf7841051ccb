@@ -720,57 +720,31 @@ public class Poblacion {
 
 	//basicametne no hace nada, porque todas están igua de conectadas
 	//hace Randoms's
-	int dameMenosConectada(int ciudad, int[][] unaMatriz, Integer[] listaPos, int lcrom)
-	{		
+	int dameMenosConectada(int ciudad, int[][] unaMatriz, int[][] ListaPos)
+	{
 		int a= Calculadora.dameRandom(0, lcrom-1);
-		
 		while (contiene(listaPos,a))
 		{
 			a=Calculadora.dameRandom(0, lcrom-1);
 		}
-		listaPos[ciudad+1]=new Integer(a);
+		cadena[i]=new Integer(a);
 
-		return a;
 		
 	}
-	//¿Es este cromosoma viable?
-	boolean esBloqueo(Integer[]ListaPos, int[][] unaMatriz)
-	{
-		return false;
-	}
-	
-	//profundiza demasiado, hace falta abstraer
-	//¡GRAN CHAPUZA!
 	void construirRecomb(Individuo hijo,Gen unGen,int[][] unaMatriz,int lcrom)
 	{
-		Integer[] listaPos=new Integer[lcrom];
-		for (int i=1;i<listaPos.length;i++)
-		{
-			listaPos[i]=-1;
-		}
-		
-		
 		//empiezo con primera ciudad del padre (unGen)
-		listaPos[0]=(Integer)unGen.clone().bit;
-		hijo.genes.set(0,unGen.clone());
+		hijo.genes.set(0, unGen.clone());
 		
-		
-		boolean bloqueo=true;
-		while(bloqueo)
-		{
-		for (int i=1;i<lcrom;i++)
-			{
-			listaPos[i]=dameMenosConectada(i-1,unaMatriz,listaPos,lcrom);		
-			}
-		bloqueo=esBloqueo(listaPos, unaMatriz);
-		}
-		
-		//una vez generado , convierto la secuencia a genes
-		//CHAPUZA
+		int sig=0;
+		Gen menos=0;
 		for (int i=1;i<lcrom;i++)
 		{
-			hijo.genes.set(i, new Gen_f1(listaPos[i]));
+			//menos=padre.
+			hijo.genes.set(arg0, arg1)
+			hijo.decod();
 		}
+			
 		
 	}
 	

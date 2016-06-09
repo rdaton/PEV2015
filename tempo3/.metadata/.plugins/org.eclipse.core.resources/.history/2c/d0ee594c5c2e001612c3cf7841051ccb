@@ -752,7 +752,6 @@ public class Poblacion {
 		
 		//empiezo con primera ciudad del padre (unGen)
 		listaPos[0]=(Integer)unGen.clone().bit;
-		hijo.genes.set(0,unGen.clone());
 		
 		
 		boolean bloqueo=true;
@@ -767,7 +766,7 @@ public class Poblacion {
 		
 		//una vez generado , convierto la secuencia a genes
 		//CHAPUZA
-		for (int i=1;i<lcrom;i++)
+		for (int i=0;i<lcrom;i++)
 		{
 			hijo.genes.set(i, new Gen_f1(listaPos[i]));
 		}

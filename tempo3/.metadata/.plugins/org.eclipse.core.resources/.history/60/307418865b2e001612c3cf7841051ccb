@@ -111,7 +111,7 @@ public  class Individuo_basico extends Individuo{
 			b=otroCrom[i+1];
 			if((a==-1) || (b==-1)) 
 				{
-				System.out.println("me encontrado un cromosoma mal formado");
+				System.out.println("me encontrado con ciudad vacía");
 				break; //esto no debería pasar				
 				};
 			if (a<b)

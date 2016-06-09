@@ -752,7 +752,6 @@ public class Poblacion {
 		
 		//empiezo con primera ciudad del padre (unGen)
 		listaPos[0]=(Integer)unGen.clone().bit;
-		hijo.genes.set(0,unGen.clone());
 		
 		
 		boolean bloqueo=true;
