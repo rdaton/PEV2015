@@ -422,42 +422,44 @@ public class Poblacion {
 	
 	
 	
-	//rellena huecos .. desde el principio
-		int cruceOx_aux(Individuo padre,Individuo hijo, int pCorte1, int pCorte2, int lcrom)
+	int[] cruceOx_aux(Individuo padre,Individuo hijo, int pCorte1, int pCorte2,int r_aux, int rellenados_aux, int lcrom)
+	{
+	
+		//¿cuántos vacíos tengo?
+		int maxRellenar=lcrom-(pCorte2-pCorte1)+1;		
+		int rellenados=rellenados_aux;
+		int r=r_aux;
+		
+		//relleno desde pCorte2
+		for (int i=pCorte2;i<lcrom&&rellenados<maxRellenar;i++)
 		{
+			if (!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
+			{
+				hijo.genes.set(r, padre.genes.get(i).clone());				
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+			}		
+			hijo.decod();	//debug
+		}	
 		
 			
-			//¿cuántos vacíos tengo?
-			int maxRellenar=lcrom-(pCorte2-pCorte1)+1;		
-			int rellenados=0;
-			int r=0;		
-			int i=0;
-			//relleno desde principio
-			while(i<lcrom&&rellenados<maxRellenar)
+		for (int i=0;i<=pCorte1&&rellenados<maxRellenar;i++)
+		{
+			if(!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
 			{
-				if (hijo.genes.get(r).estaVacio())
-				{
-					if (!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
-					{
-						hijo.genes.set(r, padre.genes.get(i).clone());
-						r++;					
-						rellenados++;
-					}
-					
-					i++;
-				}
-				else			
-				{
-					r++;
-				}		
-				 
-				hijo.decod();	//debug
-			}			
+				hijo.genes.set(r, padre.genes.get(i).clone());
+				r++;		
+				r=r%lcrom;
+				rellenados++;
+			}
+			hijo.decod();	//debug
 			
-			int unReturn=rellenados;
-			return unReturn;
-		}
-
+		}		
+		
+		int[] unReturn={rellenados,r};
+		return unReturn;
+	}
 	
 	private Individuo[] cruceOx (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
 		Integer lcrom = padre1.damelCrom();
@@ -467,7 +469,7 @@ public class Poblacion {
 		hijo2.borraGenes(); //genes a -1
 		//Elegir aleatoriamente dos puntos de corte.
 		//pCorte1<pCorte2
-		int pCorte1 = Calculadora.dameRandom(0, lcrom-3);
+		int pCorte1 = Calculadora.dameRandom(0, lcrom-2);
 		int pCorte2 = Calculadora.dameRandom(pCorte1+2, lcrom-1);		
 		//Copiar los valores de las subcadenas comprendidas entre
 		//dichos puntos en los hijos que se generan.
@@ -490,26 +492,68 @@ public class Poblacion {
 		 Si está en la subcadena intercambiada, entonces se
 		pasa al siguiente posible.
 		*/		
+		int rellenados=0; //cuántos he rellenado
+		int r=0; //en qué posición del hijo estoy
 		
 		//relleno hijo1 con elementos de padre1
-		int  res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2, lcrom);
+		int [] res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2, pCorte2, rellenados, lcrom);
+		//actualizo indices
+		rellenados=res[0];
+		r=res[1];
 		
-		
-		
-		
+		//relleno hijo1 con elementos de padre2 
+		res=this.cruceOx_aux(padre2, hijo1, pCorte1, pCorte2, r, rellenados, lcrom);
+		//actualizo indices
+		rellenados=res[0];
+		r=res[1];
 		
 		//relleno hijo2 con elementos de padre2
-		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2,  lcrom);
+		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2, pCorte2, rellenados, lcrom);
+		//actualizo indices
+		rellenados=res[0];
+		r=res[1];
 		
-		
-		
-		
-		
+		//relleno hijo2 con elementos de padre1 
+		res=this.cruceOx_aux(padre1, hijo2, pCorte1, pCorte2, r, rellenados, lcrom);
+		//actualizo indices
+		rellenados=res[0];
+		r=res[1];
+			
 		
 		
 		Individuo[] unReturn = {hijo1,hijo2};
 		
 		
+		return unReturn;
+	}
+
+	int cruceOxPosPrior_aux(Individuo padre,Individuo hijo, int pCorte1, int pCorte2, int rellenados_aux, int lcrom)
+	{
+	
+		
+		//¿cuántos vacíos tengo?
+		int maxRellenar=lcrom-(pCorte2-pCorte1)+1;		
+		int rellenados=rellenados_aux;
+		int r=0;		
+		//relleno desde pCorte2
+		for (int i=0;i<lcrom&&rellenados<maxRellenar;i++)
+		{
+			if (!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom)
+				|| hijo.genes.get(r).estaVacio()	
+				)
+			{
+				hijo.genes.set(r, padre.genes.get(i).clone());
+				r++;
+				rellenados++;
+			}		
+			else if (!hijo.genes.get(r).estaVacio())
+			{
+				r++;
+			}
+			hijo.decod();	//debug
+		}			
+		
+		int unReturn=rellenados;
 		return unReturn;
 	}
 	
@@ -540,7 +584,7 @@ public class Poblacion {
 		hijo2.borraGenes(); //genes a -1
 		//Elegir aleatoriamente dos puntos de corte.
 		//pCorte1<pCorte2
-		int pCorte1 = Calculadora.dameRandom(0, lcrom-3);
+		int pCorte1 = Calculadora.dameRandom(0, lcrom-2);
 		int pCorte2 = Calculadora.dameRandom(pCorte1+2, lcrom-1);		
 		//de estos punto de corte, salen el numero de puntos al
 		//azar, para cruzar
@@ -566,17 +610,28 @@ public class Poblacion {
 		 Si está en la subcadena intercambiada, entonces se
 		pasa al siguiente posible.
 		*/		
-			
+		int rellenados=0; //cuántos he rellenado		
 		
 		//relleno hijo1 con elementos de padre1
-		int  res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2,lcrom);
+		int  res=this.cruceOxPosPrior_aux(padre1, hijo1, pCorte1, pCorte2,rellenados, lcrom);
 		//actualizo indices
-					
+		rellenados=res;
+				
+		//relleno hijo1 con elementos de padre2 
+		res=this.cruceOxPosPrior_aux(padre2, hijo1, pCorte1, pCorte2, rellenados, lcrom);
+		//actualizo indices
+		rellenados=res;		
 		
-		
-		
+		rellenados=0;		
 		//relleno hijo2 con elementos de padre2
-		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2,lcrom);
+		res=this.cruceOxPosPrior_aux(padre2, hijo2, pCorte1, pCorte2,rellenados, lcrom);
+		//actualizo indices
+		rellenados=res;		
+		
+		//relleno hijo2 con elementos de padre1 
+		res=this.cruceOxPosPrior_aux(padre1, hijo2, pCorte1, pCorte2, rellenados, lcrom);
+		//actualizo indices
+		rellenados=res;			
 		
 		
 		Individuo[] unReturn = {hijo1,hijo2};

@@ -432,7 +432,7 @@ public class Poblacion {
 			int rellenados=0;
 			int r=0;		
 			int i=0;
-			//relleno desde principio
+			//relleno desde pCorte2
 			while(i<lcrom&&rellenados<maxRellenar)
 			{
 				if (hijo.genes.get(r).estaVacio())
@@ -566,17 +566,17 @@ public class Poblacion {
 		 Si está en la subcadena intercambiada, entonces se
 		pasa al siguiente posible.
 		*/		
-			
+		int rellenados=0; //cuántos he rellenado		
 		
 		//relleno hijo1 con elementos de padre1
-		int  res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2,lcrom);
+		int  res=this.cruceOxPosPrior_aux(padre1, hijo1, pCorte1, pCorte2,lcrom);
 		//actualizo indices
-					
+		rellenados=res;				
 		
 		
-		
+		rellenados=0;		
 		//relleno hijo2 con elementos de padre2
-		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2,lcrom);
+		res=this.cruceOxPosPrior_aux(padre2, hijo2, pCorte1, pCorte2,lcrom);
 		
 		
 		Individuo[] unReturn = {hijo1,hijo2};
