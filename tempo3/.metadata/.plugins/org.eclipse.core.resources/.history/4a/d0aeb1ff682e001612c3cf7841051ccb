@@ -876,15 +876,15 @@ public class Poblacion {
 		int otroIndice=0;
 		Gen unGen=null;
 		Gen otroGen=null;
-		List<Gen> listaAuxiliar=new ArrayList();
 		for (int i=0;i<numeroInserciones;i++)
 		{
-						
-			for (int k=0;k<unIndice;k++)
-			{
-				unIndividuo.genes.set(k,unIndividuo.genes.get(k).clone());
-			}
-			unIndividuo.genes.set(unIndice, otroGen);
+			unIndice=Calculadora.dameRandom(0, lcrom-1);
+			otroIndice=Calculadora.dameRandom(unIndice+1, lcrom-1);
+			unGen=unIndividuo.genes.get(unIndice).clone();
+			//desplaza
+			for (int j=otroIndice;j<lcrom)
+			
+			
 		}
 
 	}

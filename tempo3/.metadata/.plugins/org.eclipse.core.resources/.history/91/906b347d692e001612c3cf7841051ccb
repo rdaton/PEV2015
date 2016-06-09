@@ -884,7 +884,7 @@ public class Poblacion {
 			{
 				unIndividuo.genes.set(k,unIndividuo.genes.get(k).clone());
 			}
-			unIndividuo.genes.set(unIndice, otroGen);
+			unIndividuo.genes.set(unIndice, unGen);
 		}
 
 	}

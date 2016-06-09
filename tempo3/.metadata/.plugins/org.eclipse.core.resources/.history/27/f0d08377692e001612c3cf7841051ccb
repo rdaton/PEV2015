@@ -879,12 +879,9 @@ public class Poblacion {
 		List<Gen> listaAuxiliar=new ArrayList();
 		for (int i=0;i<numeroInserciones;i++)
 		{
-						
-			for (int k=0;k<unIndice;k++)
-			{
-				unIndividuo.genes.set(k,unIndividuo.genes.get(k).clone());
-			}
-			unIndividuo.genes.set(unIndice, otroGen);
+			
+			
+			
 		}
 
 	}
