@@ -720,9 +720,6 @@ public class Poblacion {
 
 	void construirRecomb(Individuo hijo,Gen unGen,int[][] unaMatriz)
 	{
-		//empiezo con primera ciudad
-		hijo.genes.set(0, unGen.clone());
-		
 		
 	}
 	

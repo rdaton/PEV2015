@@ -423,34 +423,41 @@ public class Poblacion {
 	
 	
 	//rellena huecos .. desde el principio
-		void cruceOx_aux(Individuo padre,Individuo hijo, int lcrom)
+		int cruceOx_aux(Individuo padre,Individuo hijo, int pCorte1, int pCorte2, int lcrom)
 		{
 		
 			
-			
+			//¿cuántos vacíos tengo?
+			int maxRellenar=lcrom-(pCorte2-pCorte1)+1;		
+			int rellenados=0;
 			int r=0;		
 			int i=0;
 			//relleno desde principio
-			while(i<lcrom && r < lcrom)//&&rellenados<maxRellenar)
+			while(i<lcrom)//&&rellenados<maxRellenar)
 			{
 				if (hijo.genes.get(r).estaVacio())
 				{
 					if (!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom))
 					{
 						hijo.genes.set(r, padre.genes.get(i).clone());
-						r++;						
+						r++;
+						r=r%lcrom;
+						rellenados++;
 					}
 					
 					i++;
 				}
 				else			
 				{
-					r++;					
+					r++;
+					r=r%lcrom;
 				}		
-			hijo.decod(); //debug	 
+				 
 				
-			}
-						
+			}			
+			
+			int unReturn=rellenados;
+			return unReturn;
 		}
 
 	
@@ -487,14 +494,14 @@ public class Poblacion {
 		*/		
 		
 		//relleno hijo1 con elementos de padre1
-		 this.cruceOx_aux(padre1, hijo1, lcrom);
+		int  res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2, lcrom);
 		
 		
 		
 		
 		
 		//relleno hijo2 con elementos de padre2
-		this.cruceOx_aux(padre2, hijo2,lcrom);
+		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2,  lcrom);
 		
 		
 		
@@ -532,9 +539,14 @@ public class Poblacion {
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
 		hijo1.borraGenes(); //genes a -1
 		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);		
-		hijo2.borraGenes(); //genes a -1		
-		//puntos al azar, para cruzar
-		int num_randoms=Calculadora.dameRandom(0, lcrom-1);
+		hijo2.borraGenes(); //genes a -1
+		//Elegir aleatoriamente dos puntos de corte.
+		//pCorte1<pCorte2
+		int pCorte1 = Calculadora.dameRandom(0, lcrom-3);
+		int pCorte2 = Calculadora.dameRandom(pCorte1+2, lcrom-1);		
+		//de estos punto de corte, salen el numero de puntos al
+		//azar, para cruzar
+		int num_randoms=pCorte2-pCorte1-1;
 		for (int i=0;i<num_randoms;i++)
 		{
 		int a=cruceOxPosPriorPunto_aux(padre2,hijo1,lcrom);
@@ -559,14 +571,14 @@ public class Poblacion {
 			
 		
 		//relleno hijo1 con elementos de padre1
-		this.cruceOx_aux(padre1, hijo1,lcrom);
+		int  res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2,lcrom);
 		//actualizo indices
 					
 		
 		
 		
 		//relleno hijo2 con elementos de padre2
-		this.cruceOx_aux(padre2, hijo2, lcrom);
+		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2,lcrom);
 		
 		
 		Individuo[] unReturn = {hijo1,hijo2};
@@ -693,12 +705,12 @@ public class Poblacion {
 			
 		
 		//relleno hijo1 con elementos de padre1
-		this.cruceOx_aux(padre1, hijo1,lcrom);
+		int  res=this.cruceOx_aux(padre1, hijo1, pCorte1, pCorte2,lcrom);
 		//actualizo indices
 						
 		
 		//relleno hijo2 con elementos de padre2
-		this.cruceOx_aux(padre2, hijo2,lcrom);
+		res=this.cruceOx_aux(padre2, hijo2, pCorte1, pCorte2,lcrom);
 		
 		hijo1.decod();
 		hijo2.decod();
@@ -718,42 +730,10 @@ public class Poblacion {
 		return unReturn;
 	}
 
-	void construirRecomb(Individuo hijo,Gen unGen,int[][] unaMatriz)
-	{
-		//empiezo con primera ciudad
-		hijo.genes.set(0, unGen.clone());
-		
-		
-	}
-	
 	private Individuo[] cruceRecombinacionRutas (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
-		hijo1.borraGenes(); //genes a -1
-		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);		
-		hijo2.borraGenes(); //genes a -1
-		
-		//construyo matriz de adyacencia
-		int[][] unaMatriz= new int[lcrom][lcrom];
-		//da la casualidad de que en mi matriz, todas las ciudades están interconectadas entre sí
-		for (int i=0;i<lcrom;i++)
-		{
-			for (int j=0;j<lcrom;j++)
-			{
-				unaMatriz[i][j]=j;
-			}
-		}
-		
-		//construyo hijo1, con primer elemento de padre2
-		construirRecomb(hijo1,padre2.genes.get(0),unaMatriz);
-		
-		//construyo hijo2, con primer elemento de padre1
-		construirRecomb(hijo2,padre1.genes.get(0),unaMatriz);
-				
-		
-		
-		hijo1.decod();
-		hijo2.decod();
+		Individuo hijo2 = padre2.newInstance(x_min, x_max, prec);
 		Individuo[] unReturn = {hijo1,hijo2};
 
 		return unReturn;

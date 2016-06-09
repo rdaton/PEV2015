@@ -718,14 +718,6 @@ public class Poblacion {
 		return unReturn;
 	}
 
-	void construirRecomb(Individuo hijo,Gen unGen,int[][] unaMatriz)
-	{
-		//empiezo con primera ciudad
-		hijo.genes.set(0, unGen.clone());
-		
-		
-	}
-	
 	private Individuo[] cruceRecombinacionRutas (Individuo padre1, Individuo padre2, int punto_cruce, Object x_min, Object x_max) {
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max, prec);
@@ -734,7 +726,7 @@ public class Poblacion {
 		hijo2.borraGenes(); //genes a -1
 		
 		//construyo matriz de adyacencia
-		int[][] unaMatriz= new int[lcrom][lcrom];
+		Integer[][] unaMatriz= new Integer[lcrom][lcrom];
 		//da la casualidad de que en mi matriz, todas las ciudades están interconectadas entre sí
 		for (int i=0;i<lcrom;i++)
 		{
@@ -744,12 +736,9 @@ public class Poblacion {
 			}
 		}
 		
-		//construyo hijo1, con primer elemento de padre2
-		construirRecomb(hijo1,padre2.genes.get(0),unaMatriz);
 		
-		//construyo hijo2, con primer elemento de padre1
-		construirRecomb(hijo2,padre1.genes.get(0),unaMatriz);
-				
+		
+		
 		
 		
 		hijo1.decod();
