@@ -962,13 +962,10 @@ public class Poblacion {
 		Individuo unIndividuo=individuos.get(ind);
 		int lcrom=unIndividuo.lcrom;
 		
-		//coordenadas de inversión
+		//mutacion por inversión
 		int unIndice=Calculadora.dameRandom(0,lcrom-1);
 		int otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);
-		//lugar en el que inserto la cadena invertida
 		int tercerIndice=Calculadora.dameRandom(0,lcrom-1);
-		List<Gen> listaAuxiliar=new ArrayList();
-		List<Gen> listaAuxiliar2=new ArrayList();
 		boolean esPar=((otroIndice-unIndice+1) %2 ==0);
 		int dist=((otroIndice-unIndice+1)/2);
 		if (!esPar) dist++;
@@ -979,35 +976,27 @@ public class Poblacion {
 			
 		}		
 		unIndividuo.decod();
-		//hago una copia de la lista de invertidos
-		 for (int k=unIndice;k<=otroIndice;k++)
-		    {
-		    	listaAuxiliar2.add(unIndividuo.genes.get(k));
-		    }
-		
 		//me preparo para insertar
-		
-		listaAuxiliar.clear();
+		List<Gen> listaAuxiliar=new ArrayList();
 		
 		for (int k=0;k<=tercerIndice;k++)
 		{
-			if (!((unIndice <=k) && (otroIndice >= k)))
+			if ((k<tercerIndice)
 				listaAuxiliar.add(unIndividuo.genes.get(k));
 			else
-				if (k==tercerIndice)
-				for (int j=0;j<listaAuxiliar2.size();j++)
+				for (int j=unIndice;j<=otroIndice;j++)
 				{
-				listaAuxiliar.add(listaAuxiliar2.get(j));
+				listaAuxiliar.add(unIndividuo.genes.get(j));
 				}
 		}
 						
-	    for (int k=tercerIndice+dist;k<lcrom;k++)
-	    {	    	
-	    	listaAuxiliar.add(unIndividuo.genes.get(k));
+	    for (int k=otroIndice;k<lcrom;k++)
+	    {
+	    	if (k!=otroIndice)
+	    		listaAuxiliar.add(unIndividuo.genes.get(k));
 	    	
 	    }
 	
-	   
 	    
 	    //copio la lista encadenada en individuo
 	    for (int k=0;k<lcrom;k++)

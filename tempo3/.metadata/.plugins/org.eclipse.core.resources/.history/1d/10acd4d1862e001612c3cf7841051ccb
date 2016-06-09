@@ -987,17 +987,15 @@ public class Poblacion {
 		
 		//me preparo para insertar
 		
-		listaAuxiliar.clear();
 		
 		for (int k=0;k<=tercerIndice;k++)
 		{
-			if (!((unIndice <=k) && (otroIndice >= k)))
+			if (k<tercerIndice)
 				listaAuxiliar.add(unIndividuo.genes.get(k));
 			else
-				if (k==tercerIndice)
-				for (int j=0;j<listaAuxiliar2.size();j++)
+				for (int j=unIndice;j<=otroIndice;j++)
 				{
-				listaAuxiliar.add(listaAuxiliar2.get(j));
+				listaAuxiliar.add(unIndividuo.genes.get(j));
 				}
 		}
 						
