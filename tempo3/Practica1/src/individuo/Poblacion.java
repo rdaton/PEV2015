@@ -961,6 +961,7 @@ public class Poblacion {
 	//se aplica inversión y luego inserción de dicho tramo mutado
 	private void mutacionInventada(int ind) {
 		Individuo unIndividuo=individuos.get(ind);
+		Individuo otroIndividuo=individuos.get(ind);	
 		int lcrom=unIndividuo.lcrom;
 		
 		//coordenadas de inversión
@@ -969,7 +970,9 @@ public class Poblacion {
 		//lugar en el que inserto la cadena invertida
 		int tercerIndice=Calculadora.dameRandom(0,lcrom-1);
 		List<Gen> listaAuxiliar=new ArrayList();
-		List<Gen> listaAuxiliar2=new ArrayList();
+		List<Gen> listaInvertidos=new ArrayList();
+		List<Gen> primeraMitad=new ArrayList();
+		List<Gen> segundaMitad=new ArrayList();
 		boolean esPar=((otroIndice-unIndice+1) %2 ==0);
 		int dist=((otroIndice-unIndice+1)/2);
 		if (!esPar) dist++;
@@ -980,42 +983,49 @@ public class Poblacion {
 			
 		}		
 		unIndividuo.decod();
+		
+		
+		
+		//inserción
+		listaAuxiliar.clear();
+		
+		
+		 
+		//¿donde lo inserto? tiene que ser fuera de
+		//la cadena invertida		
+		boolean enc=false;
+		while (!enc)
+		{
+		tercerIndice=Calculadora.dameRandom(0,lcrom-1);
+		enc=(unIndice>tercerIndice||unIndice>otroIndice);
+		}			
+		
+		int s=0;		
+				
+		//genero primera mitad
+		for (int i=0;i<tercerIndice;i++)
+		{
+			primeraMitad.add(unIndividuo.genes.get(i));
+			s++;
+		}
 		//hago una copia de la lista de invertidos
 		 for (int k=unIndice;k<=otroIndice;k++)
 		    {
-		    	listaAuxiliar2.add(unIndividuo.genes.get(k));		    	
+		    	listaInvertidos.add(unIndividuo.genes.get(k));
+		    	s++;
 		    }
 		
-		 
-		 
-		 
-		//inserción
-		
-		listaAuxiliar.clear();
-	
-		//¿donde lo inserto?
-		unIndice=Calculadora.dameRandom(0,lcrom-1);
-					
-		
-		
-		//empiezo a encadenar			
-		for (int k=0;k<=unIndice;k++)
+		//genero segunda mitad
+		for (int i=s;i<lcrom;i++)
 		{
-			listaAuxiliar.add(unIndividuo.genes.get(k));
+			segundaMitad.add(unIndividuo.genes.get(i));
 		}
+			
+		//junto las tres partes
 		
-		for (int i=0;i<listaAuxiliar2.size();i++)
-		{
-			listaAuxiliar.add(listaAuxiliar2.get(i));
-		}
-						
-	    for (int k=unIndice+listaAuxiliar2.size()+1;k<lcrom;k++)
-	    {
-	    	
-	    		listaAuxiliar.add(unIndividuo.genes.get(k));
-	    	
-	    }
-	
+		listaAuxiliar.addAll(primeraMitad);
+		listaAuxiliar.addAll(listaInvertidos);
+		listaAuxiliar.addAll(segundaMitad);
 		
 					    
 	    //copio la lista encadenada en individuo
