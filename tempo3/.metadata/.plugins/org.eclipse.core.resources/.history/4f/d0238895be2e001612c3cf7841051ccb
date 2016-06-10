@@ -987,7 +987,12 @@ public class Poblacion {
 		    }
 		
 		 
-		 
+		 //borro los elmentos que me he guardado
+		 for (int k=unIndice;k<=otroIndice;k++)
+		    {
+		    	unIndividuo.genes.remove(k);		    	
+		    }
+		
 		//inserción
 		
 		listaAuxiliar.clear();
@@ -995,7 +1000,8 @@ public class Poblacion {
 		unIndice=Calculadora.dameRandom(0,lcrom-1);
 		otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);			
 		
-		
+		//guardo copia de elemento que voy a machacar
+		Gen unGen=unIndividuo.genes.get(otroIndice);
 		//encadeno dos listas			
 		for (int k=0;k<unIndice;k++)
 		{

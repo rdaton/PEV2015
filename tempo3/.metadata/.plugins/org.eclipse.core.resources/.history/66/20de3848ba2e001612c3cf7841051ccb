@@ -879,7 +879,7 @@ public class Poblacion {
 		for (int i=0;i<numeroInserciones;i++)
 		{
 			unIndice=Calculadora.dameRandom(0,lcrom-1);
-			otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);			
+			otroIndice=lcrom-1;Calculadora.dameRandom(unIndice+1,lcrom-1);			
 			
 			//guardo copia de elemento que voy a machacar
 			unGen=unIndividuo.genes.get(otroIndice);
@@ -956,7 +956,6 @@ public class Poblacion {
 
 	}
 
-	
 	//mutación combinada
 	//se aplica inversión y luego inserción de dicho tramo mutado
 	private void mutacionInventada(int ind) {
@@ -983,29 +982,43 @@ public class Poblacion {
 		//hago una copia de la lista de invertidos
 		 for (int k=unIndice;k<=otroIndice;k++)
 		    {
-		    	listaAuxiliar2.add(unIndividuo.genes.get(k));		    	
+		    	listaAuxiliar2.add(unIndividuo.genes.get(k));
+		    	
+		    }
+		 
+		 for (int k=unIndice;k<=otroIndice;k++)
+		    {
+		    	listaAuxiliar2.add(unIndividuo.genes.get(k));
+		    	
+		    }
+		 
+		 //borro los elmentos que me he guardado
+		 for (int k=0;k<=unIndividuo.genes.size();k++)
+		    {
+		    	unIndividuo.genes.remove(k);
+		    	unIndividuo.decod();
+		    	
 		    }
 		
-		 
-		 
 		//inserción
 		
 		listaAuxiliar.clear();
 	
 		unIndice=Calculadora.dameRandom(0,lcrom-1);
-		otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);			
+		otroIndice=lcrom-1;Calculadora.dameRandom(unIndice+1,lcrom-1);			
 		
-		
+		//guardo copia de elemento que voy a machacar
+		Gen unGen=unIndividuo.genes.get(otroIndice);
 		//encadeno dos listas			
-		for (int k=0;k<unIndice;k++)
+		for (int k=0;k<=unIndice;k++)
 		{
 			if (k!=unIndice)
 				listaAuxiliar.add(unIndividuo.genes.get(k));
-		}
-		
-		for (int i=0;i<listaAuxiliar2.size();i++)
-		{
-			listaAuxiliar.add(listaAuxiliar2.get(i));
+			else
+				for (int i=0;i<listaAuxiliar2.size();i++)
+				{
+				listaAuxiliar.add(listaAuxiliar2.get(i));
+				}
 		}
 						
 	    for (int k=unIndice;k<lcrom;k++)
