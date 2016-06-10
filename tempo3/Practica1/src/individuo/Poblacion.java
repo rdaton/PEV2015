@@ -988,19 +988,20 @@ public class Poblacion {
 		
 		 
 		 
+		 
 		//inserción
 		
 		listaAuxiliar.clear();
 	
+		//¿donde lo inserto?
 		unIndice=Calculadora.dameRandom(0,lcrom-1);
-		otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);			
+					
 		
 		
-		//encadeno dos listas			
-		for (int k=0;k<unIndice;k++)
+		//empiezo a encadenar			
+		for (int k=0;k<=unIndice;k++)
 		{
-			if (k!=unIndice)
-				listaAuxiliar.add(unIndividuo.genes.get(k));
+			listaAuxiliar.add(unIndividuo.genes.get(k));
 		}
 		
 		for (int i=0;i<listaAuxiliar2.size();i++)
@@ -1008,9 +1009,9 @@ public class Poblacion {
 			listaAuxiliar.add(listaAuxiliar2.get(i));
 		}
 						
-	    for (int k=unIndice;k<lcrom;k++)
+	    for (int k=unIndice+listaAuxiliar2.size()+1;k<lcrom;k++)
 	    {
-	    	if (!(k>unIndice &&k<=otroIndice))
+	    	
 	    		listaAuxiliar.add(unIndividuo.genes.get(k));
 	    	
 	    }
