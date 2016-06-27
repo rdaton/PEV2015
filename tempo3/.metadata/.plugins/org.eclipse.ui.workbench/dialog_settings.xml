@@ -10,6 +10,7 @@
 		<item value="true" key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID"/>
 		<item value="true" key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="/home/barfelix/snapshot_b.zip"/>
 			<item value="/home/barfelix/PEV2015/snapshot.zip"/>
 		</list>
 	</section>
