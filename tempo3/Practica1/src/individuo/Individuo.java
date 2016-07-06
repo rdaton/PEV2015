@@ -57,11 +57,11 @@ public  abstract class Individuo {
 
 	public Individuo clone() {
 		//UNICA PARTE QUE VARIA
-		Individuo unIndividuo = clone_aux(x_min,x_max, prec);
+		Individuo unIndividuo = clone_aux(x_min,x_max, prec);		
 		//FIN DE PARTE QUE VARIA
 
 		for (int i=0;i<this.lcrom;i++) {
-			unIndividuo.genes.add(this.genes.get(i).clone());
+			unIndividuo.genes.set(i,this.genes.get(i).clone());
 		}
 
 		unIndividuo.decod();

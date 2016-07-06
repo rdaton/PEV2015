@@ -222,12 +222,84 @@ public class Poblacion {
 		}
 	}
 
-	public void seleccionRanking() {
+	int[] bubbleSort(double[] arr) {
+		int indices[]=new int[this.size()];
+		for (int i=0;i<this.size();i++)
+		{
+			indices[i]=i;
+		}
+		
+		
+	      boolean swapped = true;
+	      int j = 0;
+	      int tmp;
+	      while (swapped) {
+	            swapped = false;
+	            j++;
+	            for (int i = 0; i < this.size() - j; i++) {
+	                  if (arr[i] <= arr[i+1]) {          
+	                        tmp = i;	                        
+	                        indices[i]=i + 1;
+	                        indices[i+1] = tmp;
+	                        swapped = true;
+	                  }
+	            }               
+	      }
+	      
+	      return indices;
 
 	}
-
+	
+	public void seleccionRanking() {
+	}
+	
+	
+	
+	//Remainder
 	public void seleccionRestos() {
+		//POBLACION AUXILIAR
+		List<Individuo> pob_aux = new ArrayList<Individuo>();
+		//calculo la media
+		double mediaFitness=this.dameMediaAdaptacion();
+		//saco valores relativos
+		Double[] val_relativos= new Double[this.size()];
+		//saco  parte entera de valores relavito
+		int[] val_relativos_int= new int[this.size()];
+		//array de restos
+		double[] restos=new double[this.size()];
+		//array de indices
+		int indices[]=new int[this.size()];
+		for (int i=0;i<this.size();i++)
+		{
+			val_relativos[i]=this.individuos.get(i).getadaptacion()/mediaFitness;
+			val_relativos_int[i]=val_relativos[i].intValue();
+			restos[i]=val_relativos[i]-val_relativos_int[i];
+		}
 
+		int n=0;
+		
+		for (int i=0;i<this.size();i++)
+		{
+			while(n != val_relativos_int[i])
+			{
+				pob_aux.add(this.individuos.get(i));
+				n++;
+			}
+		}
+		
+		int[] indicesOrdenados=bubbleSort(restos);
+		
+		
+		int r=0;
+		while(n<this.size())
+		{
+			pob_aux.set(n, individuos.get(r).clone());			
+			n++;
+			r++;
+			
+		}
+		
+		
 	}
 
 	public void seleccionTrucamiento() {
@@ -961,6 +1033,7 @@ public class Poblacion {
 	//se aplica inversión y luego inserción de dicho tramo mutado
 	private void mutacionInventada(int ind) {
 		Individuo unIndividuo=individuos.get(ind);
+		Individuo otroIndividuo=individuos.get(ind);	
 		int lcrom=unIndividuo.lcrom;
 		
 		//coordenadas de inversión
@@ -969,7 +1042,9 @@ public class Poblacion {
 		//lugar en el que inserto la cadena invertida
 		int tercerIndice=Calculadora.dameRandom(0,lcrom-1);
 		List<Gen> listaAuxiliar=new ArrayList();
-		List<Gen> listaAuxiliar2=new ArrayList();
+		List<Gen> listaInvertidos=new ArrayList();
+		List<Gen> primeraMitad=new ArrayList();
+		List<Gen> segundaMitad=new ArrayList();
 		boolean esPar=((otroIndice-unIndice+1) %2 ==0);
 		int dist=((otroIndice-unIndice+1)/2);
 		if (!esPar) dist++;
@@ -980,41 +1055,49 @@ public class Poblacion {
 			
 		}		
 		unIndividuo.decod();
+		
+		
+		
+		//inserción
+		listaAuxiliar.clear();
+		
+		
+		 
+		//¿donde lo inserto? tiene que ser fuera de
+		//la cadena invertida		
+		boolean enc=false;
+		while (!enc)
+		{
+		tercerIndice=Calculadora.dameRandom(0,lcrom-1);
+		enc=(unIndice>tercerIndice||unIndice>otroIndice);
+		}			
+		
+		int s=0;		
+				
+		//genero primera mitad
+		for (int i=0;i<tercerIndice;i++)
+		{
+			primeraMitad.add(unIndividuo.genes.get(i));
+			s++;
+		}
 		//hago una copia de la lista de invertidos
 		 for (int k=unIndice;k<=otroIndice;k++)
 		    {
-		    	listaAuxiliar2.add(unIndividuo.genes.get(k));		    	
+		    	listaInvertidos.add(unIndividuo.genes.get(k));
+		    	s++;
 		    }
 		
-		 
-		 
-		//inserción
-		
-		listaAuxiliar.clear();
-	
-		unIndice=Calculadora.dameRandom(0,lcrom-1);
-		otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);			
-		
-		
-		//encadeno dos listas			
-		for (int k=0;k<unIndice;k++)
+		//genero segunda mitad
+		for (int i=s;i<lcrom;i++)
 		{
-			if (k!=unIndice)
-				listaAuxiliar.add(unIndividuo.genes.get(k));
+			segundaMitad.add(unIndividuo.genes.get(i));
 		}
+			
+		//junto las tres partes
 		
-		for (int i=0;i<listaAuxiliar2.size();i++)
-		{
-			listaAuxiliar.add(listaAuxiliar2.get(i));
-		}
-						
-	    for (int k=unIndice;k<lcrom;k++)
-	    {
-	    	if (!(k>unIndice &&k<=otroIndice))
-	    		listaAuxiliar.add(unIndividuo.genes.get(k));
-	    	
-	    }
-	
+		listaAuxiliar.addAll(primeraMitad);
+		listaAuxiliar.addAll(listaInvertidos);
+		listaAuxiliar.addAll(segundaMitad);
 		
 					    
 	    //copio la lista encadenada en individuo

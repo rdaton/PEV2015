@@ -2,28 +2,28 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="mutaci" key="selection"/>
+		<item value="ordenar" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ordenar"/>
+			<item value="resto"/>
+			<item value="selec"/>
 			<item value="mutaci"/>
 			<item value="mutac"/>
 			<item value="instance"/>
 			<item value="hijo1"/>
 			<item value="decod"/>
-			<item value="cruceox"/>
-			<item value="cruce0x"/>
-			<item value="cruce"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="297" key="DIALOG_WIDTH"/>
-		<item value="1|Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="456" key="DIALOG_HEIGHT"/>
+		<item value="310" key="DIALOG_WIDTH"/>
+		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="409" key="DIALOG_HEIGHT"/>
 		<item value="620" key="DIALOG_X_ORIGIN"/>
 		<item value="268" key="DIALOG_Y_ORIGIN"/>
 	</section>

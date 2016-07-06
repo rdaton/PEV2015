@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
 <entry loc="/usr/lib/jvm/java-8-openjdk-i386" stamp="1463994983000"/>
+<entry loc="/usr/local/java/jdk1.8.0_45-x86_64" stamp="1438678429000"/>
+<entry loc="/usr/lib/jvm/java-8-openjdk-amd64" stamp="1467117428000"/>
 </dirs>
