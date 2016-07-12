@@ -221,9 +221,7 @@ public class Poblacion {
 			individuos.add(unIterador.next().clone());
 		}
 	}
-	public void seleccionRanking() {
-	}
-	
+
 	int[] bubbleSort(double[] arr) {
 		int indices[]=new int[this.size()];
 		for (int i=0;i<this.size();i++)
@@ -252,6 +250,8 @@ public class Poblacion {
 
 	}
 	
+	public void seleccionRanking() {
+	}
 	
 	
 	
@@ -293,7 +293,7 @@ public class Poblacion {
 		int r=0;
 		while(n<this.size())
 		{
-			pob_aux.set(n, individuos.get(indicesOrdenados[r]).clone());			
+			pob_aux.set(n, individuos.get(r).clone());			
 			n++;
 			r++;
 			

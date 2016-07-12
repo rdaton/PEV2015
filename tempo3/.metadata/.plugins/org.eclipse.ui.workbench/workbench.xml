@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="25" version="2.0">
+<workbench progressCount="29" version="2.0">
 <workbenchAdvisor/>
 <window height="723" maximized="true" width="1016" x="0" y="23">
 <fastViewData fastViewLocation="1024"/>
@@ -8,13 +8,13 @@
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="192" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="162" y="24"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="com.python.pydev.debug.actionSet" itemType="typeToolBarContribution" x="102" y="36"/>
 <coolItem id="com.python.pydev.navigate.actionSet" itemType="typeToolBarContribution" x="46" y="36"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="130" y="24"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="74" y="24"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="106" y="24"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -26,7 +26,7 @@
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="UserSeparator" itemType="typeSeparator"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="194" y="24"/>
 </coolbarLayout>
 <page aggregateWorkingSetId="Aggregate for window 1464877774187" focus="true" label="Workspace - Resource">
 <editors>
