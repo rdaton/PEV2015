@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="conditionHistory">
+		<item value="3" key="conditionHistoryEntryCount"/>
+		<item value="(listaAuxiliar.size()&lt;lcrom)" key="conditionHistoryEntry_0"/>
+		<item value="(debug_l&lt;lcrom)" key="conditionHistoryEntry_1"/>
+		<item value="(lcrom&lt;28)" key="conditionHistoryEntry_2"/>
+	</section>
+	<section name="org.eclipse.jdt.internal.debug.ui.ExpressionInformationControlCreator$ExpressionInformationControl">
+		<item value="200" key="SashWeightTree"/>
+		<item value="200" key="SashWeightDetails"/>
+		<item value="700" key="WIDTH"/>
+		<item value="180" key="HEIGHT"/>
+	</section>
+</section>

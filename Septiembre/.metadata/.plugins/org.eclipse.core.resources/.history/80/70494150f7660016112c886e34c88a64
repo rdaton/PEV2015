@@ -1702,61 +1702,82 @@ public class Poblacion {
 
 	//mutación propia: inversión y luego inserción
 	private void mutacionPropia(int ind) {
-		Individuo unIndividuo = individuos.get(ind);
-		int lcrom = unIndividuo.lcrom;
-		int numeroInserciones = Calculadora.dameRandom(1, lcrom-1);
-		int unIndice = 0;
+		Individuo unIndividuo=individuos.get(ind);
+		int lcrom=unIndividuo.lcrom;
 		int otroIndice = 0;
-		Gen unGen = null;
-		List<Gen> listaAuxiliar = new ArrayList<Gen>();
-		for (int i=0;i<numeroInserciones;i++) {
-			unIndice = Calculadora.dameRandom(0,lcrom-1);
-			if(unIndice+1 == lcrom) {
-				otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
-			} else {
-				otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
-			}
-			//GUARDO COPIA DE ELEMENTO QUE VOY A MACHACAR
-			unGen = unIndividuo.genes.get(otroIndice);
-			//ENCADENO DOS LISTAS
-			for (int k=0;k<=unIndice;k++) {
-				if (k != unIndice)
-					listaAuxiliar.add(unIndividuo.genes.get(k));
-				else
-					listaAuxiliar.add(unIndividuo.genes.get(otroIndice));
-			}
-		    for (int k=unIndice;k<lcrom;k++) {
-		    	if (k != otroIndice)
-		    		listaAuxiliar.add(unIndividuo.genes.get(k));
-
-		    }
-		    //COPIO LA LISTA ENCADENADA EN INDIVIDUO
-		    for (int k=0;k<lcrom;k++) {
-		    	unIndividuo.genes.set(k, listaAuxiliar.get(k));
-		    }
-		    unIndividuo.decod();
+		//coordenadas de inversión
+		int unIndice=Calculadora.dameRandom(0,lcrom-1);
+		if(unIndice == lcrom-1) {
+			otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
+		} else {
+			otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
 		}
-		    //inversión
-		    lcrom = unIndividuo.lcrom;
-			unIndice = 0;
-			otroIndice = 0;
-			unIndice = Calculadora.dameRandom(0,lcrom-1);
-			if(unIndice == lcrom-1) {
-				otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
-			} else {
-				otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
-			}
-			boolean esPar = ((otroIndice-unIndice+1) %2 ==0);
-			int dist = ((otroIndice-unIndice+1)/2);
-			if (!esPar) dist++;
+		//int otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);
+		//lugar en el que inserto la cadena invertida
+		int tercerIndice=Calculadora.dameRandom(0,lcrom-1);
+		List<Gen> listaAuxiliar=new ArrayList();
+		List<Gen> listaAuxiliar2=new ArrayList();
+		boolean esPar=((otroIndice-unIndice+1) %2 ==0);
+		int dist=((otroIndice-unIndice+1)/2);
+		if (!esPar) dist++;
 
-			for (int i=0;i<dist;i++) {
-				this.swapGen(unIndividuo.genes, unIndice+i, otroIndice-i);
-			}
-			unIndividuo.decod();
-		
-		
-		
+		for (int i=0;i<dist;i++)
+		{
+			this.swapGen(unIndividuo.genes, unIndice+i, otroIndice-i);
+
+		}
+		unIndividuo.decod()
+		;
+		//hago una copia de la lista de invertidos
+		 for (int k=unIndice;k<=otroIndice;k++)
+		    {
+		    	listaAuxiliar2.add(unIndividuo.genes.get(k));
+		    }
+
+
+
+		//inserción
+
+		listaAuxiliar.clear();
+
+		unIndice=Calculadora.dameRandom(0,lcrom-1);
+		if(unIndice == lcrom-1) {
+			otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
+		} else {
+			otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
+		}
+		//otroIndice=Calculadora.dameRandom(unIndice+1,lcrom-1);
+
+
+
+
+		//encadeno dos listas
+		for (int k=0;k<unIndice;k++)
+		{
+			if (k!=unIndice)
+				listaAuxiliar.add(unIndividuo.genes.get(k));
+		}
+
+		for (int i=0;i<listaAuxiliar2.size();i++)
+		{
+			listaAuxiliar.add(listaAuxiliar2.get(i));
+		}
+
+	    for (int k=unIndice;k<lcrom;k++)
+	    {
+	    	if (!(k>unIndice &&k<=otroIndice))
+	    		listaAuxiliar.add(unIndividuo.genes.get(k));
+
+	    }
+
+
+	    int debug_l=listaAuxiliar.size();
+	    //copio la lista encadenada en individuo
+	    for (int k=0;k<lcrom;k++)
+	    {
+	    	unIndividuo.genes.set(k, listaAuxiliar.get(k));
+	    }
+	    unIndividuo.decod();
 	}
 
 
