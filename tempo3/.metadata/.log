@@ -927,3 +927,56 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY org.eclipse.ui 2 2 2016-07-06 19:41:18.713
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-07-14 12:28:03.439 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/tempo3/ -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-07-14 12:28:58.520
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-07-14 13:48:07.491 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-07-14 13:48:19.061
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-08-20 17:58:43.379 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/tempo3 -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.debug.core 4 2 2016-08-20 17:58:54.158
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-08-20 17:58:54.213
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.ui 2 2 2016-08-20 18:05:17.506
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
