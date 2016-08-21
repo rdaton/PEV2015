@@ -18,5 +18,23 @@ public enum TipoMutacion {
 			return "INSERCIÓN";
 		}
 	}
+	
+	public int toInt()
+	{
+		switch (this) {
+		case INSERCION:
+			return 0;
+		case INTERCAMBIO:
+			return 1;
+		case INVERSION:
+			return 2;
+		case HEURISTICA:
+			return 3;
+		case PROPIO:
+			return 4;
+		default:
+			return 0;
+		}
+	}
 
 }

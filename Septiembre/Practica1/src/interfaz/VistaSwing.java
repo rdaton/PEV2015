@@ -10,8 +10,8 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class VistaSwing extends JFrame {
 
-	private MiPanelIzquierdo pnlIzquierdo;
-	private MiPanelDerecho pnlDerecho;
+	protected MiPanelIzquierdo pnlIzquierdo;
+	protected MiPanelDerecho pnlDerecho;
 
 	public VistaSwing () {
 		super("Pr�ctica 1 - PEV");

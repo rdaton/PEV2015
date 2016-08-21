@@ -2,29 +2,32 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Invers" key="selection"/>
+		<item value="elPeor" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="invers"/>
-			<item value="inserc"/>
-			<item value="propia"/>
-			<item value="MUTA"/>
-			<item value="muta"/>
-			<item value="inven"/>
-			<item value="inve"/>
-			<item value="inventada"/>
+			<item value="elpeor"/>
+			<item value="heur"/>
+			<item value="0.6"/>
+			<item value="set"/>
+			<item value="interc"/>
+			<item value="90"/>
+			<item value="todas"/>
+			<item value="150"/>
 		</list>
 		<list key="replacehistory">
+			<item value="80"/>
+			<item value="100"/>
+			<item value="50"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="314" key="DIALOG_WIDTH"/>
+		<item value="334" key="DIALOG_WIDTH"/>
 		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="412" key="DIALOG_HEIGHT"/>
-		<item value="836" key="DIALOG_X_ORIGIN"/>
-		<item value="50" key="DIALOG_Y_ORIGIN"/>
+		<item value="427" key="DIALOG_HEIGHT"/>
+		<item value="887" key="DIALOG_X_ORIGIN"/>
+		<item value="142" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

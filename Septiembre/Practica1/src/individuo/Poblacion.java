@@ -1476,14 +1476,17 @@ public class Poblacion {
 	}
 
 	private void mutacionIntercambio(int i) {
-		int lcrom = individuos.get(i).lcrom;
+		Individuo unIndividuo=individuos.get(i);
+		int lcrom = unIndividuo.lcrom;
 		int a = Calculadora.dameRandom(0, lcrom-1);
 		int b = Calculadora.dameRandom(0, lcrom-1);
 
 		while (a==b)
 			b = Calculadora.dameRandom(0, lcrom-1);
 
-		swapGen(individuos.get(i).genes,a,b);
+		swapGen(unIndividuo.genes,a,b);
+		
+		unIndividuo.decod();
 	}
 
 	private void mutacionInversion(int ind) {
