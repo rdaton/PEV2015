@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
@@ -41,7 +42,7 @@ public class MiPanelDerecho extends JPanel {
 		tabbedPane = new JTabbedPane();
 		tabbedPane.setPreferredSize(new Dimension(600,670));
 
-		// AÑADIMOS TODO
+		// Aï¿½ADIMOS TODO
 		pnlGraphics.add(tabbedPane);
 
 	}
@@ -70,12 +71,14 @@ public class MiPanelDerecho extends JPanel {
 		panelNew.add(pnlIzquierdo.invocarFuncion(),BorderLayout.NORTH);
 		//CREAMOS LA CAJA TEXT
 		JTextArea textMejorIndividuo = new JTextArea();
+		JScrollPane scrollV=new JScrollPane(textMejorIndividuo);
 		String text = "****** PROBLEMA DEL VIAJANTE ******"+ System.getProperty( "line.separator" );
 		text+= pnlIzquierdo.getMejorEntrePeores();
 		textMejorIndividuo.setText(text);
 
-		textMejorIndividuo.setPreferredSize(new Dimension (500, 150));
-		panelNew.add(textMejorIndividuo,BorderLayout.SOUTH);
+		scrollV.setPreferredSize(new Dimension (500, 150));
+		textMejorIndividuo.setPreferredSize(new Dimension (500, 500));
+		panelNew.add(scrollV,BorderLayout.SOUTH);
 
         return panelNew;
     }

@@ -3,5 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="librerias/jmathplot.jar"/>
+	<classpathentry kind="lib" path="/home/barfelix/PEV2015/Septiembre/Practica1/librerias/commons-collections4-4.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/barfelix/PEV2015/Septiembre/Practica1/librerias/commons-collections4-4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

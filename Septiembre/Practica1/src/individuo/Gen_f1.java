@@ -40,4 +40,8 @@ public class Gen_f1 extends Gen {
 		return ((Integer)bit==-1);
 	}
 
+	public String toString()
+	{		
+		return  ((Integer)bit).toString();
+	}
 }

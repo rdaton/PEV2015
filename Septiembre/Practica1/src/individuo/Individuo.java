@@ -70,7 +70,9 @@ public  abstract class Individuo {
 	}
 
 	double calculaadaptacion_bruta() {
+		adaptacion_bruta=miFuncion(x);
 		return miFuncion(x);
+		
 	}
 
 	abstract double miFuncion (Object valor);
@@ -128,5 +130,10 @@ public  abstract class Individuo {
 	public void setadaptacion (double adapt) {
 		this.adaptacion=adapt;
 	}
+	
+	//métodos para codif. ordinal
+	
+	abstract List<Gen> ordinalNormal();
+	abstract List<Gen> normalOrdinal();
 
 }

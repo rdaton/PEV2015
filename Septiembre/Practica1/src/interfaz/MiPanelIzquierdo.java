@@ -7,7 +7,12 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -88,11 +93,11 @@ public class MiPanelIzquierdo extends JPanel {
 		lblPoblacion.setPreferredSize(new Dimension (100, 20));
 
 		textPoblacion = new JTextField();
-		textPoblacion.setText("1000");
+		textPoblacion.setText("300");
 		textPoblacion.setPreferredSize(new Dimension (50, 20));
 		
 		textPoblacion2 = new JTextField();
-		textPoblacion2.setText("1000");
+		textPoblacion2.setText("300");
 		textPoblacion2.setPreferredSize(new Dimension (50, 20));
 
 		// GENERACIONES
@@ -100,11 +105,11 @@ public class MiPanelIzquierdo extends JPanel {
 		lblGeneraciones.setPreferredSize(new Dimension (100, 20));
 
 		textIteraciones = new JTextField();
-		textIteraciones.setText("10");
+		textIteraciones.setText("50");
 		textIteraciones.setPreferredSize(new Dimension (50, 20));
 		
 		textIteraciones2 = new JTextField();
-		textIteraciones2.setText("10");
+		textIteraciones2.setText("50");
 		textIteraciones2.setPreferredSize(new Dimension (50, 20));
 
 		// CRUCE %
@@ -254,9 +259,12 @@ public class MiPanelIzquierdo extends JPanel {
 		boolean elitismo = this.checkElitismo.isSelected();
 		int torneo = Integer.valueOf(this.textTorneo.getText());
 		int torneo2 = Integer.valueOf(this.textTorneo2.getText());
-		List<List<Object>> resultados = null;
-		List<List<List<Object>>> listaResultados=new ArrayList();
 		List<String> listaPeores=new ArrayList();
+		List<List<Object>> resultados = null;
+		List<List<List<Object>>> listaResultados=new ArrayList();		
+		List<List> structResultados= Collections.synchronizedList(new ArrayList());
+		structResultados.add(listaPeores);
+		structResultados.add(listaResultados);
 		
 		// EJECUTAMOS FUNCION
 		/*
@@ -269,6 +277,10 @@ public class MiPanelIzquierdo extends JPanel {
 		
 		
 		//Pruebo todas las combinaciones indicadas y saco el mejor resultado
+		//creo pool de threads
+		int cores = Runtime.getRuntime().availableProcessors();
+		ExecutorService executorService = Executors.newFixedThreadPool(cores+1);
+		
 		Funcion1 unaFuncion1=null;
 		elPeor=null;
 		resultados=null;
@@ -296,10 +308,11 @@ public class MiPanelIzquierdo extends JPanel {
 										 if (!totMutacion) 
 											 tM= TipoMutacion.values()[tMutacion];
 										 
-										 rangoWorker unWorker = new rangoWorker(t, p, g, c, m, tC.toInt(), tS.toInt(), tM.toInt(), elitismo);
-										 unWorker.run();
-										  elPeor=(String)unWorker.dameResultados()[0];
-										 resultados=(List<List<Object>>)unWorker.dameResultados()[1];
+										
+										 rangoWorker unWorker = new rangoWorker(structResultados,t, p, g, c, m, tC.toInt(), tS.toInt(), tM.toInt(), elitismo);
+										 executorService.execute(unWorker);								
+										 
+										 
 										 
 										 if(!totMutacion) break; 
 									 }
@@ -313,7 +326,38 @@ public class MiPanelIzquierdo extends JPanel {
 				}
 			}
 		}
-
+		executorService.shutdown(); //doy señal de cierre al  pool de threads
+		try { //espero 24h a que se cierre el pool (un poco exagerado)
+			while (!executorService.awaitTermination(24L, TimeUnit.HOURS)) {
+			    System.out.println("El pool aún no ha acabado");
+			}
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+		
+		//de todos los resultados, cojo el mejor adaptado
+		int contPeor=0;
+		int cont=0;
+		elPeor=(String)structResultados.get(0).get(contPeor);
+		Iterator<String> unIterador=structResultados.get(0).iterator();		
+		while (unIterador.hasNext())
+		{
+			String unChurro=unIterador.next();
+			String valorLetras=unChurro.split("\n")[1];
+			if (Double.parseDouble(valorLetras)<Double.parseDouble(elPeor.split("\n")[1]))
+			{
+				elPeor=unChurro;
+				contPeor=cont;
+			}
+			cont++;
+			
+		}
+		
+		resultados=(List<List<Object>>)structResultados.get(1).get(contPeor);
+		
+		
+		
 		if (resultados == null) { return null; }
 		
 

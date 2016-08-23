@@ -30,5 +30,7 @@ public abstract class Gen {
     }
 
 	abstract public boolean estaVacio();
+	
+	abstract public String toString();
 
 }
