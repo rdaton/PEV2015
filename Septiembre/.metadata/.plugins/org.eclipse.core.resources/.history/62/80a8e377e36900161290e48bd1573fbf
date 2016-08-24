@@ -886,7 +886,7 @@ public class Poblacion {
 		//relleno hijo2 con elementos de padre2 y padre1
 		this.crucePmx_aux(padre2,padre1, hijo2,lcrom);
 		
-		//me sale un hueco huecos fantasma,,, lo relleno si está
+		
 		this.cruceOx_aux(padre1, hijo1, lcrom);
 		this.cruceOx_aux(padre2, hijo1, lcrom);
 		

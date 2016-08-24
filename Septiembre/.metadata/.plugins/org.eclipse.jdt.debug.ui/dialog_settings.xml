@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="conditionHistory">
-		<item value="3" key="conditionHistoryEntryCount"/>
-		<item value="(listaAuxiliar.size()&lt;lcrom)" key="conditionHistoryEntry_0"/>
-		<item value="(debug_l&lt;lcrom)" key="conditionHistoryEntry_1"/>
-		<item value="(lcrom&lt;28)" key="conditionHistoryEntry_2"/>
+		<item value="(debug_l&lt;lcrom)" key="conditionHistoryEntry_6"/>
+		<item value="(lcrom&lt;28)" key="conditionHistoryEntry_7"/>
+		<item value="8" key="conditionHistoryEntryCount"/>
+		<item value="((Integer)unGen.bit)==-1" key="conditionHistoryEntry_0"/>
+		<item value="((Integer)unGen.bit)==-1)" key="conditionHistoryEntry_1"/>
+		<item value="(a==-1) || (b==-1)" key="conditionHistoryEntry_4"/>
+		<item value="(listaAuxiliar.size()&lt;lcrom)" key="conditionHistoryEntry_5"/>
+		<item value="(unGen.bit==-1)" key="conditionHistoryEntry_2"/>
+		<item value="(unGen.bit==-1) || (otroGen.bit==-1)" key="conditionHistoryEntry_3"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.debug.ui.ExpressionInformationControlCreator$ExpressionInformationControl">
 		<item value="500" key="SashWeightTree"/>
 		<item value="500" key="SashWeightDetails"/>
-		<item value="670" key="WIDTH"/>
-		<item value="150" key="HEIGHT"/>
+		<item value="604" key="WIDTH"/>
+		<item value="84" key="HEIGHT"/>
 	</section>
 </section>

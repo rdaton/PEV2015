@@ -886,15 +886,6 @@ public class Poblacion {
 		//relleno hijo2 con elementos de padre2 y padre1
 		this.crucePmx_aux(padre2,padre1, hijo2,lcrom);
 		
-		//me sale un hueco huecos fantasma,,, lo relleno si está
-		this.cruceOx_aux(padre1, hijo1, lcrom);
-		this.cruceOx_aux(padre2, hijo1, lcrom);
-		
-		this.cruceOx_aux(padre2, hijo1, lcrom);
-		this.cruceOx_aux(padre2, hijo2, lcrom);
-		
-		
-		
 		Individuo[] unReturn={hijo1,hijo2};
 		
 		//hijo1.decod();
@@ -1387,10 +1378,8 @@ public class Poblacion {
 		//vuelco los genes nuevos en los hijos
 		for (int i=0;i<lcrom;i++)
 		{
-			Gen unGen=genesHijo1.get((i));
-			hijo1.genes.set(i, unGen.clone());
-			Gen otroGen=genesHijo2.get((i));
-			hijo2.genes.set(i,otroGen.clone());
+			hijo1.genes.set(i, genesHijo1.get((i)).clone());
+			hijo2.genes.set(i, genesHijo2.get((i)).clone());
 		}
 		
 		return unReturn;

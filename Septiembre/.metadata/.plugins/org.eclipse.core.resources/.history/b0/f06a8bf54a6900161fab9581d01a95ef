@@ -816,40 +816,24 @@ public class Poblacion {
 	// == TIPOS DE CRUCES
 	// =========================
 
-	Gen damePareja(Individuo padre1, Individuo padre2, Integer ind)
-	{
-		int pos=padre2.damePosGen(padre2.genes, padre1.genes.get(ind));
-		
-		return padre2.genes.get(pos);
-	}
 	private void crucePmx_aux(Individuo padre1, Individuo padre2, Individuo hijo, int lcrom) {
 		
 		
-		//RELLENO DESDE PRINCIPIOs
-		for (int i=0;i<lcrom;i++) 
-		{ 
-			if (hijo.genes.get(i).estaVacio()) 
-			{
+		//RELLENO DESDE PRINCIPIO
+		for (int i=0;i<lcrom;i++) { 
+			if (hijo.genes.get(i).estaVacio()  ) 
+				{
 				if (!contiene(hijo.genes,padre1.genes.get(i),0,lcrom-1,lcrom))				
 					hijo.genes.set(i, padre1.genes.get(i).clone());			
-				else {
-					Gen unGen=damePareja(padre1,padre2,i);
-					if (!contiene(hijo.genes,unGen,0,lcrom-1,lcrom))				
-						hijo.genes.set(i, unGen.clone());	
-				}
-			}
+				else
+					hijo.genes.set(i, padre2.genes.get(i).clone());
+				}				
+			} 
+		
 			
-					
-		} 
-				
+		
 	}
 	private Individuo[] crucePmxDaton (Individuo padre1, Individuo padre2,int x_min, int x_max) {
-		if (padre1.equals(padre2))
-		{
-			Individuo[] unReturn={padre1.clone(),padre2.clone()};
-			return unReturn;
-		}
-			
 		Integer lcrom = padre1.damelCrom();
 		Individuo hijo1 = padre1.newInstance(x_min, x_max);
 		hijo1.borraGenes(); //genes a -1
@@ -865,6 +849,8 @@ public class Poblacion {
 		{
 			hijo1.genes.set(i, padre2.genes.get(i).clone());
 			hijo2.genes.set(i, padre1.genes.get(i).clone());
+			hijo1.decod();
+			hijo2.decod();
 		}
 
 		/*
@@ -886,19 +872,9 @@ public class Poblacion {
 		//relleno hijo2 con elementos de padre2 y padre1
 		this.crucePmx_aux(padre2,padre1, hijo2,lcrom);
 		
-		//me sale un hueco huecos fantasma,,, lo relleno si está
-		this.cruceOx_aux(padre1, hijo1, lcrom);
-		this.cruceOx_aux(padre2, hijo1, lcrom);
 		
-		this.cruceOx_aux(padre2, hijo1, lcrom);
-		this.cruceOx_aux(padre2, hijo2, lcrom);
-		
-		
-		
-		Individuo[] unReturn={hijo1,hijo2};
-		
-		//hijo1.decod();
-		//hijo2.decod();
+		Individuo[] unReturn = {hijo1,hijo2};
+		hijo2.decod();
 		return unReturn;
 	}
 	
@@ -1387,10 +1363,8 @@ public class Poblacion {
 		//vuelco los genes nuevos en los hijos
 		for (int i=0;i<lcrom;i++)
 		{
-			Gen unGen=genesHijo1.get((i));
-			hijo1.genes.set(i, unGen.clone());
-			Gen otroGen=genesHijo2.get((i));
-			hijo2.genes.set(i,otroGen.clone());
+			hijo1.genes.set(i, genesHijo1.get((i)).clone());
+			hijo2.genes.set(i, genesHijo2.get((i)).clone());
 		}
 		
 		return unReturn;

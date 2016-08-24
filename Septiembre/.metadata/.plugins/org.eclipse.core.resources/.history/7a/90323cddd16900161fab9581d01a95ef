@@ -81,7 +81,7 @@ public  class Individuo_basico extends Individuo{
 	double miFuncion(Object un_valor) {
 		Integer[] otroCrom = (Integer[] )this.x;
 		//AQUI YA TENEMOS CROMOSOMA SIMPLE
-		//debug
+
 		int acumulador = 0;
 		int a = 0;
 		int b = 0;

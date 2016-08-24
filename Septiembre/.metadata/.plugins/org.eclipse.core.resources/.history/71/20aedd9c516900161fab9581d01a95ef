@@ -136,16 +136,4 @@ public  abstract class Individuo {
 	abstract List<Gen> ordinalNormal();
 	abstract List<Gen> normalOrdinal();
 	abstract Integer damePosGen(List<Gen> unaLista, Gen unGen);
-	boolean equals (Individuo individuo2)
-	{
-		boolean eq=true;
-		int i=0;
-		while(eq && (i<lcrom) )
-		{
-			eq=genes.get(i).equals(individuo2.genes.get(i));
-			i++;
-		}
-		
-		return eq;
-	}
 }
