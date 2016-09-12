@@ -1,0 +1,154 @@
+!SESSION 2016-09-05 23:16:39.418 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.debug.core 4 2 2016-09-05 23:17:20.271
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-09-05 23:17:20.277
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-09-05 23:17:20.459
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-09-05 23:17:20.460
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-09-05 23:17:20.638
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-09-05 23:17:20.639
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1263)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleTerminatedProcess(CodeCoverDebugListener.java:91)
+	at org.codecover.eclipse.builder.CodeCoverDebugListener.handleDebugEvents(CodeCoverDebugListener.java:78)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1109)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1143)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:407)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.ui 2 2 2016-09-05 23:18:22.551
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-09-08 19:55:04.104 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-09-08 19:55:35.580
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-09-11 16:24:50.948 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/Septiembre/practica3/Practica1 -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-09-11 17:43:28.233
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-09-11 18:15:56.983 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/Septiembre/practica3/Practica1 -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-09-11 18:42:23.551
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-09-11 18:53:09.928 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/Septiembre/practica3/Practica1 -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-09-12 10:54:25.139
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-09-12 10:57:20.197 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/Septiembre/practica3/Practica1 -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-09-12 12:53:43.749
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2016-09-12 12:57:24.938
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [estado [in [Working copy] TipoFlecha.java [in individuo [in src [in Practica1]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:495)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:529)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:255)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:241)
+	at org.eclipse.jdt.internal.core.SourceRefElement.getSourceRange(SourceRefElement.java:218)
+	at org.eclipse.jdt.internal.core.Member.getJavadocRange(Member.java:272)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource(JavadocContentAccess2.java:564)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:459)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:619)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:565)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:557)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2016-09-12 12:57:24.971
+!MESSAGE estado [in [Working copy] TipoFlecha.java [in individuo [in src [in Practica1]]]] does not exist

@@ -1,0 +1,8 @@
+package individuo;
+
+public class TipoFlecha {
+	enum estado {DOCE,TRES,SEIS,NUEVE};
+	
+	
+
+}

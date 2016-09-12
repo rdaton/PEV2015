@@ -1,0 +1,22 @@
+package individuo;
+
+public class TipoFlecha {
+	enum tipoEstado {NORTE,ESTE,SUR,OESTE};
+	tipoEstado estado;
+	
+	public TipoFlecha()
+	{
+		estado=tipoEstado.ESTE;
+	}
+	
+	int [] dameIncrementos()
+	{
+		int[2] salida;
+		switch (estado)
+		{
+		case NORTE:
+			
+		}
+	}
+
+}

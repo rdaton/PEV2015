@@ -1,0 +1,17 @@
+package individuo;
+
+public class TArbol {
+TArbol padre;
+TArbol[] hijos;
+Tipo tipo;
+int num_nodos;
+// número de nodos
+int profundidad; // profundidad del árbol
+
+public static enum Tipo {
+AVANZA, GIRA_DERECHA, GIRA_IZQUIERDA,
+SIC, PROGN2, PROGN3
+}
+}
+
+

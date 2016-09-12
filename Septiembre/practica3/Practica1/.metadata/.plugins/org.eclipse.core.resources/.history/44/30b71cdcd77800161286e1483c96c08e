@@ -1,0 +1,13 @@
+package individuo;
+
+public class TipoFlecha {
+	enum estado {NORTE,ESTE,SUR,OESTE};
+	
+	public TipoFlecha()
+	{
+		estado=OESTE;
+	}
+	
+	
+
+}

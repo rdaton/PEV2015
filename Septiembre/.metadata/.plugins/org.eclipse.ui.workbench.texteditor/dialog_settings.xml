@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Pmx" key="selection"/>
+		<item value="Mejor" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="mejor"/>
+			<item value="mejor ind"/>
+			<item value="mejorind"/>
+			<item value="tostring"/>
+			<item value="split"/>
 			<item value="pmx"/>
 			<item value="ordinalnormal"/>
 			<item value="crucePmxDaton"/>
-			<item value="borra"/>
-			<item value="lcrom"/>
-			<item value="equ"/>
-			<item value="ordinal"/>
-			<item value="listac"/>
 		</list>
 		<list key="replacehistory">
 			<item value="80"/>
@@ -24,9 +24,9 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="342" key="DIALOG_WIDTH"/>
+		<item value="354" key="DIALOG_WIDTH"/>
 		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="433" key="DIALOG_HEIGHT"/>
+		<item value="442" key="DIALOG_HEIGHT"/>
 		<item value="887" key="DIALOG_X_ORIGIN"/>
 		<item value="142" key="DIALOG_Y_ORIGIN"/>
 	</section>

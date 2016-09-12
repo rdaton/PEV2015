@@ -1,0 +1,11 @@
+package individuo;
+
+public enum TipoFlecha {
+	DOCE,TRES,SEIS,NUEVE;
+	
+	public  TipoFlecha avanza()
+	{
+		
+	}
+
+}

@@ -1,0 +1,27 @@
+package logica;
+
+public enum TipoOperador {
+	AVANZA, GIRA_DERECHA, GIRA_IZQUIERDA, SIC, PROGN2, PROGN3;
+	
+	public String toString()
+	{
+		switch (this) {
+		case AVANZA:
+			return "AVANZA";
+		case GIRA_DERECHA:
+			return "GIRA_DERECHA";
+		case GIRA_IZQUIERDA:
+			return "GIRA_IZQUIERDA";
+		case SIC:
+			return "SIC";
+		case PROGN2:
+			return "PROGN2";
+		case PROGN3:
+			return "PROGN3";
+		default:
+			return "AVANZA";
+		
+		}
+	}
+
+}

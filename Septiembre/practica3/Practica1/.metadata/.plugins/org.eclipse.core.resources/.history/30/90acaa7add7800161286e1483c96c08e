@@ -1,0 +1,106 @@
+package individuo;
+
+public class Tablero {
+	private static final int tamTablero=32;
+	
+	private static final char[][] modeloTablero=
+	    {
+	    ("@ # # # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+	    ("0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+	    ("0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # # # 0 0 0 0").toCharArray(), 
+	    ("0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 # 0 0").toCharArray(),
+	    ("0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 # 0 0").toCharArray(), 
+	    ("0 0 0 # # # # 0 # # # # # 0 0 0 0 0 0 0 0 # # 0 0 0 0 0 0 0 0 0").toCharArray(),
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 # 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 # 0 0 0 0 0 # # # 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 # 0 0 # 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 # 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 # 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 # # 0 0 # # # # # 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 # 0 0 0 0 0 0 # # # # # # # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 # 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 0 0 0 0 0 # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(), 
+		("0 0 # # # # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray(),
+		("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0").toCharArray()
+		};
+	
+	
+	int nPaso;
+	int fila;
+	int columna;
+	TipoFlecha flecha;
+	char[][] tableroComida;
+	int[][]	 tableroPasos;
+	
+    
+
+public Tablero()
+{
+	nPaso=0;
+	fila=0;
+	columna=0;
+	flecha=new TipoFlecha();
+	tableroComida=copiarModeloTablero();
+	tableroPasos=new int[tamTablero][tamTablero];
+}
+
+char[][] copiarModeloTablero()
+{
+	char[][] salida=new char[32][32];
+	for (int i=0;i<tamTablero;i++)
+		for (int j=0;j<tamTablero;j++)
+		{
+			salida[i][j]=modeloTablero[i][j];
+		}
+	return salida;
+}
+
+
+
+boolean esComida(int i, int j)
+{
+	return tableroComida[i][j]=='#';
+}
+
+void visita (int i, int j)
+{
+	int unPaso=nPaso;	
+	if (esComida(i,j))
+	{
+		nPaso*=-1;
+		tableroComida[i][j]=0;
+	};	
+	tableroPasos[i][j]=unPaso;	
+	nPaso++;
+}
+
+
+void avanza()
+{
+}
+
+boolean dereccha()
+{
+
+}
+
+boolean izquierda()
+{
+}
+
+}
