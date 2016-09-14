@@ -1,6 +1,7 @@
 package logica;
 
-public enum TipoOperador {
+public enum TipoOperador 
+{
 	AVANZA, GIRA_DERECHA, GIRA_IZQUIERDA, SIC, PROGN2, PROGN3;
 	
 	public String toString()
@@ -86,5 +87,40 @@ public enum TipoOperador {
 		
 		}
 	}
+	
+	public int aridad()
+	{
+		switch (this) {
+		case AVANZA:
+			return 0;
+		case GIRA_DERECHA:
+			return 0;
+		case GIRA_IZQUIERDA:
+			return 0;
+		case SIC:
+			return 2;
+		case PROGN2:
+			return 2;
+		case PROGN3:
+			return 3;
+		default:
+			return 0;
+		
+		}		
+	
+	}
+	
+	public static TipoOperador operadorAleatorio()
+	{
+		int ind_op=logica.Calculadora.dameRandom(SIC.toInt(), PROGN3.toInt());
+		return TipoOperador.values()[ind_op]; 
+	}
 
+	public static TipoOperador operandoAleatorio()
+	{
+		int ind_op=logica.Calculadora.dameRandom(AVANZA.toInt(), GIRA_IZQUIERDA.toInt());
+		return TipoOperador.values()[ind_op]; 
+	}
 }
+
+

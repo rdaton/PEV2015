@@ -1,52 +1,97 @@
 package individuo;
 
-public class TArbol {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TArbol 
+{
 TArbol padre;
-TArbol[] hijos;
-Tipo tipo;
-int num_nodos;
-// número de nodos
+List<TArbol> hijos;
+logica.TipoOperador operador;
+int num_nodos;// número de nodos
 int profundidad; // profundidad del árbol
-}
 
-/*
- * funcion creaArbol(TArbol arbol,entero prof_min,entero prof_max)
+public TArbol(int prof_min,int prof_max)
 {
-si prof_min > 0 entonces //no puede ser hoja
-// generación del subarbol de operador
-operador = operador_aleatorio; // símbolo de operador aleatorio
-arbol.dato = operador;
-// se generan los hijos
-HI = construir_arbol(arbol.HI, prof_min - 1, prof_max - 1);
-arbol.num_nodos = arbol.num_nodos + arbol.HI.num_nodos;
-si tres_operandos(operador) entonces
-HC = construir_arbol(arbol.HC, prof_min - 1, prof_max - 1);
-arbol.num_nodos = arbol.num_nodos + arbol.HC.num_nodos;
-eoc // dos operandosHC = NULL;
-HD = construir_arbol(arbol.HD, prof_min - 1, prof_max - 1);
-arbol.num_nodos = arbol.num_nodos + arbol.HD.num_nodos;
-eoc // prof_min = 0
-si prof_max = 0 entonces // sólo puede ser hoja
-// generación del subarbol de operando
-operando = operando_aleatorio;
-// símbolo de operando aleatorio
-arbol.dato = operando;
-arbol.num_nodos = arbol.num_nodos + 1;
-eoc
-// se decide aleatoriamente operando u operador
-tipo = aleatorio_cero_uno;
-si tipo = 1 entonces // se genera operador
-// generación del subarbol de operador
-{  }
-eoc // se genera operando
-// generación del subarbol de operando
-{  }
-}
- */
+	if (prof_min > 0)  //no puede ser hoja
+	{
+		// generación del subarbol de operador
+		// símbolo de operador aleatorio
+		operador=logica.TipoOperador.operadorAleatorio();
+		num_nodos++;
+		// se generan los hijos
+		hijos=new ArrayList();
+		TArbol HI=new TArbol(prof_min - 1, prof_max - 1);
+		hijos.add(HI);
+		num_nodos+=HI.num_nodos;
+		if (operador.aridad()==3)
+		{
+			TArbol HC=new TArbol(prof_min - 1, prof_max - 1);
+			hijos.add(HC);
+			num_nodos+=HC.num_nodos;
+		}
+		TArbol HD=new TArbol(prof_min - 1, prof_max - 1);
+		hijos.add(HD);
+		num_nodos+=HD.num_nodos;
+	} //prof_min==0
+	else 
+	{
+		if (prof_max==0) // sólo puede ser hoja
+		{
+			// generación del subarbol de operando
+			// símbolo de operando aleatorio
+			operador=logica.TipoOperador.operandoAleatorio();
+			num_nodos++;
+		}	
+		else
+		{		
+			// se decide aleatoriamente operando u operador
+			int tipo = logica.Calculadora.dameRandom(0,1);
+			if (tipo==1)
+			{// generación del subarbol de operador
+				// símbolo de operador aleatorio
+				operador=logica.TipoOperador.operadorAleatorio();
+				num_nodos++;
+				// se generan los hijos
+				hijos=new ArrayList();
+				TArbol HI=new TArbol(prof_min - 1, prof_max - 1);
+				hijos.add(HI);
+				num_nodos+=HI.num_nodos;
+				if (operador.aridad()==3)
+				{
+					TArbol HC=new TArbol(prof_min - 1, prof_max - 1);
+					hijos.add(HC);
+					num_nodos+=HC.num_nodos;
+				}
+				TArbol HD=new TArbol(prof_min - 1, prof_max - 1);
+				hijos.add(HD);
+				num_nodos+=HD.num_nodos;
+			}
+			
+			else{
+				// generación del subarbol de operando
+				// símbolo de operando aleatorio
+				operador=logica.TipoOperador.operandoAleatorio();
+				num_nodos++;
+			}
+		}
+	}
+} //TArbol()
 
 
-boolean esCorrecto()
+public TArbol [] cruce (TArbol padre1, TArbol padre2)
 {
+	TArbol hijo1=null;
+	TArbol hijo2=null;
+	TArbol[] hijos={hijo1,hijo2};
 	
-	return true;
+	
+	
+	return hijos;
 }
+
+
+}//class Tarbol
+ 
+
+

@@ -10,7 +10,7 @@
 		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
 	</section>
 	<section name="TextSearchPage">
-		<item value="3" key="HISTORY_SIZE"/>
+		<item value="4" key="HISTORY_SIZE"/>
 		<item value="false" key="CASE_SENSITIVE"/>
 		<item value="false" key="REG_EX_SEARCH"/>
 		<item value="false" key="SEARCH_DERIVED"/>
@@ -18,6 +18,17 @@
 			<item value="*.java" key="0"/>
 		</section>
 		<section name="HISTORY2">
+			<item value="true" key="ignoreCase"/>
+			<item value="0" key="scope"/>
+			<item value="inven" key="textPattern"/>
+			<item value="false" key="isRegExSearch"/>
+			<list key="fileNamePatterns">
+				<item value="*.java"/>
+			</list>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY3">
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
 			<item value="*inven*" key="textPattern"/>
@@ -31,7 +42,7 @@
 		<section name="HISTORY0">
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
-			<item value="borra" key="textPattern"/>
+			<item value="dameRandom" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -42,7 +53,7 @@
 		<section name="HISTORY1">
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
-			<item value="inven" key="textPattern"/>
+			<item value="borra" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -71,9 +82,9 @@
 		</list>
 	</section>
 	<section name="DialogBounds_SearchDialog">
-		<item value="609" key="DIALOG_WIDTH"/>
+		<item value="613" key="DIALOG_WIDTH"/>
 		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="448" key="DIALOG_HEIGHT"/>
+		<item value="451" key="DIALOG_HEIGHT"/>
 		<item value="381" key="DIALOG_X_ORIGIN"/>
 		<item value="74" key="DIALOG_Y_ORIGIN"/>
 	</section>

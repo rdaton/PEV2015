@@ -1,0 +1,126 @@
+package logica;
+
+public enum TipoOperador 
+{
+	AVANZA, GIRA_DERECHA, GIRA_IZQUIERDA, SIC, PROGN2, PROGN3;
+	
+	public String toString()
+	{
+		switch (this) {
+		case AVANZA:
+			return "AVANZA";
+		case GIRA_DERECHA:
+			return "GIRA_DERECHA";
+		case GIRA_IZQUIERDA:
+			return "GIRA_IZQUIERDA";
+		case SIC:
+			return "SIC";
+		case PROGN2:
+			return "PROGN2";
+		case PROGN3:
+			return "PROGN3";
+		default:
+			return "AVANZA";
+		
+		}
+	}
+	
+	public int toInt()
+	{
+		switch (this) {
+		case AVANZA:
+			return 0;
+		case GIRA_DERECHA:
+			return 1;
+		case GIRA_IZQUIERDA:
+			return 2;
+		case SIC:
+			return 3;
+		case PROGN2:
+			return 4;
+		case PROGN3:
+			return 5;
+		default:
+			return 0;
+		
+		}
+	}
+	
+	public boolean esFuncion()
+	{
+		switch (this) {
+		case AVANZA:
+			return false;
+		case GIRA_DERECHA:
+			return false;
+		case GIRA_IZQUIERDA:
+			return false;
+		case SIC:
+			return true;
+		case PROGN2:
+			return true;
+		case PROGN3:
+			return true;
+		default:
+			return false;
+		
+		}
+	}
+	
+	public boolean esTerminal()
+	{
+		switch (this) {
+		case AVANZA:
+			return true;
+		case GIRA_DERECHA:
+			return true;
+		case GIRA_IZQUIERDA:
+			return true;
+		case SIC:
+			return false;
+		case PROGN2:
+			return false;
+		case PROGN3:
+			return false;
+		default:
+			return false;
+		
+		}
+	}
+	
+	public int aridad()
+	{
+		switch (this) {
+		case AVANZA:
+			return 0;
+		case GIRA_DERECHA:
+			return 0;
+		case GIRA_IZQUIERDA:
+			return 0;
+		case SIC:
+			return 2;
+		case PROGN2:
+			return 2;
+		case PROGN3:
+			return 3;
+		default:
+			return 0;
+		
+		}		
+	
+	}
+	
+	public staatic TipoOperador operadorAleatorio()
+	{
+		int ind_op=logica.Calculadora.dameRandom(SIC.toInt(), PROGN3.toInt());
+		return TipoOperador.values()[ind_op]; 
+	}
+
+	public TipoOperador operandoAleatorio()
+	{
+		int ind_op=logica.Calculadora.dameRandom(AVANZA.toInt(), GIRA_IZQUIERDA.toInt());
+		return TipoOperador.values()[ind_op]; 
+	}
+}
+
+

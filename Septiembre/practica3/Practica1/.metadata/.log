@@ -152,3 +152,15 @@ Java Model Exception: Java Model Status [estado [in [Working copy] TipoFlecha.ja
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
 !SUBENTRY 1 org.eclipse.jdt.core 4 969 2016-09-12 12:57:24.971
 !MESSAGE estado [in [Working copy] TipoFlecha.java [in individuo [in src [in Practica1]]]] does not exist
+!SESSION 2016-09-14 13:42:17.302 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/Septiembre/practica3/Practica1 -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-09-14 13:42:23.258
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 2 2 2016-09-14 15:09:15.659
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)

@@ -41,26 +41,17 @@
 <part id="5"/>
 <part id="6"/>
 <part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
-<part id="11"/>
-<part id="12"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TArbol.java" partName="TArbol.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/individuo/TArbol.java" title="TArbol.java" tooltip="Practica1/src/individuo/TArbol.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TArbol.java" partName="TArbol.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/individuo/TArbol.java" title="TArbol.java" tooltip="Practica1/src/individuo/TArbol.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/TArbol.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1364" selectionTopPixel="529"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="642" selectionTopPixel="214"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TipoCruce.java" partName="TipoCruce.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/logica/TipoCruce.java" title="TipoCruce.java" tooltip="Practica1/src/logica/TipoCruce.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/logica/TipoCruce.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="176" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tipo.java" partName="Tipo.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/individuo/Tipo.java" title="Tipo.java" tooltip="Practica1/src/individuo/Tipo.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Tipo.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="101" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Poblacion.java" partName="Poblacion.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/individuo/Poblacion.java" title="Poblacion.java" tooltip="Practica1/src/individuo/Poblacion.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Poblacion.java"/>
@@ -68,11 +59,7 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Individuo_basico.java" partName="Individuo_basico.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/individuo/Individuo_basico.java" title="Individuo_basico.java" tooltip="Practica1/src/individuo/Individuo_basico.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Individuo_basico.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2101" selectionTopPixel="2407"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tablero.java" partName="Tablero.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/individuo/Tablero.java" title="Tablero.java" tooltip="Practica1/src/individuo/Tablero.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/Tablero.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2527" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4318" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TipoMutacion.java" partName="TipoMutacion.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/logica/TipoMutacion.java" title="TipoMutacion.java" tooltip="Practica1/src/logica/TipoMutacion.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/logica/TipoMutacion.java"/>
@@ -80,27 +67,15 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TipoOperador.java" partName="TipoOperador.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/logica/TipoOperador.java" title="TipoOperador.java" tooltip="Practica1/src/logica/TipoOperador.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/logica/TipoOperador.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1245" selectionTopPixel="802"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1517" selectionTopPixel="1132"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MiPanelIzquierdo.java" partName="MiPanelIzquierdo.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/interfaz/MiPanelIzquierdo.java" title="MiPanelIzquierdo.java" tooltip="Practica1/src/interfaz/MiPanelIzquierdo.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/interfaz/MiPanelIzquierdo.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="11548" selectionTopPixel="4410"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TipoFlecha.java" partName="TipoFlecha.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/individuo/TipoFlecha.java" title="TipoFlecha.java" tooltip="Practica1/src/individuo/TipoFlecha.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/individuo/TipoFlecha.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="180" selectionTopPixel="121"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="rangoWorker.java" partName="rangoWorker.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/interfaz/rangoWorker.java" title="rangoWorker.java" tooltip="Practica1/src/interfaz/rangoWorker.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/interfaz/rangoWorker.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="16" selectionOffset="494" selectionTopPixel="382"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Funcion1.java" partName="Funcion1.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/control/Funcion1.java" title="Funcion1.java" tooltip="Practica1/src/control/Funcion1.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/control/Funcion1.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2888" selectionTopPixel="982"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AGenetico.java" partName="AGenetico.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/control/AGenetico.java" title="AGenetico.java" tooltip="Practica1/src/control/AGenetico.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/control/AGenetico.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2449" selectionTopPixel="1110"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MiPanelDerecho.java" partName="MiPanelDerecho.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/interfaz/MiPanelDerecho.java" title="MiPanelDerecho.java" tooltip="Practica1/src/interfaz/MiPanelDerecho.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/interfaz/MiPanelDerecho.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2191" selectionTopPixel="592"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Calculadora.java" partName="Calculadora.java" path="/home/barfelix/PEV2015/Septiembre/practica3/Practica1/Practica1/src/logica/Calculadora.java" title="Calculadora.java" tooltip="Practica1/src/logica/Calculadora.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Practica1/src/logica/Calculadora.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="137" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -137,6 +112,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
+<category IMemento.internal.id="Errors"/>
 <category IMemento.internal.id="Warnings"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="397" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
@@ -355,169 +331,163 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/interfaz/MiPanelDerecho.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/interfaz/MiPanelIzquierdo.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wb.core.guiEditor" path="/Practica1/src/interfaz/VistaSwing.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/interfaz/MiPanelIzquierdo.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/interfaz/rangoWorker.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/control/Funcion1.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/control/AGenetico.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Poblacion.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/interfaz/MiPanelDerecho.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Tablero.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/logica/TipoOperador.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/TipoFlecha.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Individuo_basico.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/control/Funcion1.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/control/AGenetico.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/interfaz/MiPanelDerecho.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/TArbol.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/individuo/Tipo.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Practica1/src/logica/Calculadora.java"/>
 </editors>
-<item historyLabel="MiPanelDerecho.java" index="0">
-<position info="not_deleted" x="2440" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="3992" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="1">
-<position info="not_deleted" x="922" y="0"/>
+<item historyLabel="TipoFlecha.java" index="2">
+<position info="not_deleted" x="1130" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="1">
-<position info="not_deleted" x="1252" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="3992" y="0"/>
 </item>
-<item historyLabel="VistaSwing.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="3925" y="0"/>
 </item>
-<item historyLabel="VistaSwing.java" index="2">
-<position info="not_deleted" x="643" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="3967" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="1364" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4043" y="0"/>
 </item>
-<item historyLabel="VistaSwing.java" index="2">
-<position info="not_deleted" x="624" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4101" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="10301" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4341" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="526" y="11"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4385" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="1162" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4830" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="1180" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4168" y="0"/>
 </item>
-<item historyLabel="Funcion1.java" index="5">
-<position info="not_deleted" x="2925" y="19"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4766" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="1180" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="3529" y="0"/>
 </item>
-<item historyLabel="Funcion1.java" index="5">
-<position info="not_deleted" x="2925" y="19"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4766" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="1301" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4766" y="0"/>
 </item>
-<item historyLabel="Funcion1.java" index="5">
-<position info="not_deleted" x="2888" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4515" y="0"/>
 </item>
-<item historyLabel="AGenetico.java" index="6">
-<position info="not_deleted" x="2685" y="20"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4766" y="0"/>
 </item>
-<item historyLabel="AGenetico.java" index="6">
-<position info="not_deleted" x="2886" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4315" y="0"/>
 </item>
-<item historyLabel="AGenetico.java" index="6">
-<position info="not_deleted" x="189" y="23"/>
+<item historyLabel="TipoFlecha.java" index="2">
+<position info="not_deleted" x="180" y="15"/>
 </item>
-<item historyLabel="Poblacion.java" index="7">
-<position info="not_deleted" x="33333" y="10"/>
+<item historyLabel="TipoOperador.java" index="1">
+<position info="not_deleted" x="17" y="88"/>
 </item>
-<item historyLabel="Poblacion.java" index="7">
-<position info="not_deleted" x="1579" y="9"/>
+<item historyLabel="TipoFlecha.java" index="2">
+<position info="not_deleted" x="180" y="15"/>
 </item>
-<item historyLabel="AGenetico.java" index="6">
-<position info="not_deleted" x="2449" y="0"/>
+<item historyLabel="Individuo_basico.java" index="3">
+<position info="not_deleted" x="4318" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="10301" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="4315" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="526" y="11"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="123" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="2080" y="0"/>
+<item historyLabel="TipoOperador.java" index="1">
+<position info="not_deleted" x="17" y="88"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="494" y="16"/>
+<item historyLabel="Individuo_basico.java" index="3">
+<position info="not_deleted" x="4318" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="7">
-<position info="not_deleted" x="1579" y="9"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="123" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="494" y="16"/>
+<item historyLabel="Tipo.java" index="5">
+<position info="not_deleted" x="101" y="0"/>
 </item>
-<item historyLabel="Poblacion.java" index="7">
-<position info="not_deleted" x="1579" y="9"/>
+<item historyLabel="Tipo.java" index="5">
+<position info="not_deleted" x="101" y="0"/>
 </item>
-<item historyLabel="Funcion1.java" index="5">
-<position info="not_deleted" x="2888" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="233" y="0"/>
 </item>
-<item historyLabel="MiPanelDerecho.java" index="8">
-<position info="not_deleted" x="2440" y="0"/>
+<item historyLabel="Calculadora.java" index="6">
+<position info="not_deleted" x="137" y="10"/>
 </item>
-<item historyLabel="Funcion1.java" index="5">
-<position info="not_deleted" x="2888" y="0"/>
+<item historyLabel="TipoOperador.java" index="1">
+<position info="not_deleted" x="17" y="88"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13157" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="233" y="0"/>
 </item>
-<item historyLabel="MiPanelDerecho.java" index="8">
-<position info="not_deleted" x="2191" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="442" y="0"/>
 </item>
-<item historyLabel="Funcion1.java" index="5">
-<position info="not_deleted" x="2888" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="432" y="0"/>
 </item>
-<item historyLabel="rangoWorker.java" index="4">
-<position info="not_deleted" x="494" y="16"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="444" y="0"/>
 </item>
-<item historyLabel="MiPanelDerecho.java" index="8">
-<position info="not_deleted" x="2191" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="442" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13125" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="492" y="0"/>
 </item>
-<item historyLabel="MiPanelDerecho.java" index="8">
-<position info="not_deleted" x="2191" y="0"/>
+<item historyLabel="TipoOperador.java" index="1">
+<position info="not_deleted" x="131" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13125" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="3574" y="0"/>
 </item>
-<item historyLabel="MiPanelDerecho.java" index="8">
-<position info="not_deleted" x="2191" y="0"/>
+<item historyLabel="Individuo_basico.java" index="3">
+<position info="not_deleted" x="4318" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13125" y="0"/>
+<item historyLabel="Tablero.java" index="0">
+<position info="not_deleted" x="3574" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13337" y="0"/>
+<item historyLabel="Individuo_basico.java" index="3">
+<position info="not_deleted" x="4318" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13418" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="492" y="0"/>
 </item>
-<item historyLabel="Individuo_basico.java" index="9">
-<position info="not_deleted" x="2101" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="574" y="0"/>
 </item>
-<item historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13404" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="627" y="0"/>
 </item>
-<item historyLabel="Funcion1.java" index="10">
-<position info="not_deleted" x="2888" y="0"/>
+<item historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="1169" y="0"/>
 </item>
-<item historyLabel="AGenetico.java" index="11">
-<position info="not_deleted" x="2449" y="0"/>
+<item historyLabel="TipoOperador.java" index="1">
+<position info="not_deleted" x="1517" y="0"/>
 </item>
-<item historyLabel="MiPanelDerecho.java" index="12">
-<position info="not_deleted" x="2191" y="0"/>
+<item historyLabel="Individuo_basico.java" index="3">
+<position info="not_deleted" x="4318" y="0"/>
 </item>
-<item active="true" historyLabel="MiPanelIzquierdo.java" index="3">
-<position info="not_deleted" x="13404" y="0"/>
+<item active="true" historyLabel="TArbol.java" index="4">
+<position info="not_deleted" x="1169" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -537,6 +507,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Calculadora.java" tooltip="Practica1/src/logica/Calculadora.java">
+<persistable path="/Practica1/src/logica/Calculadora.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TipoFlecha.java" tooltip="Practica1/src/individuo/TipoFlecha.java">
+<persistable path="/Practica1/src/individuo/TipoFlecha.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Individuo.java" tooltip="Practica1/src/individuo/Individuo.java">
+<persistable path="/Practica1/src/individuo/Individuo.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MiPanelDerecho.java" tooltip="Practica1/src/interfaz/MiPanelDerecho.java">
 <persistable path="/Practica1/src/interfaz/MiPanelDerecho.java"/>
 </file>
@@ -572,12 +551,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tipo.java" tooltip="Practica1/src/individuo/Tipo.java">
 <persistable path="/Practica1/src/individuo/Tipo.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TipoCruce.java" tooltip="Practica1/src/logica/TipoCruce.java">
-<persistable path="/Practica1/src/logica/TipoCruce.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TArbol.java" tooltip="Practica1/src/individuo/TArbol.java">
-<persistable path="/Practica1/src/individuo/TArbol.java"/>
 </file>
 </mruList>
 </workbench>

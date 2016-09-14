@@ -1193,20 +1193,7 @@ public class Poblacion {
 
 
 	private Individuo[] cruceArbol (Individuo padre1, Individuo padre2, int x_min, int x_max) {
-		/*
-		 * TArbol subarbol1, subarbol2;
-entero num_nodos;
-num_nodos=minimo(num_nodos(padre1.arbol),num_nodos(padre2.arbol));
-nodo_cruce = alea_entero(1,num_nodos);
-hijo1.arbol = padre1.arbol;
-hijo2.arbol = padre2.arbol;
-subarbol1 = hijo1.arbol.BuscarNodo(nodo_cruce);
-subarbol2 = hijo2.arbol.BuscarNodo(nodo_cruce);
-hijo1.arbol.SustituirSubarbol(nodo_cruce, subarbol2);
-hijo2.arbol.SustituirSubarbol(nodo_cruce, subarbol1);
-hijo1.adaptacion = adaptacion(hijo1);
-hijo2.adaptacion = adaptacion(hijo2);
-		 */
+		
 		
 	}
 
