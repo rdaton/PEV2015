@@ -54,7 +54,7 @@ public class AGenetico {
 		this.pob.evaluacion();
 		this.pob.desplazar();
 
-		this.pob.pintarPoblacion();
+		
 
 		for (int i=0;i<num_max_gen;i++) {
 

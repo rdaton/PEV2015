@@ -1,0 +1,694 @@
+package individuo;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
+import org.apache.commons.collections4.iterators.PermutationIterator;
+
+import logica.Calculadora;
+import sun.awt.AWTAccessor.SystemColorAccessor;
+
+public class Poblacion {
+
+	private List<Individuo> individuos;
+	private int pos_mejor;
+	private int pos_peor;
+	private int x_min;
+	private int x_max;
+	private double sumadap;
+	private int torneo;
+	private int tam_pob;
+	private int tam_elite;
+	private boolean[] elite;
+	private int[] sel_elite;
+	private boolean elitismo;
+	private int tipoAlgoritmo; //0: MINIMIZACION, 1: MAXIMIZACION
+
+	//==========================================
+	//============= CONSTRUCTORA ===============
+	//==========================================
+
+	public Poblacion(int torneo,int tipoAlgoritmo, Individuo prototipo, int tam_pob, int x_min, int x_max, boolean elitismo) {
+		this.tipoAlgoritmo = tipoAlgoritmo;
+		System.out.println("tipoAlgoritmo => "+tipoAlgoritmo);
+		init();
+		Individuo unIndividuo = null;
+
+		for(int i=0;i<tam_pob;i++) {
+			unIndividuo = prototipo.newInstance(x_min, x_max);
+			individuos.add(unIndividuo);
+		}
+
+		this.x_min = x_min;
+		this.x_max = x_max;
+		this.tam_pob = tam_pob;
+		this.torneo = torneo;
+		this.elitismo = elitismo;
+		this.tam_elite = this.size()*2/100;
+		this.elite = new boolean[this.size()];
+
+		for(int i=0;i<this.size();i++) {
+			elite[i] = false;
+		};
+	}
+
+	// =========================
+	// == METODOS PUBLICOS
+	// =========================
+
+	public Individuo dameMejor() {
+		return individuos.get(pos_mejor);
+	}
+
+	public Individuo damePeor() {
+		return individuos.get(pos_peor);
+	}
+
+	public void evaluacion() {
+		sumadap = 0; 			//SUMA DE LA ADAPTACION
+		double punt_acu = 0;	//PUNTUACION ACUMULADA DE LOS INDIVIDUOS
+		Individuo pIndividuo = null;
+
+		Iterator<Individuo> unIterador = individuos.iterator();
+
+		int i = 0;
+		while(unIterador.hasNext()) {
+			pIndividuo = unIterador.next();
+			sumadap+= pIndividuo.getadaptacion();
+			if((i==0) || pIndividuo.getadaptacion_bruta()>individuos.get(pos_mejor).getadaptacion_bruta()) {
+				pos_mejor=i;
+			}
+			if((i==0) || pIndividuo.getadaptacion_bruta()<individuos.get(pos_peor).getadaptacion_bruta()) {
+				pos_peor=i;
+			}
+			i++;
+		}
+
+		unIterador = individuos.iterator();
+		while(unIterador.hasNext()) {
+			pIndividuo = unIterador.next();
+			pIndividuo.setPuntuacion((double)pIndividuo.getadaptacion()/(double)sumadap);
+			punt_acu+= pIndividuo.getPuntuacion();
+			pIndividuo.setPunt_acu(punt_acu);
+		}
+	}
+
+	public void desplazar() {
+		//MARGEN PARA EVITAR SUMADAPTACION = 0 SI CONVERGE LA POBLACION
+		double maximo = individuos.get(pos_mejor).getadaptacion_bruta()*1.05;
+
+		Iterator<Individuo> unIterador = individuos.iterator();
+		Individuo pIndividuo = null;
+		while(unIterador.hasNext()) {
+			pIndividuo = unIterador.next();
+			pIndividuo.setadaptacion(maximo-pIndividuo.getadaptacion_bruta());
+		}
+	}
+
+	// =========================
+	// == TIPOS DE SELECCION
+	// =========================
+
+	//MUESTREO ESTOCASTICO UNIVERSAL
+	public void seleccionEstadistico() {
+		int[] sel_super = new int[this.size()]; 								//SELECCIONADOS PARA SOBREVIVIR
+		double a = new Random().nextDouble() * (((double) 1) / this.size());
+		double prob; 															//PROBABILIDAD DE SELECCION
+		int pos_super; 															//POSICION DEL SUPERVIVIENTE
+		List<Individuo> pob_aux = new ArrayList<Individuo>(); 					//POBLACION AUXILIAR
+
+		Iterator<Individuo> unIterador = individuos.iterator();
+
+		int j = 0;
+		while(unIterador.hasNext()) {
+			unIterador.next();
+
+			if(this.elite[j])
+				sel_super[j] = j;
+			else {
+				prob = (a + j -1)/this.size();
+				pos_super = 0;
+				while((pos_super<this.size()) && (prob>individuos.get(pos_super).getPunt_acu())) {
+					pos_super++;
+					if(pos_super == this.size()) break;
+				}
+				if(pos_super == this.size())
+					pos_super--;
+				sel_super[j] = pos_super;
+			}
+			j++;
+		}
+
+		//SE GENERA LA POBLACION INTERMEDIA
+		for(int i=0;i<this.size();i++) {
+			pob_aux.add(individuos.get(sel_super[i]).clone());
+		}
+
+		//MACHACO POBLACION ANTERIOR Y LA REEMPLAZO CON LA DE SUPERVIVIENTES
+		init();
+		unIterador = pob_aux.iterator();
+		while(unIterador.hasNext()) {
+			individuos.add(unIterador.next().clone());
+		}
+	}
+
+	public void seleccionTorneo() {
+		double aptitud_mejor = 0;
+		int[] sel_super = new int[this.size()]; 				//SELECCIONADOS PARA SOBREVIVIR
+		int  prob; 												//PROBABILIDAD DE SELECCION
+		int pos_super = 0; 										//POSICION DEL SUPERVIVIENTE
+		List<Individuo> pob_aux = new ArrayList<Individuo>();	//POBLACION AUXILIAR
+
+		Iterator<Individuo> unIterador=individuos.iterator();
+
+		for(int i=0;i<this.size();i++) {
+			if (this.elite[i])
+				sel_super[i]=i;
+			else {
+				for(int j=0;j<this.torneo;j++) {
+					prob = new Random().nextInt(this.size());
+					if(j == 0) {
+						aptitud_mejor = individuos.get(prob).getadaptacion();
+						pos_super = prob;
+					} else if(aptitud_mejor < individuos.get(prob).getadaptacion()) {
+						aptitud_mejor = individuos.get(prob).getadaptacion();
+						pos_super = prob;
+					}
+				}
+				sel_super[i] = pos_super;
+			}
+		}
+
+		//SE GENERA LA POBLACION INTERMEDIA
+		for(int i=0;i<this.size();i++) {
+			pob_aux.add(individuos.get(sel_super[i]).clone());
+		}
+
+		//MACHACO POBLACION ANTERIOR Y LA REEMPLAZO CON LA DE SUPERVIVIENTES
+		init();
+		unIterador = pob_aux.iterator();
+		while(unIterador.hasNext()) {
+			individuos.add(unIterador.next().clone());
+		}
+	}
+
+	public void seleccionRuleta() {
+		int[] sel_super = new int[this.size()]; 				//SELECCIONADOS PARA SOBREVIVIR
+		double prob; 											//PROBABILIDAD DE SELECCION
+		int pos_super; 											//POSICION DEL SUPERVIVIENTE
+		List<Individuo> pob_aux = new ArrayList<Individuo>(); 	//POBLACION AUXILIAR
+
+		Iterator<Individuo> unIterador = individuos.iterator();
+
+		int j = 0;
+		while(unIterador.hasNext()) {
+			unIterador.next();
+			if(this.elite[j])
+				sel_super[j] = j;
+			else {
+				prob = Math.random();
+				pos_super = 0;
+				while((pos_super<this.size()) && (prob>individuos.get(pos_super).getPunt_acu())) {
+					pos_super++;
+					if(pos_super == this.size()) break;
+				}
+				if (pos_super == this.size())
+					pos_super--;
+				sel_super[j] = pos_super;
+			}
+			j++;
+		}
+
+		//SE GENERA LA POBLACION INTERMEDIA
+		for(int i=0;i<this.size();i++) {
+			pob_aux.add(individuos.get(sel_super[i]).clone());
+		}
+
+		//MACHACO POBLACION ANTERIOR Y LA REEMPLAZO CON LA DE SUPERVIVIENTES
+		init();
+		unIterador = pob_aux.iterator();
+		while(unIterador.hasNext()) {
+			individuos.add(unIterador.next().clone());
+		}
+	}
+
+	public void seleccionRanking() {
+		int[] sel_super = new int[this.size()]; 				//SELECCIONADOS PARA SOBREVIVIR
+		double prob; 											//PROBABILIDAD DE SELECCION
+		List<Individuo> pob_aux = new ArrayList<Individuo>(); 	//POBLACION AUXILIAR
+
+		Iterator<Individuo> unIterador = individuos.iterator();
+
+		if(!elitismo) {
+			ordenar_por_adaptacion_ranking();
+		}
+
+		int[] ruleta = new int[this.size()];
+
+		//PRESION SELECTIVA DE RANKING
+		double A = (double)1/(double)(this.size()*0.8);
+		double B = 0;
+		double n = this.size()/8;
+
+		int z = 0;
+		for (int i = 0; z < ruleta.length && n >= 0; i++) {
+			double g = ((A*(n--)+B)*100);
+			if ((g%1.0) >= 0.5) {
+				g = (int)((A*(n+1)+B)*100)+1.0;
+			} else if(g%1.0 >= 0) {
+				g = (int)((A*((n+1))+B)*100);
+			}
+			for (int j = 0; z < this.size() && j < g ; j++, z++) {
+				ruleta[z] = i;
+			}
+		}
+
+		//SELECCIONAMOS PROPORCIONALMENTE SEGUN EL RANGO
+		int j = 0;
+		while(unIterador.hasNext()) {
+			unIterador.next();
+			if(this.elite[j])
+				sel_super[j] = j;
+			else {
+				prob = Math.random()*(double)this.size();
+				if (prob<0) { prob*=-1; }
+				sel_super[j] = ruleta[(int) prob];
+			}
+			j++;
+		}
+
+		//SE GENERA LA POBLACION INTERMEDIA
+		for(int i=0;i<this.size();i++) {
+			pob_aux.add(individuos.get(sel_super[i]).clone());
+		}
+
+		//MACHACO POBLACION ANTERIOR Y LA REEMPLAZO CON LA DE SUPERVIVIENTES
+		init();
+		unIterador = pob_aux.iterator();
+		while(unIterador.hasNext()) {
+			individuos.add(unIterador.next().clone());
+		}
+	}
+
+	public void seleccionRestos() {
+		 //POBLACION AUXILIAR
+        List<Individuo> pob_aux = new ArrayList<Individuo>();
+        //calculo la media
+        double mediaFitness=this.dameMediaAdaptacion();
+        //saco valores relativos
+        Double[] val_relativos= new Double[this.size()];
+        //saco  parte entera de valores relavito
+        int[] val_relativos_int= new int[this.size()];
+        //array de restos
+        double[] restos=new double[this.size()];
+        //array de indices
+        int indices[]=new int[this.size()];
+        for (int i=0;i<this.size();i++)
+        {
+            val_relativos[i]=this.individuos.get(i).getadaptacion_bruta()/mediaFitness;
+            val_relativos_int[i]=val_relativos[i].intValue();
+            restos[i]=val_relativos[i]-val_relativos_int[i];
+        }
+
+        int n=0;
+
+        for (int i=0;i<this.size();i++)
+        {
+            while(n != val_relativos_int[i] && n<this.size())
+            {
+                pob_aux.add(this.individuos.get(i));
+                n++;
+            }
+        }
+
+        int[] indicesOrdenados=bubbleSort(restos);
+
+
+        int r=0;
+        while(n<this.size())
+        {
+            pob_aux.set(n, individuos.get(indicesOrdenados[r]).clone());
+            n++;
+            r++;
+
+        }
+	}
+
+	public void seleccionTruncamiento() {
+		System.out.println("========= seleccionTruncamiento =========");
+		int[] sel_super = new int[this.size()]; 				//SELECCIONADOS PARA SOBREVIVIR
+		double prob; 											//PROBABILIDAD DE SELECCION
+		List<Individuo> pob_aux = new ArrayList<Individuo>(); 	//POBLACION AUXILIAR
+
+		Iterator<Individuo> unIterador = individuos.iterator();
+
+		if(!elitismo) {
+			ordenar_por_adaptacion_ranking();
+		}
+
+		double numerador = 1.0;
+		double p = 3.0;
+		double div = numerador/p;
+		int max_poblacion = (int) ((div)*individuos.size());
+
+
+		//A�ADIMOS PROPORCION DE LA POBLACION
+		for(int i=0;i<max_poblacion;i++) {
+			pob_aux.add(individuos.get(i).clone());
+		}
+
+		div = Math.ceil(div);
+		int tam_pob_aux = pob_aux.size();
+		System.out.println("div: "+div);
+
+		System.out.println("clonamos 1/p veces");
+
+		//POR CADA UNO CLONAMOS 1/P VECES
+		for(int i=0;i<tam_pob_aux;i++) {
+			for(int j=0;j<div;j++) {
+				pob_aux.add(pob_aux.get(i).clone());
+			}
+		}
+
+		tam_pob_aux = pob_aux.size();
+
+		//SI LA POBLACION ES MENOR QUE EL TOTAL LLENMOS DESDE EL INICIO
+		if(pob_aux.size() < individuos.size()) {
+			System.out.println("La poblacion es menor");
+			for(int i=0;i<tam_pob_aux && pob_aux.size() < individuos.size();i++) {
+				for(int j=0;j<div;j++) {
+					pob_aux.add(pob_aux.get(i).clone());
+				}
+			}
+		}
+
+		//MACHACO POBLACION ANTERIOR Y LA REEMPLAZO CON LA DE SUPERVIVIENTES
+		init();
+		unIterador = pob_aux.iterator();
+		while(unIterador.hasNext()) {
+			individuos.add(unIterador.next().clone());
+		}
+
+	}
+
+	public void reproduccion(double prob_cruce, int x_min, int x_max, int tCruce) {
+		System.out.println("========= Reproduccion =========");
+		double sel_cruce[] = new double [this.size()];	//SELECCIONADOS PARA REPRODUCIRSE
+		int num_sel_cruce = 0;							//CONTADOR DE SELECCIONADOS
+		double prob;
+		Individuo hijo1, hijo2;
+
+		//SE ELIGEN LOS INDIVIDUOS A CRUZAR
+		for(int i=0;i<this.size();i++) {
+			//SE GENERAN TAM_POB NúMEROS ALETATORIOS 1, EN [0,1]
+			prob = Math.random();
+			//SE ELIGEN LOS INDIVIDUOS DE LAS POSICIONES I
+			//CON AI< PROB_CRUCE
+			if(prob < prob_cruce) {
+				sel_cruce[num_sel_cruce] = i;
+				num_sel_cruce++;
+			}
+		}
+
+		//EL NUMERO DE SELECCIONADOS SE HACE PAR
+		if ((num_sel_cruce % 2) == 1)
+			num_sel_cruce--;
+
+		//SE CRUZAN LOS INDIVIDUOS ELEGIDOS EN UN PUNTO AL AZAR
+		Individuo[] unReturn = new Individuo[2];
+		System.out.println("tCruce: "+tCruce);
+		System.out.println("num_sel_cruce: "+num_sel_cruce);
+		for(int i=0;i<num_sel_cruce;i+=2) {
+			
+			unReturn = cruceArbol(individuos.get(i), individuos.get(i+1), x_min, x_max);
+				
+			
+			hijo1 = unReturn[0];
+			hijo2 = unReturn[1];
+			hijo1.calculaadaptacion_bruta();
+			hijo1.calculaadaptacion_bruta();
+
+			//LOS NUEVOS INDIVIDUOS SUTITUYEN A SUS PROGENITORES,RESPETANDO LA ELITE
+			if(esMejor(hijo1.getadaptacion_bruta(),individuos.get(i).getadaptacion_bruta()) && !this.elite[i])
+				individuos.set(i,hijo1);
+			if(esMejor(hijo2.getadaptacion_bruta(),individuos.get(i+1).getadaptacion_bruta()) && !this.elite[i+1])
+				individuos.set(i+1,hijo2);
+		}
+	}
+
+	public void mutacion(double prob_mut,int tipoMutacion) {
+		boolean mutado;
+		double prob;
+
+		for(int i=0;i<this.size();i++) {
+			mutado = false;
+			//for(int j=0;j<lcrom && !this.elite[i];j++) {
+				//SE GENERA UN NUMERO ALEATORIO EN [0 1)
+				prob = Math.random();
+				//SE MUTAN AQUELLOS GENES CON PROB < QUE PROB_MUT
+				if(prob<prob_mut && !this.elite[i]) {
+					//individuos.get(i).genes.get(j).muta();
+					//switch ....
+					//MUTACION
+					switch (tipoMutacion) {
+						
+					
+					}
+					mutado = true;
+				}
+
+			if(mutado)
+				individuos.get(i).adaptacion_bruta = individuos.get(i).calculaadaptacion_bruta();
+		}
+
+	}
+
+	public void generarElite() {
+		if(!elitismo) return;
+
+		sel_elite = new int[this.tam_elite]; //seleccionados como la elite
+		elite = new boolean[this.size()];
+
+		for(int i=0;i<tam_elite;i++) {
+			sel_elite[i] = i;
+		}
+
+		ordenar_por_adaptacion();
+
+		for(int i=tam_elite;i<this.size();i++) {
+			int j = 0;
+			while(j<tam_elite && esMejor(individuos.get(sel_elite[j]).getadaptacion_bruta(),individuos.get(i).getadaptacion_bruta())) {
+				j++;
+			}
+			if (j < tam_elite) {
+				insertar_ordenadamente (j, i);
+			}
+		}
+
+		for(int i=0;i<tam_elite;i++) {
+			this.elite[sel_elite[i]] = true;
+		}
+	}
+
+	
+
+	public double dameMediaAdaptacion() {
+		double unaMedia = 0;
+		double total = 0;
+		Iterator<Individuo> unIterador = individuos.iterator();
+		while (unIterador.hasNext()) {
+			total+=(Double)unIterador.next().getadaptacion_bruta();
+		}
+		unaMedia = (double)total/(double) this.size();
+		return unaMedia;
+	}
+
+	// =========================
+	// == METODOS PRIVADOS
+	// =========================
+
+	private int size() {
+		return individuos.size();
+	}
+
+	private void init() {
+		individuos = new ArrayList<Individuo>();
+		pos_mejor = 0;
+		pos_peor = 0;
+		sumadap = 0;
+	}
+
+	private boolean esMejor(Double a, Double b) {
+		switch (this.tipoAlgoritmo) {
+			case 0:
+				return a < b;
+			case 1:
+				return a > b;
+			default:
+				return a < b;
+		}
+	}
+
+	private void insertar_ordenadamente(int pos, int valor) {
+		for (int i=pos+1;i<this.tam_elite;i++) {
+			this.sel_elite[i] = sel_elite[i-1];
+		}
+		sel_elite[pos] = valor;
+	}
+
+	private void ordenar_por_adaptacion() {
+		 int j;
+	     boolean flag = true;
+	     int temp;
+
+	     while(flag) {
+            flag = false;
+            for(j=0;j<tam_elite-1;j++) {
+               if ( esMejor (individuos.get( sel_elite[ j ]).getadaptacion_bruta(), individuos.get( sel_elite[ j+1 ]).getadaptacion_bruta() )) {
+	               temp = sel_elite[ j ];
+	               sel_elite[ j ] = sel_elite[ j+1 ];
+	               sel_elite[ j+1 ] = temp;
+	               flag = true;
+              }
+            }
+	    }
+	}
+
+	private void ordenar_por_adaptacion_ranking() {
+		 int j;
+	     boolean flag = true;
+	     Individuo temp;
+	     int tipoAlgoritmo = this.tipoAlgoritmo;
+	     this.tipoAlgoritmo = 1;
+
+	     while(flag) {
+           flag = false;
+           for(j=0;j<tam_pob-1;j++) {
+              if ( esMejor (individuos.get(j).getadaptacion_bruta(), individuos.get(j+1).getadaptacion_bruta() )) {
+
+            	//COPIAR j
+        	  	temp = individuos.get(j).newInstance(x_min, x_max);
+        	  	for (int i=0;i<individuos.get(j).lcrom;i++) {
+        	  		temp.genes.set(i, individuos.get(j).genes.get(i));
+				}
+        	  	temp.decod();
+        	  	temp.adaptacion_bruta = individuos.get(j).adaptacion_bruta;
+        	  	temp.setadaptacion(individuos.get(j).getadaptacion());
+        	  	temp.setPuntuacion( individuos.get(j).getPuntuacion());
+        	  	temp.setPunt_acu( individuos.get(j).getPunt_acu());
+
+        	  	//COPIAR j = j+1
+				for (int i=0;i<individuos.get(j+1).lcrom;i++) {
+					individuos.get(j).genes.set(i, individuos.get(j+1).genes.get(i));
+				}
+				individuos.get(j).decod();
+				individuos.get(j).adaptacion_bruta = individuos.get(j+1).adaptacion_bruta;
+				individuos.get(j).setadaptacion(individuos.get(j+1).getadaptacion());
+				individuos.get(j).setPuntuacion( individuos.get(j+1).getPuntuacion());
+				individuos.get(j).setPunt_acu( individuos.get(j+1).getPunt_acu());
+
+				//COPIAR j+1 = TEMP
+				for (int i=0;i<temp.lcrom;i++) {
+					individuos.get(j+1).genes.set(i, temp.genes.get(i));
+				}
+				individuos.get(j+1).decod();
+				individuos.get(j+1).adaptacion_bruta = temp.adaptacion_bruta;
+				individuos.get(j+1).setadaptacion(temp.getadaptacion());
+				individuos.get(j+1).setPuntuacion(temp.getPuntuacion());
+				individuos.get(j+1).setPunt_acu(temp.getPunt_acu());
+
+				flag = true;
+             }
+           }
+	    }
+
+	    this.tipoAlgoritmo = tipoAlgoritmo;
+	}
+
+	private int[] bubbleSort(double[] arr) {
+        int indices[]=new int[this.size()];
+        for (int i=0;i<this.size();i++)
+        {
+            indices[i]=i;
+        }
+
+
+          boolean swapped = true;
+          int j = 0;
+          int tmp;
+          while (swapped) {
+                swapped = false;
+                j++;
+                for (int i = 0; i < this.size() - j; i++) {
+                      if (arr[i] <= arr[i+1]) {
+                            tmp = indices[i];
+                            indices[i]=indices[i + 1];
+                            indices[i+1] = tmp;
+                            swapped = true;
+                      }
+                }
+          }
+
+          return indices;
+
+    }
+
+	
+
+	private boolean contiene (Integer[] cadena, int num) {
+		boolean enc = false;
+		int i = 0;
+		while(!enc&&i<cadena.length) {
+			enc = cadena[i].intValue() == num;
+			i++;
+		}
+		return enc;
+	}
+
+	private void damePosiciones(Integer[] cadena, int lcrom) {
+		for (int i=0;i<cadena.length;i++) {
+			cadena[i] = -1;
+		}
+		int ret = 0;
+		int a = Calculadora.dameRandom(0, lcrom-1);
+		for (int i=0;i<cadena.length;i++) {
+			while(contiene(cadena,a)) {
+				a = Calculadora.dameRandom(0, lcrom-1);
+			}
+			cadena[i] = new Integer(a);
+		}
+	}
+
+	
+
+	
+
+	// =========================
+	// == TIPOS DE CRUCES
+	// =========================
+
+	private Individuo[] cruceArbol (Individuo padre1, Individuo padre2, int x_min, int x_max) {
+		Individuo hijo1 = padre1.newInstance(x_min, x_max);
+		Individuo hijo2 = padre2.newInstance(x_min, x_max);
+		Individuo[] unReturn = {hijo1,hijo2};
+		
+		
+		return unReturn;
+	}
+
+	// =========================
+	// == TIPOS DE MUTACION
+	// =========================
+
+	
+
+	
+
+
+
+	
+
+}

@@ -391,12 +391,11 @@ public class Poblacion {
 		while(unIterador.hasNext()) {
 			individuos.add(unIterador.next().clone());
 		}
-		pintarPoblacion();
+
 	}
 
 	public void reproduccion(double prob_cruce, int x_min, int x_max, int tCruce) {
 		System.out.println("========= Reproduccion =========");
-		int lcrom = individuos.get(0).damelCrom();
 		double sel_cruce[] = new double [this.size()];	//SELECCIONADOS PARA REPRODUCIRSE
 		int num_sel_cruce = 0;							//CONTADOR DE SELECCIONADOS
 		double prob;
@@ -419,7 +418,6 @@ public class Poblacion {
 			num_sel_cruce--;
 
 		//SE CRUZAN LOS INDIVIDUOS ELEGIDOS EN UN PUNTO AL AZAR
-		int punto_cruce = 0 + (int)(Math.random() * ((lcrom-0) + 1));
 		Individuo[] unReturn = new Individuo[2];
 		System.out.println("tCruce: "+tCruce);
 		System.out.println("num_sel_cruce: "+num_sel_cruce);
@@ -430,9 +428,7 @@ public class Poblacion {
 			
 			hijo1 = unReturn[0];
 			hijo2 = unReturn[1];
-			hijo1.decod();
 			hijo1.calculaadaptacion_bruta();
-			hijo2.decod();
 			hijo1.calculaadaptacion_bruta();
 
 			//LOS NUEVOS INDIVIDUOS SUTITUYEN A SUS PROGENITORES,RESPETANDO LA ELITE
@@ -458,24 +454,8 @@ public class Poblacion {
 					//switch ....
 					//MUTACION
 					switch (tipoMutacion) {
-						case 0:
-							mutacionInsercion(i);
-							break;
-						case 1:
-							mutacionIntercambio(i);
-							break;
-						case 2:
-							mutacionInversion(i);
-							break;
-						case 3:
-							mutacionHeuristicaDaton(i);
-							break;
-						case 4:
-							mutacionPropia(i);
-							break;
-						default:
-							mutacionInsercion(i);
-							break;
+						
+					
 					}
 					mutado = true;
 				}
@@ -513,15 +493,7 @@ public class Poblacion {
 		}
 	}
 
-	public static boolean contiene(List<Gen> unCromosoma, Gen unGen, int a, int b , int lcrom) {
-		boolean ret = false;
-		int i = a;
-		while((!ret) && i<=b && i<lcrom ) {
-			ret=unCromosoma.get(i).equals(unGen);
-			i++;
-		}
-		return ret;
-	}
+	
 
 	public double dameMediaAdaptacion() {
 		double unaMedia = 0;
@@ -599,30 +571,21 @@ public class Poblacion {
 
             	//COPIAR j
         	  	temp = individuos.get(j).newInstance(x_min, x_max);
-        	  	for (int i=0;i<individuos.get(j).lcrom;i++) {
-        	  		temp.genes.set(i, individuos.get(j).genes.get(i));
-				}
-        	  	temp.decod();
+        	  	temp.genes=individuos.get(j).genes.clone();
         	  	temp.adaptacion_bruta = individuos.get(j).adaptacion_bruta;
         	  	temp.setadaptacion(individuos.get(j).getadaptacion());
         	  	temp.setPuntuacion( individuos.get(j).getPuntuacion());
         	  	temp.setPunt_acu( individuos.get(j).getPunt_acu());
 
         	  	//COPIAR j = j+1
-				for (int i=0;i<individuos.get(j+1).lcrom;i++) {
-					individuos.get(j).genes.set(i, individuos.get(j+1).genes.get(i));
-				}
-				individuos.get(j).decod();
+				individuos.get(j).genes=individuos.get(j+1).genes.clone();
 				individuos.get(j).adaptacion_bruta = individuos.get(j+1).adaptacion_bruta;
 				individuos.get(j).setadaptacion(individuos.get(j+1).getadaptacion());
 				individuos.get(j).setPuntuacion( individuos.get(j+1).getPuntuacion());
 				individuos.get(j).setPunt_acu( individuos.get(j+1).getPunt_acu());
 
 				//COPIAR j+1 = TEMP
-				for (int i=0;i<temp.lcrom;i++) {
-					individuos.get(j+1).genes.set(i, temp.genes.get(i));
-				}
-				individuos.get(j+1).decod();
+				individuos.get(j+1).genes=temp.genes.clone();
 				individuos.get(j+1).adaptacion_bruta = temp.adaptacion_bruta;
 				individuos.get(j+1).setadaptacion(temp.getadaptacion());
 				individuos.get(j+1).setPuntuacion(temp.getPuntuacion());
@@ -664,35 +627,7 @@ public class Poblacion {
 
     }
 
-	//RELLENA HUECOS .. DESDE EL PRINCIPIO
-	private void cruceOx_aux(Individuo padre,Individuo hijo, int lcrom) {
-		int r = 0;
-		int i = 0;
-		//RELLENO DESDE PRINCIPIO
-		while(i<lcrom && r < lcrom) { //&&RELLENADOS<MAXRELLENAR)
-			if (hijo.genes.get(r).estaVacio()) {
-				if (!contiene(hijo.genes,padre.genes.get(i),0,lcrom-1,lcrom)) {
-					hijo.genes.set(r, padre.genes.get(i).clone());
-					r++;
-				}
-				i++;
-			} else {
-				r++;
-			}
-			hijo.decod(); //debug
-		}
-	}
-
-	private int cruceOxPosPriorPunto_aux(Individuo padre, Individuo hijo,int lcrom) {
-		int a = 0;
-		boolean seguir = true;
-		//SACO INDICES RANDOM QUE ME SIRVAN PARA HIJO1
-		while (seguir) {
-			a = Calculadora.dameRandom(0, lcrom-1);
-			seguir = (!hijo.genes.get(a).estaVacio() || contiene(hijo.genes,padre.genes.get(a),0,lcrom-1,lcrom));
-		}
-		return a;
-	}
+	
 
 	private boolean contiene (Integer[] cadena, int num) {
 		boolean enc = false;
@@ -718,500 +653,34 @@ public class Poblacion {
 		}
 	}
 
-	//BUSCA LOS VALORES ELEGIDOS DE PADRE1, EN PADRE2
-	private Integer[] cruceOxOrdPrior_transforma(Individuo padre1,Individuo padre2, Integer[] cadena,int lcrom) {
-		Integer[] unaCadena=new Integer[cadena.length];
-		for (int i=0;i<cadena.length;i++) {
-			int r = 0;
-			boolean enc = false;
-			while (!enc && r<lcrom) {
-				enc = padre1.genes.get(cadena[i]).equals(padre2.genes.get(r));
-				if (!enc) r++;
-			}
-			unaCadena[i] = r;
-		}
-		return unaCadena;
-	}
+	
 
-	private void antiCopiaOX(Individuo padre, Individuo hijo, Integer[] cadena, int lcrom) {
-		for (int i=0;i<lcrom; i++) {
-			if (!contiene(cadena,i)) {
-				hijo.genes.set(i, padre.genes.get(i));
-			}
-		}
-	}
-
-	//PROFUNDIZA DEMASIADO, HACE FALTA ABSTRAER
-	//¡GRAN CHAPUZA!
-	private void construirRecomb(Individuo hijo,Gen unGen,int[][] unaMatriz,int lcrom) {
-		Integer[] listaPos = new Integer[lcrom];
-		for (int i=1;i<listaPos.length;i++) {
-			listaPos[i] = -1;
-		}
-		//EMPIEZO CON PRIMERA CIUDAD DEL PADRE (unGen)
-		listaPos[0] = (Integer)unGen.clone().bit;
-		hijo.genes.set(0,unGen.clone());
-
-		boolean bloqueo = true;
-		while(bloqueo) {
-			for (int i=1;i<lcrom;i++) {
-				listaPos[i] = dameMenosConectada(i-1,unaMatriz,listaPos,lcrom);
-			}
-			bloqueo = esBloqueo(listaPos, unaMatriz);
-		}
-
-		//UNA VEZ GENERADO , CONVIERTO LA SECUENCIA A GENES
-		//CHAPUZA
-		for (int i=1;i<lcrom;i++) {
-			hijo.genes.set(i, new Gen_f1(listaPos[i]));
-		}
-	}
-
-	//BASICAMETNE NO HACE NADA, PORQUE TODAS ESTáN IGUA DE CONECTADAS
-	//HACE RANDOMS'S
-	private int dameMenosConectada(int ciudad, int[][] unaMatriz, Integer[] listaPos, int lcrom) {
-		int a = Calculadora.dameRandom(0, lcrom-1);
-		while(contiene(listaPos,a)) {
-			a = Calculadora.dameRandom(0, lcrom-1);
-		}
-		listaPos[ciudad+1] = new Integer(a);
-		return a;
-	}
-
-	//¿ES ESTE CROMOSOMA VIABLE?
-	boolean esBloqueo(Integer[]ListaPos, int[][] unaMatriz) {
-		return false;
-	}
-
-	private void swapGen(List<Gen> listaGenes ,int a, int b) {
-		if (a==b) return;
-		Gen g3 = listaGenes.get(a).clone();
-		listaGenes.set(a, listaGenes.get(b).clone());
-		listaGenes.set(b,g3);
-	}
+	
 
 	// =========================
 	// == TIPOS DE CRUCES
 	// =========================
 
-	
+	private Individuo[] cruceArbol (Individuo padre1, Individuo padre2, int x_min, int x_max) {
+		Individuo hijo1 = padre1.newInstance(x_min, x_max);
+		Individuo hijo2 = padre2.newInstance(x_min, x_max);
+		Individuo[] unReturn={hijo1,hijo2};
+		TArbol[] arbolesHijos = TArbol.cruce(padre1.genes, padre2.genes);
+		hijo1.genes=arbolesHijos[0];
+		hijo2.genes=arbolesHijos[1];		
+		return unReturn;
+	}
+
 	// =========================
 	// == TIPOS DE MUTACION
 	// =========================
 
-	private void mutacionInsercion(int ind) {
-		Individuo unIndividuo = individuos.get(ind);
-		int lcrom = unIndividuo.lcrom;
-		int numeroInserciones = Calculadora.dameRandom(1, lcrom-1);
-		int unIndice = 0;
-		int otroIndice = 0;
-		Gen unGen = null;
-		List<Gen> listaAuxiliar = new ArrayList<Gen>();
-		for (int i=0;i<numeroInserciones;i++) {
-			unIndice = Calculadora.dameRandom(0,lcrom-1);
-			if(unIndice+1 == lcrom) {
-				otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
-			} else {
-				otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
-			}
-			//GUARDO COPIA DE ELEMENTO QUE VOY A MACHACAR
-			unGen = unIndividuo.genes.get(otroIndice);
-			//ENCADENO DOS LISTAS
-			for (int k=0;k<=unIndice;k++) {
-				if (k != unIndice)
-					listaAuxiliar.add(unIndividuo.genes.get(k));
-				else
-					listaAuxiliar.add(unIndividuo.genes.get(otroIndice));
-			}
-		    for (int k=unIndice;k<lcrom;k++) {
-		    	if (k != otroIndice)
-		    		listaAuxiliar.add(unIndividuo.genes.get(k));
+	//private void mutacion(int ind) {
 
-		    }
-		    //COPIO LA LISTA ENCADENADA EN INDIVIDUO
-		    for (int k=0;k<lcrom;k++) {
-		    	unIndividuo.genes.set(k, listaAuxiliar.get(k));
-		    }
-		    unIndividuo.decod();
-		}
-	}
-
-	private void mutacionIntercambio(int i) {
-		Individuo unIndividuo=individuos.get(i);
-		int lcrom = unIndividuo.lcrom;
-		int a = Calculadora.dameRandom(0, lcrom-1);
-		int b = Calculadora.dameRandom(0, lcrom-1);
-
-		while (a==b)
-			b = Calculadora.dameRandom(0, lcrom-1);
-
-		swapGen(unIndividuo.genes,a,b);
-		
-		unIndividuo.decod();
-	}
-
-	private void mutacionInversion(int ind) {
-		Individuo unIndividuo = individuos.get(ind);
-		int lcrom = unIndividuo.lcrom;
-		int unIndice = 0;
-		int otroIndice = 0;
-		unIndice = Calculadora.dameRandom(0,lcrom-1);
-		if(unIndice == lcrom-1) {
-			otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
-		} else {
-			otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
-		}
-		boolean esPar = ((otroIndice-unIndice+1) %2 ==0);
-		int dist = ((otroIndice-unIndice+1)/2);
-		if (!esPar) dist++;
-
-		for (int i=0;i<dist;i++) {
-			this.swapGen(unIndividuo.genes, unIndice+i, otroIndice-i);
-		}
-		unIndividuo.decod();
-	}
-
-	private static int getRandom(Individuo unIndividuo) {
-		int limit = unIndividuo.lcrom-1;
-	    int rnd = (int)(Math.random()*(limit-0+1)+0);
-	    return rnd;
-	    //return (Integer) unIndividuo.genes.get(rnd).bit;
-	}
-
-	private static int getFactorial (int n) {
-		int result;
-		if(n==1 || n==0) {
-			return 1;
-		}
-		result = getFactorial(n-1)*n;
-		return result;
-	}
-
-	private static String[] permutar(String cadena,int p) {
-		String[] per = new String[p];
-		int l = cadena.length();
-		int d = p/l;
-		String[] aux = permutacion(cadena);
-		int pos = 0;
-
-		if(p==1||l==1) {
-			per[0] = cadena;
-			return per;
-		}
-
-		for(int i=0;i<aux.length;i++) {
-			String[] auxiliar = permutar(aux[i].substring(1),getFactorial(l-1));
-			for(int j=0;j<auxiliar.length;j++) {
-				per[pos]=aux[i].charAt(0)+auxiliar[j];
-				pos++;
-			}
-		}
-		return per;
-	}
-
-	private static String[] permutacion(String cadena) {
-		int n = cadena.length();
-		String temporal = "";
-		String[] vector = new String[n];
-		vector[0] = cadena;
-		for(int i=1;i<n;i++) {
-			for(int j=0;j<n;j++) {
-				if(j==n-1) {
-					temporal = cadena.charAt(j)+temporal;
-				} else {
-					temporal += cadena.charAt(j);
-				}
-			}
-			cadena = temporal;
-			vector[i] = temporal;
-			temporal = "";
-		}
-		return vector;
-	}
-
-	private static void mostrar (List<Integer> permutados) {
-		for(int i= 0; i< permutados.size();i++) {
-			System.out.println(permutados.get(i));
-		}
-	}
-
-	private static void mostrarS (List<String> permutados) {
-		for(int i= 0; i< permutados.size();i++) {
-			System.out.println(permutados.get(i));
-		}
-	}
-
-	private static void mostrar (String[] permutadosAux) {
-		for(int i= 0; i< permutadosAux.length;i++) {
-			System.out.println(permutadosAux[i]);
-		}
-	}
-
-	private static void mostrar (Individuo unIndividuo) {
-		String hijo1S = "{";
-		for (int i=0;i<unIndividuo.lcrom;i++) {
-			hijo1S += unIndividuo.genes.get(i).bit+", ";
-		}
-		hijo1S += "}";
-		System.out.println("hijo1 => "+hijo1S);
-	}
-
-	List<List<Integer>> permutaDaton(List<Integer> unArray)
-	{
-		List<List<Integer>> unaLista=new ArrayList();
-		Iterator<List<Integer>> unIterador= new PermutationIterator (unArray);
-		while (unIterador.hasNext())
-		{
-			unaLista.add(unIterador.next());
-		}
-		
-		return unaLista;
-	}
 	
-	//reorganizo genes tal como me dice el indice
-	private void heurAux (Individuo unIndividuo,Individuo otroIndividuo,List<Integer> original,List<Integer> mutado)
-	{		
-		for (int i=0;i<mutado.size();i++)
-		{
-			otroIndividuo.genes.set(mutado.get(i), unIndividuo.genes.get(original.get(i)));
-		}
-	}
+
+
+
 	
-	//usa indices... no entra a ver lo que contienen los genes
-	//así es más generico y más sencillo
-	private void mutacionHeuristicaDaton(int ind)
-	{
-		//puntero al individuo en cuestión
-		Individuo unIndividuo=individuos.get(ind);
-		int lcrom=unIndividuo.lcrom;
-		
-		//genero n posiciones aleatorias
-		int n=3;
-		List<Integer> pos=new ArrayList();
-		for (int i=0;i<n;i++)
-		{
-			boolean enc=true;
-			int num=0;
-			while (enc)
-			{
-				num=Calculadora.dameRandom(0, lcrom-1);
-				enc=pos.contains(num);
-			}
-			pos.add(num);
-		}
-		
-		List<List<Integer>> listaPermutaciones=permutaDaton(pos);
-		//ahora que tengo la lista de permutaciones, genero los posibles individuos
-		List<Individuo> unaListaIndividuos=new ArrayList();
-		Individuo otroIndividuo=null;
-		//la primera permutación de todas, es la original... que no la toco
-		unaListaIndividuos.add(unIndividuo);
-		int posMejor=0;
-		for (int i=1;i<listaPermutaciones.size();i++)
-		{
-			otroIndividuo=unIndividuo.clone();
-			heurAux(unIndividuo,otroIndividuo,pos,listaPermutaciones.get(i));
-			otroIndividuo.decod();
-			otroIndividuo.calculaadaptacion_bruta();
-			//si la adaptación bruta es más optimizada, me guardo el individuo como el mejor
-			if (otroIndividuo.getadaptacion_bruta()<unaListaIndividuos.get(posMejor).getadaptacion_bruta())
-				posMejor=i;
-			unaListaIndividuos.add(otroIndividuo);
-		}
-		
-		//ya sé cuál es el mejor indviduo de las permutaciones .... me lo guardo en ind
-		if (posMejor>0)
-			individuos.set(ind, unaListaIndividuos.get(posMejor));		
-	}
-	
-	private void mutacionHeuristica(int i) {
-		System.out.println(" ======= MUTACION HEURISTICA ===========");
-		Individuo unIndividuo = individuos.get(i);
-		int lcrom = unIndividuo.lcrom;
-		int n = 3;
-
-		String individuo = "{";
-		for (int j=0;j<lcrom;j++) {
-			individuo += unIndividuo.genes.get(j).bit+", ";
-		}
-		individuo += "}";
-		System.out.println("Individuo => "+individuo);
-
-		List<Integer> arrayEnteros = new ArrayList<Integer>();
-		List<Integer> arrayPosiciones = new ArrayList<Integer>();
-
-		//OBTENEMOS ELEMENTOS AL AZAR
-		for(int j=0;j<n;j++) {
-			int posicion = Calculadora.dameRandom(0, lcrom-1);
-			int numero = (Integer) unIndividuo.genes.get(posicion).bit;
-			boolean esta = false;
-			for(int l=0;l<arrayEnteros.size();l++) {
-				if(arrayEnteros.get(l) == numero) {
-					esta = true;
-					break;
-				}
-			}
-			if(!esta) {
-				arrayEnteros.add(numero);
-				arrayPosiciones.add(posicion);
-			} else {
-				j--;
-			}
-		}
-
-		//ORDENAMOS LAS POSICIONES
-		Collections.sort(arrayPosiciones);
-
-		//PASAMOS A STRING
-		String permutar = "";
-		for(int j=0;j<arrayEnteros.size();j++) {
-			System.out.println("arrayEntero(j): "+arrayEnteros.get(j) + ", posicion(j): "+arrayPosiciones.get(j));
-			permutar += arrayEnteros.get(j).toString();
-		}
-		System.out.println("p: "+permutar);
-
-		//PERMUTAMOS
-		int pr = getFactorial(permutar.length());
-		String[] permutados = permutar(permutar,pr);
-
-		System.out.println("PERMUTADOS String");
-		mostrar(permutados);
-
-		//CREAMOS LOS HIJOS MUTADOS
-		List<Individuo> MutadosHeuristica = new ArrayList<Individuo>();
-		for(int k=0;k<permutados.length;k++) {
-			//SEPARAMOS
-			String actual = permutados[k];
-			char[] aCaracteres = actual.toCharArray();
-			List<String> permutado = new ArrayList<String>();
-			for (int x=0;x<aCaracteres.length;x++) {
-				permutado.add(String.valueOf(aCaracteres[x]));
-			}
-			//CREAMOS UN INDIVIDUO
-			Individuo unIndividuoAux = individuos.get(i).clone();
-			unIndividuoAux.borraGenes();
-			for (int m=0;m<lcrom;m++) {
-				unIndividuoAux.genes.set(m, individuos.get(i).genes.get(m).clone());
-			}
-			for(int j=0;j<n;j++) {
-				unIndividuoAux.genes.get(arrayPosiciones.get(j)).bit = Integer.parseInt(permutado.get(j));
-			}
-			//A�ADIMOS
-			MutadosHeuristica.add(unIndividuoAux);
-		}
-
-		System.out.println("HIJOS PERMUTADOS");
-		for(int p=0;p<MutadosHeuristica.size();p++){
-			mostrar(MutadosHeuristica.get(p));
-		}
-
-		//CALCULAMOS LA ADAPTACION DE TODOS
-		List<Double> adaptaciones = new ArrayList<Double>();
-		for(int h=0;h<MutadosHeuristica.size();h++) {
-			MutadosHeuristica.get(h).decod();
-			MutadosHeuristica.get(h).adaptacion_bruta = MutadosHeuristica.get(h).calculaadaptacion_bruta();
-			adaptaciones.add(MutadosHeuristica.get(h).adaptacion_bruta);
-			System.out.println("Adaptacion: "+MutadosHeuristica.get(h).adaptacion_bruta);
-		}
-
-		//ORDENAMOS POR ADAPTACION
-		Collections.sort(adaptaciones);
-		double Mejor = adaptaciones.get(adaptaciones.size()-1);
-
-		//OBTENEMOS EL MEJOR
-		for(int h=0;h<MutadosHeuristica.size();h++) {
-			if(MutadosHeuristica.get(h).adaptacion_bruta == Mejor) {
-				for (int k=0;k<lcrom;k++) {
-			    	unIndividuo.genes.set(k, MutadosHeuristica.get(h).genes.get(k));
-			    }
-			    unIndividuo.decod();
-			    break;
-			}
-		}
-		System.out.println("PERMUTADO MEJOR");
-		mostrar( unIndividuo );
-	}
-
-	//mutación propia: inversión y luego inserción
-	private void mutacionPropia(int ind) {
-		Individuo unIndividuo = individuos.get(ind);
-		int lcrom = unIndividuo.lcrom;
-		int numeroInserciones = Calculadora.dameRandom(1, lcrom-1);
-		int unIndice = 0;
-		int otroIndice = 0;
-		Gen unGen = null;
-		List<Gen> listaAuxiliar = new ArrayList<Gen>();
-		for (int i=0;i<numeroInserciones;i++) {
-			unIndice = Calculadora.dameRandom(0,lcrom-1);
-			if(unIndice+1 == lcrom) {
-				otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
-			} else {
-				otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
-			}
-			//GUARDO COPIA DE ELEMENTO QUE VOY A MACHACAR
-			unGen = unIndividuo.genes.get(otroIndice);
-			//ENCADENO DOS LISTAS
-			for (int k=0;k<=unIndice;k++) {
-				if (k != unIndice)
-					listaAuxiliar.add(unIndividuo.genes.get(k));
-				else
-					listaAuxiliar.add(unIndividuo.genes.get(otroIndice));
-			}
-		    for (int k=unIndice;k<lcrom;k++) {
-		    	if (k != otroIndice)
-		    		listaAuxiliar.add(unIndividuo.genes.get(k));
-
-		    }
-		    //COPIO LA LISTA ENCADENADA EN INDIVIDUO
-		    for (int k=0;k<lcrom;k++) {
-		    	unIndividuo.genes.set(k, listaAuxiliar.get(k));
-		    }
-		    unIndividuo.decod();
-		}
-		    //inversión
-		    lcrom = unIndividuo.lcrom;
-			unIndice = 0;
-			otroIndice = 0;
-			unIndice = Calculadora.dameRandom(0,lcrom-1);
-			if(unIndice == lcrom-1) {
-				otroIndice = Calculadora.dameRandom(unIndice,lcrom-1);
-			} else {
-				otroIndice = Calculadora.dameRandom(unIndice+1,lcrom-1);
-			}
-			boolean esPar = ((otroIndice-unIndice+1) %2 ==0);
-			int dist = ((otroIndice-unIndice+1)/2);
-			if (!esPar) dist++;
-
-			for (int i=0;i<dist;i++) {
-				this.swapGen(unIndividuo.genes, unIndice+i, otroIndice-i);
-			}
-			unIndividuo.decod();
-		
-		
-		
-	}
-
-
-	private Individuo[] cruceArbol (Individuo padre1, Individuo padre2, int x_min, int x_max) {
-		
-		
-	}
-
-
-
-
-	public void pintarPoblacion() {
-		System.out.println("==============================");
-		System.out.println("---- pintarPoblacion -->      ");
-		for(int i=0; i<tam_pob; i++) {
-			System.out.println("Individuo:" +i);
-			for(int j=0;j<individuos.get(i).genes.size();j++) {
-				System.out.print(individuos.get(i).genes.get(j).bit);
-			}
-			System.out.println("");
-			System.out.println("Aptitud: "+individuos.get(i).getadaptacion());
-			System.out.println("");
-		}
-	}
 
 }

@@ -11,10 +11,9 @@ public  abstract class Individuo {
 	private double punt_acu; 		     //PUNTUACION ACUMULADA PARA SORTEOS
 
 	protected double adaptacion_bruta;   //FUNCIoN DE EVALUACioN
-	protected List <Gen> genes; 		 //GENOTIPOS
+	protected TArbol genes; 		 //GENOTIPOS
 	protected int x_min;
 	protected int x_max;
-	protected Integer lcrom;
 	protected Object x; 				 //FENOTIPO
 
 	//==========================================
@@ -26,8 +25,6 @@ public  abstract class Individuo {
 	public Individuo (int x_min, int x_max) {
 		this.x_min = x_min;
 		this.x_max = x_max;
-		this.lcrom = tamGen(x_min, x_max);
-		this.genes = new ArrayList<Gen>();
 	}
 
 	// =========================
@@ -46,22 +43,15 @@ public  abstract class Individuo {
         return null;
     }
 
-	abstract Integer tamGen(int x_min, int x_max);
+	
 
-	public Integer damelCrom() {
-		return lcrom;
-	}
+	
 
 	public Individuo clone() {
 		//UNICA PARTE QUE VARIA
 		Individuo unIndividuo = this.newInstance(x_min, x_max);
 		//FIN DE PARTE QUE VARIA
-
-		for (int i=0;i<this.lcrom;i++) {
-			unIndividuo.genes.set(i, this.genes.get(i).clone());
-		}
-
-		unIndividuo.decod();
+		
 		unIndividuo.adaptacion_bruta = this.adaptacion_bruta;
 		unIndividuo.adaptacion = this.adaptacion;
 		unIndividuo.puntuacion = this.puntuacion;
@@ -77,19 +67,13 @@ public  abstract class Individuo {
 
 	abstract double miFuncion (Object valor);
 
-	abstract void  decod();
 
 	public abstract Individuo clone_aux(int x_min, int x_max);
 
 	@Override
 	abstract public String toString();
 
-	void borraGenes() {
-		for (int i=0;i<lcrom;i++) {
-			genes.set(i,genes.get(0).newInstance());
-		}
-		decod();
-	}
+	
 
 	// =========================
 	// ======== GETTERS
@@ -133,19 +117,6 @@ public  abstract class Individuo {
 	
 	//métodos para codif. ordinal
 	
-	abstract List<Gen> ordinalNormal();
-	abstract List<Gen> normalOrdinal();
-	abstract Integer damePosGen(List<Gen> unaLista, Gen unGen);
-	boolean equals (Individuo individuo2)
-	{
-		boolean eq=true;
-		int i=0;
-		while(eq && (i<lcrom) )
-		{
-			eq=genes.get(i).equals(individuo2.genes.get(i));
-			i++;
-		}
-		
-		return eq;
-	}
+	
+	
 }

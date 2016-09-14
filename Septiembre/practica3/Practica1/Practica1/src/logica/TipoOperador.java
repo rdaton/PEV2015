@@ -107,7 +107,6 @@ public enum TipoOperador
 			return 0;
 		
 		}		
-	
 	}
 	
 	public static TipoOperador operadorAleatorio()
