@@ -200,3 +200,12 @@ Command-line arguments:  -data /home/barfelix/PEV2015/Septiembre/practica3/Pract
 
 !ENTRY org.eclipse.ui 2 2 2016-09-15 18:24:40.387
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-09-15 21:54:20.920 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -data /home/barfelix/PEV2015/Septiembre/practica3/Practica1 -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-09-15 22:03:24.227
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)

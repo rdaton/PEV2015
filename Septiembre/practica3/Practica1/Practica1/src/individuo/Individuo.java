@@ -15,6 +15,7 @@ public  abstract class Individuo {
 	protected int x_min;
 	protected int x_max;
 	protected Object x; 				 //FENOTIPO
+	protected Tablero tablero;
 
 	//==========================================
 	//============= CONSTRUCTORA ===============

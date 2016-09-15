@@ -20,7 +20,8 @@ public  class Individuo_basico extends Individuo{
 
 	public Individuo_basico(int x_min, int x_max) {
 		super(x_min, x_max);
-		this.genes = new TArbol(x_max,x_max);
+		tablero=new Tablero();
+		this.genes = new TArbol(x_max);
 		adaptacion_bruta = calculaadaptacion_bruta();
 	}
 
@@ -41,6 +42,8 @@ public  class Individuo_basico extends Individuo{
 	
 
 double miFuncion(Object un_valor) {
+	tablero=new Tablero();
+	
 		/*
 		 * funcion adaptacion(TIndividuo individuo, TMapa mapa) {
 . . .
@@ -87,6 +90,7 @@ return 0;
 		StringBuffer unBuffer = new StringBuffer();
 		//decod();
 		//unBuffer.append(x).append(";  ");
+		unBuffer.append(tablero);
 		unBuffer.append(this.adaptacion_bruta);//.append(';');
 		return unBuffer.toString();
 	}

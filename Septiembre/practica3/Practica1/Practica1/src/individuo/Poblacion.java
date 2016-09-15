@@ -674,7 +674,7 @@ public class Poblacion {
 		Individuo hijo1 = padre1.newInstance(x_min, x_max);
 		Individuo hijo2 = padre2.newInstance(x_min, x_max);
 		Individuo[] unReturn={hijo1,hijo2};
-		TArbol[] arbolesHijos = TArbol.cruce(padre1.genes, padre2.genes);
+		TArbol[] arbolesHijos = hijo1.genes.cruce(padre1.genes, padre2.genes);
 		hijo1.genes=arbolesHijos[0];
 		hijo2.genes=arbolesHijos[1];		
 		return unReturn;

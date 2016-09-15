@@ -11,101 +11,81 @@ List<TArbol> hijos;
 logica.TipoOperador operador;
 int num_nodos;// número de nodos
 int profundidad;
+int num_hojas;
+int pos;
 
 //constructora que uso para clone()
-public TArbol (logica.TipoOperador operador,List<TArbol> hijos)
+public TArbol (logica.TipoOperador operador,List<TArbol> hijos,int pos)
 {
 	this.operador=operador;
+	this.pos=pos;
 	num_nodos=1;
+	num_hojas=0;
+	if (operador.esTerminal()) //si es hoja
+		num_hojas=1;
 	this.hijos=new ArrayList();	
 	for (int i=0;i<hijos.size();i++)
 	{
+		pos++;
 		TArbol unHijo=hijos.get(i).clone();
 		this.hijos.add(unHijo);
 		num_nodos+=unHijo.num_nodos;
+		num_hojas+=unHijo.num_hojas;
 	}
 	
 }
 //initialización completa
-public TArbol(int prof_min,int prof_max)
+public TArbol(int prof_max)
 {
-	  new TArbol(prof_min,prof_max,0);
+	  this(prof_max,0,0);
 }
 //garantizamos un árbol de cierta profundiad
-public TArbol(int prof_min,int prof_max,int prof)
-{
-	prof++;
+public TArbol(int prof_max,int prof,int pos)
+{	
 	profundidad=prof;
 	hijos=new ArrayList();
-	if (prof_min>1)
+	this.pos=pos;
+	if (profundidad<prof_max) // generación del subarbol de operador
 	{
-		if (prof<prof_max)
+		
+		// símbolo de operador aleatorio
+		operador=logica.TipoOperador.operadorAleatorio();
+		num_nodos=1;
+		// se generan los hijos
+		pos++;
+		TArbol HI=new TArbol( prof_max,prof+1,pos);
+		hijos.add(HI);
+		num_nodos+=HI.num_nodos;
+		num_hojas+=HI.num_hojas;
+		if (operador.aridad()==3)
 		{
-			// se decide aleatoriamente operando u operador
-						int tipo = logica.Calculadora.dameRandom(0,1);
-						if (tipo==1)
-						{//hacemos arbol
-							// generación del subarbol de operador
-							// símbolo de operador aleatorio
-							operador=logica.TipoOperador.operadorAleatorio();
-							num_nodos=1;
-							// se generan los hijos
-							TArbol HI=new TArbol(prof_min - 1, prof_max,prof);
-							hijos.add(HI);
-							num_nodos+=HI.num_nodos;
-							if (operador.aridad()==3)
-							{
-								TArbol HC=new TArbol(prof_min - 1, prof_max,prof);
-								hijos.add(HC);
-								num_nodos+=HC.num_nodos;
-							}
-							TArbol HD=new TArbol(prof_min - 1, prof_max,prof);
-							hijos.add(HD);
-							num_nodos+=HD.num_nodos;
-						}
-						
-						else{//hacemos hoja
-							// generación del subarbol de operando
-							// símbolo de operando aleatorio
-							operador=logica.TipoOperador.operandoAleatorio();
-							num_nodos=1;
-						}
-					
+			pos++;
+			TArbol HC=new TArbol (prof_max,prof+1,pos);
+			hijos.add(HC);
+			num_nodos+=HC.num_nodos;
+			num_hojas+=HC.num_hojas;
 		}
-		else
-		{
-			//hacemos hoja
-			// generación del subarbol de operando
-			// símbolo de operando aleatorio
-			operador=logica.TipoOperador.operandoAleatorio();
-			num_nodos=1;
-		}
+		pos++;
+		TArbol HD=new TArbol( prof_max,prof+1,pos);
+		hijos.add(HD);
+		num_nodos+=HD.num_nodos;
+		num_hojas+=HD.num_hojas;
 	}
-	else
+	else //generación de hoja
 	{
-		//hacemos hoja
 		// generación del subarbol de operando
 		// símbolo de operando aleatorio
 		operador=logica.TipoOperador.operandoAleatorio();
 		num_nodos=1;
+		num_hojas=1;
 	}
 	
-	
-	
+
 }
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	
+/*	
 	hijos=new ArrayList();
 	profundidad=prof;
 	prof++;
@@ -173,7 +153,7 @@ public TArbol(int prof_min,int prof_max,int prof)
 			}
 		}
 	}
-} //TArbol() */
+} //TArbol()  */
 
 //voy a presumir, que me darán una posición superior a 1
 //el reemplazo lo hago desde el padre
@@ -191,7 +171,7 @@ boolean sustituirSubArbol(int nodo_cruce,TArbol entrada, int pos)
 	{		
 		pos++;
 		enc=hijos.get(i).sustituirSubArbol(nodo_cruce,entrada,pos);	
-		i++;
+		if (!enc) i++;
 	}	
 	if (enc)
 		hijos.set(i,entrada);
@@ -211,39 +191,49 @@ TArbol buscarNodo(int nodo_cruce,int pos)
 		return this;
 	
 	//caso recursivo
-	for (int i=0;i<hijos.size()&&(enc==null);i++)
+	int i=0;
+	while (i<hijos.size()&&(enc==null))
 	{
 		pos++;
 		enc=hijos.get(i).buscarNodo(nodo_cruce,pos);
+		i++;
 	}	
 	return enc;
 }
 
-public static TArbol[] cruce (TArbol padre1, TArbol padre2)
+public  TArbol[] cruce (TArbol padre1, TArbol padre2)
 {
 	TArbol hijo1=null;
-	TArbol hijo2=null;;
-	TArbol[] hijos={hijo1,hijo2};
+	TArbol hijo2=null;
+	TArbol[] hijos= new TArbol[2];
 	int nom_nodos=Math.min(padre1.num_nodos,padre2.num_nodos);
 	int nodo_cruce=logica.Calculadora.dameRandom(1, nom_nodos);
 	if (nodo_cruce==1) //un cruce desde el primer nodo es un intercambio directamente
 	{
 		hijo1=padre2.clone();
 		hijo2=padre1.clone();
+		hijos[0]=hijo1;
+		hijos[1]=hijo2;
 		return hijos;
 	};//eoc
+	
 	hijo1=padre1.clone();
 	hijo2=padre2.clone();
 	TArbol subarbol1=hijo1.buscarNodo(nodo_cruce,1);
 	TArbol subarbol2=hijo2.buscarNodo(nodo_cruce,1);
 	
 	if (subarbol1==null || subarbol2==null)
+	{
+		hijos[0]=hijo1;
+		hijos[1]=hijo2;
 		return hijos;
+	}
 		
 	hijo1.sustituirSubArbol(nodo_cruce,subarbol2.clone(),1);
 	hijo2.sustituirSubArbol(nodo_cruce,subarbol1.clone(),1);	
 	
-	
+	hijos[0]=hijo1;
+	hijos[1]=hijo2;
 	return hijos;
 	
 }
@@ -251,7 +241,7 @@ public static TArbol[] cruce (TArbol padre1, TArbol padre2)
 
 public TArbol clone()
 {
-	TArbol unArbol = new TArbol(this.operador,this.hijos);
+	TArbol unArbol = new TArbol(this.operador,this.hijos,this.pos);
 	return unArbol;	
 }
 
@@ -265,6 +255,8 @@ public void mutacionTerminal()
 	{
 	nodo_mutar=logica.Calculadora.dameRandom(1, num_nodos);
 	unArbol=this.buscarNodo(nodo_mutar, 1);
+	if (unArbol==null) //debug Daton
+		return;
 	enc=unArbol.operador.esTerminal();
 	}
 	//lo reemplazo por un oerando aleatorio

@@ -267,18 +267,18 @@ public class MiPanelIzquierdo extends JPanel {
 		structResultados.add(listaResultados);
 		
 		// EJECUTAMOS FUNCION
-		
+		/*
 		Funcion1 unaFuncion1 = new Funcion1(torneo, tam_pob, num_iter, pCruces, pMut, tCruce, tSeleccion, tMutacion, elitismo);
 		elMejor = unaFuncion1.getMejorEntreMejores();
 		resultados = unaFuncion1.dameResultados();
 		
-		
+		*/
 
 		
 		
 		//Pruebo todas las combinaciones indicadas y saco el mejor resultado
 		//creo pool de threads
-		/*int cores = Runtime.getRuntime().availableProcessors();
+		int cores = Runtime.getRuntime().availableProcessors();
 		ExecutorService executorService = Executors.newFixedThreadPool(cores+1);
 		
 		Funcion1 unaFuncion1=null;
@@ -344,8 +344,8 @@ public class MiPanelIzquierdo extends JPanel {
 		while (unIterador.hasNext())
 		{
 			String unChurro=unIterador.next();
-			String valorLetras=unChurro.split("\n")[2];
-			if (Double.parseDouble(valorLetras)>Double.parseDouble(elMejor.split("\n")[2]))
+			String valorLetras=unChurro.split("\n")[33];
+			if (Double.parseDouble(valorLetras)>Double.parseDouble(elMejor.split("\n")[33]))
 			{
 				elMejor=unChurro;
 				contMejor=cont;
@@ -355,7 +355,7 @@ public class MiPanelIzquierdo extends JPanel {
 		}
 		
 		resultados=(List<List<Object>>)structResultados.get(1).get(contMejor);
-		*/
+		
 		
 		
 		if (resultados == null) { return null; }
@@ -409,11 +409,11 @@ public class MiPanelIzquierdo extends JPanel {
 	}
 
 	public String getMejorEntreMejores() {
-		//posicion 1 es la matriz de caminos
+		//posicion 1 a 33 es la matriz de caminos
 		String[] unChurro=elMejor.split("\n");
 		StringBuffer unBuffer=new StringBuffer();
 		unBuffer.append(unChurro[0]); //String de 'mejor jugador
-		for (int i=2;i<unChurro.length;i++)
+		for (int i=33;i<unChurro.length;i++)
 		{
 			unBuffer.append(unChurro[i]).append("\n");
 		}		
