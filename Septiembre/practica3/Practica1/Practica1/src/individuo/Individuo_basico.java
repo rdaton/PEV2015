@@ -20,7 +20,7 @@ public  class Individuo_basico extends Individuo{
 
 	public Individuo_basico(int x_min, int x_max) {
 		super(x_min, x_max);
-		this.genes = new TArbol(x_min,x_max);
+		this.genes = new TArbol(x_max,x_max);
 		adaptacion_bruta = calculaadaptacion_bruta();
 	}
 

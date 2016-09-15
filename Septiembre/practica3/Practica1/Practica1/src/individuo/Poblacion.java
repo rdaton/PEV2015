@@ -454,8 +454,17 @@ public class Poblacion {
 					//switch ....
 					//MUTACION
 					switch (tipoMutacion) {
-						
-					
+					case 0:
+						this.mutacionTerminal(i);
+						break;
+					case 1:
+						this.mutacionFuncion(i);
+						break;
+					case 2:
+						this.mutacionInicializacion(i);
+						break;
+					default:
+						mutacionTerminal(i);					
 					}
 					mutado = true;
 				}
@@ -675,7 +684,22 @@ public class Poblacion {
 	// == TIPOS DE MUTACION
 	// =========================
 
-	//private void mutacion(int ind) {
+	private void mutacionTerminal(int ind)
+	{
+		individuos.get(ind).genes.mutacionTerminal();
+		
+		
+	}
+	
+	private void mutacionFuncion(int ind)
+	{
+		individuos.get(ind).genes.mutacionFuncion();
+	}
+	
+	private void mutacionInicializacion(int ind)
+	{
+		individuos.get(ind).genes.mutacionInicializacion();
+	}
 
 	
 

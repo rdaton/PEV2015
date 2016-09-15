@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="logica.Calculadora"/>
-<fullyQualifiedTypeName name="logica.TipoOperador"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="logica.TipoOperador"/>
 </qualifiedTypeNameHistroy>

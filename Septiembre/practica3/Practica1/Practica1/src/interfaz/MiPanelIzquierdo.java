@@ -267,18 +267,18 @@ public class MiPanelIzquierdo extends JPanel {
 		structResultados.add(listaResultados);
 		
 		// EJECUTAMOS FUNCION
-		/*
+		
 		Funcion1 unaFuncion1 = new Funcion1(torneo, tam_pob, num_iter, pCruces, pMut, tCruce, tSeleccion, tMutacion, elitismo);
-		elPeor = unaFuncion1.getMejorEntrePeores();
+		elMejor = unaFuncion1.getMejorEntreMejores();
 		resultados = unaFuncion1.dameResultados();
 		
-		*/
+		
 
 		
 		
 		//Pruebo todas las combinaciones indicadas y saco el mejor resultado
 		//creo pool de threads
-		int cores = Runtime.getRuntime().availableProcessors();
+		/*int cores = Runtime.getRuntime().availableProcessors();
 		ExecutorService executorService = Executors.newFixedThreadPool(cores+1);
 		
 		Funcion1 unaFuncion1=null;
@@ -355,7 +355,7 @@ public class MiPanelIzquierdo extends JPanel {
 		}
 		
 		resultados=(List<List<Object>>)structResultados.get(1).get(contMejor);
-		
+		*/
 		
 		
 		if (resultados == null) { return null; }

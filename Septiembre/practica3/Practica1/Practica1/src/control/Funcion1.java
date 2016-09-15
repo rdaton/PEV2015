@@ -13,8 +13,8 @@ public class Funcion1 {
 	private int tCruce = 0;
 	private int tSeleccion = 0;
 	private int tMutacion = 0;
-	private final int x_min = 0;
-	private final int x_max = 28;
+	private final int x_min = 1;
+	private final int x_max = 10;
 	private AGenetico unAlgoritmo;
 
 	//==========================================
